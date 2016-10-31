@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DeliveryMasterClintApp</string>
+
+    <string name="navigation_drawer_open">فتح المستعرض</string>
+    <string name="navigation_drawer_close">غلق المستعرض</string>
+    <string name="action_settings">الاعدادات</string>
+</resources>
