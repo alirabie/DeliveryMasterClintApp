@@ -4,4 +4,10 @@
     <string name="navigation_drawer_open">فتح المستعرض</string>
     <string name="navigation_drawer_close">غلق المستعرض</string>
     <string name="action_settings">الاعدادات</string>
+    <string name="home">قائمة الطعام</string>
+    <string name="signin">تسجيل الدخول</string>
+    <string name="signup">حساب جديد</string>
+    <string name="guest">دخول ضيف</string>
+    <string name="hintloginphonenumber">رقم الهاتف</string>
+    <string name="hintloginpassword">كلمة المرور</string>
 </resources>

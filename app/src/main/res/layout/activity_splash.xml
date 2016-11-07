@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="app.appsmatic.com.deliverymasterclintapp.Splash"
+    android:background="@drawable/splashscreen"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/signup"
+            android:id="@+id/tv_signup"
+            android:textColor="#ffa600"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/signin"
+            android:id="@+id/tv_signin"
+            android:textColor="#ffa600"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/guest"
+        android:id="@+id/tv_guest"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffa600"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:gravity="center" />
+
+</LinearLayout>

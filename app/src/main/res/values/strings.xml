@@ -4,4 +4,14 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+    <string name="home">Food Menu</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="signin">Sign In</string>
+    <string name="signup">Sign Up</string>
+    <string name="guest">Iam Guest</string>
+    <string name="title_activity_sign_in">SignIn</string>
+    <string name="title_activity_sign_up">SignUp</string>PHONE NUMBER
+    <string name="hintloginphonenumber">PHONE NUMBER</string>
+    <string name="hintloginpassword">PASSWORD</string>
+
 </resources>
