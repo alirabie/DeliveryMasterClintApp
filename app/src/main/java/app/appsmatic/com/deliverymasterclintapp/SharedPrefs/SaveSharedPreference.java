@@ -1,4 +1,4 @@
-package app.appsmatic.com.deliverymasterclintapp;
+package app.appsmatic.com.deliverymasterclintapp.SharedPrefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;

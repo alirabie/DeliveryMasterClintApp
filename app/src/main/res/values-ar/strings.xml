@@ -10,4 +10,20 @@
     <string name="guest">دخول ضيف</string>
     <string name="hintloginphonenumber">رقم الهاتف</string>
     <string name="hintloginpassword">كلمة المرور</string>
+    <string name="forgetpassword">هل نسيت كلمة المرور ؟</string>
+    <string name="newaccount">تسجيل حساب جديد !</string>
+    <string name="tv_Signup">تسجيل حساب جديد</string>
+    <string name="signup_username">اسم المستخدم</string>
+    <string name="signup_mobnum">رقم الجوال</string>
+    <string name="signup_password">كلمة المرور</string>
+    <string name="signup_re_password">تاكيد كلمة المرور</string>
+    <string name="doyouforgetpassword">هل نسيت كلمة مرورك ؟</string>
+    <string name="insertyourphone">ادخل رقم هاتفك الجوال لاعادة تعيين كلمة المرور عن طريق رسالة قصيرة</string>
+    <string name="hintforgetpasswordtxtinput">رقم الجوال</string>
+    <string name="securtycode">رمز الحماية</string>
+    <string name="plesechecyourmobile">يرجى التحقق من هاتفك الجوال ستصلك رسالة قصيرة برمز الامان</string>
+    <string name="entersecurtycode">ادخل رمز الامان</string>
+    <string name="newpassword">كلمة المرور الجديدة</string>
+    <string name="enteryournewpass">ادخل كلمة المرور الجديدة</string>
+    <string name="newpasswordlabl">كلمة مرور جديدة</string>
 </resources>

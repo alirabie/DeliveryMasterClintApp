@@ -13,5 +13,25 @@
     <string name="title_activity_sign_up">SignUp</string>PHONE NUMBER
     <string name="hintloginphonenumber">PHONE NUMBER</string>
     <string name="hintloginpassword">PASSWORD</string>
+    <string name="forgetpassword">Forgot Password ?</string>
+    <string name="newaccount">New Account! Sign Up</string>
+    <string name="tv_Signup">Sign Up</string>
+    <string name="signup_username">Username</string>
+    <string name="signup_mobnum">Mobile No</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_re_password">Password Conf</string>
+    <string name="doyouforgetpassword">Forget Password ?</string>
+    <string name="insertyourphone">Enter your Mobile Number To Reset Password By SMS</string>
+    <string name="hintforgetpasswordtxtinput">Mobile No</string>
+    <string name="securtycode">Security Code</string>
+    <string name="plesechecyourmobile">Please Check Your Mobile For your Security Code SMS </string>
+    <string name="entersecurtycode">Enter Security Code</string>
+    <string name="title_activity_new_password">NewPassword</string>
+    <string name="newpassword">New Password</string>
+    <string name="enteryournewpass">Enter Your New Password</string>
+    <string name="newpasswordlabl">New Password</string>
+
+
+
 
 </resources>

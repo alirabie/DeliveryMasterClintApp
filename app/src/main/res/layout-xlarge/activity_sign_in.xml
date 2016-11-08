@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.appsmatic.com.deliverymasterclintapp.SignIn"
+    tools:context=".Screens.SignIn"
     android:background="@drawable/signinscreenbackg"
     android:orientation="vertical"
     android:gravity="end">
@@ -43,16 +43,18 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
             android:ems="10"
             android:background="@drawable/inputfield"
             android:textSize="25dp"
             android:hint="@string/hintloginpassword"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:padding="20dp"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:layout_marginTop="20dp"
-            android:id="@+id/password_login" />
+            android:id="@+id/password_login"
+            android:inputType="textPassword" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -61,6 +63,38 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/signinbtn"
             android:layout_marginTop="25dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/forgetpassword"
+                android:id="@+id/tv_forgetpass"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ffa600"
+                android:layout_marginTop="5dp"
+                android:textSize="30dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tv_newaccount"
+                android:text="@string/newaccount"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ffa600"
+                android:layout_marginTop="10dp"
+                android:textSize="30dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

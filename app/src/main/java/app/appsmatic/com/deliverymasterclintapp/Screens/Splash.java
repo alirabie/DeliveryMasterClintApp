@@ -1,16 +1,16 @@
-package app.appsmatic.com.deliverymasterclintapp;
+package app.appsmatic.com.deliverymasterclintapp.Screens;
 
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.Locale;
+
+import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 public class Splash extends AppCompatActivity {
 

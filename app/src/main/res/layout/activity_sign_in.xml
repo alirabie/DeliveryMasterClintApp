@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.appsmatic.com.deliverymasterclintapp.SignIn"
+    tools:context=".Screens.SignIn"
     android:background="@drawable/signinscreenbackg"
     android:orientation="vertical"
     android:gravity="end">
@@ -43,11 +43,13 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="textPassword"
             android:ems="10"
             android:background="@drawable/inputfield"
             android:textSize="18dp"
             android:hint="@string/hintloginpassword"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:padding="10dp"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
@@ -61,6 +63,36 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/signinbtn"
             android:layout_marginTop="20dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/forgetpassword"
+                android:id="@+id/tv_forgetpass"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ffa600"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tv_newaccount"
+                android:text="@string/newaccount"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ffa600"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

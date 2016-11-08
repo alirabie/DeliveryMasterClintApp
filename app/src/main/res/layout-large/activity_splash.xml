@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.appsmatic.com.deliverymasterclintapp.Splash"
+    tools:context=".Screens.Splash"
     android:background="@drawable/splashscreen"
     android:orientation="vertical"
     android:gravity="bottom">

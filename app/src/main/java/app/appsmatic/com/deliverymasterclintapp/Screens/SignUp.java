@@ -1,4 +1,4 @@
-package app.appsmatic.com.deliverymasterclintapp;
+package app.appsmatic.com.deliverymasterclintapp.Screens;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -9,40 +9,49 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.Locale;
 
-public class SignIn extends AppCompatActivity {
+import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
-    private ImageView logo,signinbtn;
+public class SignUp extends AppCompatActivity {
 
+    private ImageView logo,signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        setLang(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_up);
+        setLang(R.layout.activity_sign_up);
 
-        logo=(ImageView)findViewById(R.id.logo);
-        signinbtn=(ImageView)findViewById(R.id.loginbtn);
+        logo=(ImageView)findViewById(R.id.signup_logo);
+        signup=(ImageView)findViewById(R.id.signup_btn);
 
-
-        //Set image language for logo and login button
+        //Set image language for logo and Signin button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             logo.setImageResource(R.drawable.logoarabic);
-            signinbtn.setImageResource(R.drawable.signinbtnar);
+            signup.setImageResource(R.drawable.signupbuttonarabic);
         }else{
             logo.setImageResource(R.drawable.logo);
-            signinbtn.setImageResource(R.drawable.signinbtn);
+            signup.setImageResource(R.drawable.signupbtnen);
         }
 
+        //Animate Signup Layout
         Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toptodown);
-        LinearLayout loginpanel=(LinearLayout)findViewById(R.id.loginlayout);
+        LinearLayout loginpanel=(LinearLayout)findViewById(R.id.signuplayout);
         loginpanel.clearAnimation();
         loginpanel.setAnimation(anim);
+
+
+
+
+
+
 
 
 
@@ -55,12 +64,9 @@ public class SignIn extends AppCompatActivity {
 
 
 
-
-
-
     // Change language method
     public void setLang(int layout){
-        String languageToLoad =SaveSharedPreference.getLangId(this);
+        String languageToLoad = SaveSharedPreference.getLangId(this);
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
