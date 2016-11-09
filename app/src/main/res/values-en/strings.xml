@@ -26,5 +26,11 @@
     <string name="newpassword">New Password</string>
     <string name="enteryournewpass">Enter Your New Password</string>
     <string name="newpasswordlabl">New Password</string>
+    <string name="item1myaccount">My Account</string>
+    <string name="item2foodm">Food Menu</string>
+    <string name="item3currntorder">Current Order</string>
+    <string name="item4pervorders">Previous Orders</string>
+    <string name="item5settngs">Settings</string>
+    <string name="item6info">Info</string>
 
 </resources>

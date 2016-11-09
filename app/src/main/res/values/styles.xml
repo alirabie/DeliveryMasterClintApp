@@ -17,4 +17,25 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="NavigationViewStylem">
+        <item name="android:textSize">15sp</item>
+        <!-- menu item text size-->
+        <item name="android:textStyle">bold</item>
+        <!-- menu item text size-->
+    </style>
+
+    <style name="NavigationViewStylel">
+        <item name="android:textSize">20sp</item>
+        <!-- menu item text size-->
+        <item name="android:textStyle">bold</item>
+        <!-- menu item text size-->
+    </style>
+
+    <style name="NavigationViewStylemx">
+        <item name="android:textSize">25sp</item>
+        <!-- menu item text size-->
+        <item name="android:textStyle">bold</item>
+        <!-- menu item text size-->
+    </style>
 </resources>

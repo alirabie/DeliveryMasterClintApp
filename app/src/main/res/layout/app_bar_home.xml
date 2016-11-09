@@ -25,20 +25,29 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="22dp"
+                android:textSize="20dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:text="@string/home"
                 android:textColor="#ffffff" />
-
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Departure"
+                android:layout_gravity="end"
+                android:src="@drawable/carticon"
+                android:padding="10dp"
+                android:id="@+id/cartbtn" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Departure"
                 android:layout_gravity="end"
-                android:src="@drawable/abc_ic_search_api_mtrl_alpha"
-                android:padding="10dp" />
+                android:src="@drawable/searchicon"
+                android:padding="10dp"
+                android:id="@+id/serchbtn" />
+
 
         </android.support.v7.widget.Toolbar>
 

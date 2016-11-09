@@ -39,7 +39,11 @@
         <activity
             android:name=".Screens.NewPassword"
             android:label="@string/title_activity_new_password"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Screens.GuestSplash"
+            android:label="@string/title_activity_guest_splash"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

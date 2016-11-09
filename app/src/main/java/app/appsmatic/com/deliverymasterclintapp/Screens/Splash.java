@@ -22,7 +22,7 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         //Set Layout Language
-        SaveSharedPreference.setLangId(this, "en");
+        SaveSharedPreference.setLangId(this, "ar");
         setLang(R.layout.activity_splash);
 
        //Setup Label's
@@ -48,7 +48,7 @@ public class Splash extends AppCompatActivity {
         guest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //Guest mode
+                startActivity(new Intent(getApplication(),GuestSplash.class));
             }
         });
 

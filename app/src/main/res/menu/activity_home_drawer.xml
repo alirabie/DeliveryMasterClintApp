@@ -1,36 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layoutDirection="locale"
+    android:layout_gravity="center">
 
-    <group android:checkableBehavior="single">
+
+    <group android:checkableBehavior="single"
+        android:layout_gravity="end"
+        android:gravity="end">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_myaccout"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/action_settings" />
+            android:title="@string/item1myaccount"
+            android:gravity="end"
+            android:layout_gravity="end"/>
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_foodmun"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/action_settings" />
+            android:title="@string/item2foodm"
+            android:gravity="end"
+            android:layout_gravity="end"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_corder"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="@string/item3currntorder"
+            android:gravity="end"
+            android:layout_gravity="end"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_porder"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/item4pervorders"
+            android:gravity="end"
+            android:layout_gravity="end"/>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/item5settngs"
+            android:gravity="end"/>
+        <item
+            android:id="@+id/nav_info"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/item6info"
+            android:gravity="end"
+            android:layout_gravity="end"/>
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+
 
 </menu>

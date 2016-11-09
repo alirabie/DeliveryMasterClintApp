@@ -26,4 +26,10 @@
     <string name="newpassword">كلمة المرور الجديدة</string>
     <string name="enteryournewpass">ادخل كلمة المرور الجديدة</string>
     <string name="newpasswordlabl">كلمة مرور جديدة</string>
+    <string name="item1myaccount">حسابى</string>
+    <string name="item2foodm">قائمة الطعام</string>
+    <string name="item3currntorder">الطلبات الحالية</string>
+    <string name="item4pervorders">الطلبات السابقة</string>
+    <string name="item5settngs">الاعدادات</string>
+    <string name="item6info">معلومات عنا</string>
 </resources>
