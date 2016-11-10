@@ -1,24 +1,29 @@
 package app.appsmatic.com.deliverymasterclintapp.Screens;
 
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import java.util.Locale;
-
+import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.FoodMenu;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.Info;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.MyAccount;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.PrevOrders;
 import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 public class Home extends AppCompatActivity
@@ -28,12 +33,35 @@ public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView logoutbtn;
+    private TextView toolbartitle;
+    FoodMenu foodMenu;
+    CurrentOrder currentOrder;
+    PrevOrders prevOrders;
+    MyAccount myAccount;
+    Settings settings;
+    Info info;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        //Check Os Ver For Set Status Bar
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        }
+
+        //Add Start Fragment Food menu
+        foodMenu=new FoodMenu();
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentcontener, foodMenu);
+        fragmentTransaction.commit();
 
 
         //logout button implementation
@@ -48,7 +76,7 @@ public class Home extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Home.this.finish();
-                startActivity(new Intent(getApplicationContext(),SignIn.class));
+                startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
         });
 
@@ -60,6 +88,7 @@ public class Home extends AppCompatActivity
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbartitle=(TextView)findViewById(R.id.main_toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -70,6 +99,17 @@ public class Home extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+
+
+
+
+
+
+
+
+
+
     }
 
     @Override
@@ -86,24 +126,61 @@ public class Home extends AppCompatActivity
 
 
 
-
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_myaccout) {
-            Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
+            myAccount=new MyAccount();
+            toolbartitle.setText(R.string.item1myaccount);
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentcontener, myAccount);
+            fragmentTransaction.commit();
+
         } else if (id == R.id.nav_foodmun) {
+            foodMenu=new FoodMenu();
+            toolbartitle.setText(R.string.item2foodm);
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentcontener, foodMenu);
+            fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_corder) {
+           currentOrder=new CurrentOrder();
+            toolbartitle.setText(R.string.item3currntorder);
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentcontener, currentOrder);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_porder) {
+            prevOrders=new PrevOrders();
+            toolbartitle.setText(R.string.item4pervorders);
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentcontener, prevOrders);
+            fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_settings) {
+            settings=new Settings();
+            toolbartitle.setText(R.string.item5settngs);
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentcontener, settings);
+            fragmentTransaction.commit();
+
 
         } else if (id == R.id.nav_info) {
+            info=new Info();
+            toolbartitle.setText(R.string.item6info);
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentcontener, info);
+            fragmentTransaction.commit();
 
         }
 
