@@ -26,5 +26,8 @@ public class FoodMenu extends Fragment {
         return inflater.inflate(R.layout.fragment_food_menu, container, false);
     }
 
-
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 }

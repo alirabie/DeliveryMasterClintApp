@@ -1,13 +1,118 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragments.Settings">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Fragments.Settings"
+android:orientation="vertical"
+android:padding="5dp"
+android:gravity="end">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/formbackg">
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/langdroplangtitle"
+            android:id="@+id/lang"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:id="@+id/langlist"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:gravity="center"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/dropprefs"
+            android:id="@+id/textViewd"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:id="@+id/prefs"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:gravity="center"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/photoload"
+            android:id="@+id/textView"
+            android:layout_weight="1"
+            android:textSize="15dp"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:id="@+id/pics"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:layout_weight="1"
+            android:spinnerMode="dropdown"
+            android:gravity="center"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/savebtn"
+        android:src="@drawable/savebtnenn"
+        android:layout_marginTop="10dp"
+        android:padding="10dp" />
+
+</LinearLayout>
+</LinearLayout>

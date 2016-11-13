@@ -32,9 +32,10 @@ public class Splash extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
-        //Set Layout Language
-        SaveSharedPreference.setLangId(this, "en");
+
+        //set app lang
         setLang(R.layout.activity_splash);
+
 
        //Setup Label's
         signin=(TextView)findViewById(R.id.tv_signin);

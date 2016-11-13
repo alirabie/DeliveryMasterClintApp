@@ -27,5 +27,8 @@ public class MyAccount extends Fragment {
         return inflater.inflate(R.layout.fragment_my_account, container, false);
     }
 
-
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 }
