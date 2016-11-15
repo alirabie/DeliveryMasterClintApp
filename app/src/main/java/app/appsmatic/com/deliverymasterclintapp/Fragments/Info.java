@@ -7,12 +7,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import app.appsmatic.com.deliverymasterclintapp.R;
 
 
 public class Info extends Fragment {
 
+    private ImageView infoReslogo;
+    private TextView infoResname
+                    ,infoResaddress
+                    ,infoResphone
+                    ,infoRestimeopen
+                    ,infoResminimumm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,5 +38,11 @@ public class Info extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        infoReslogo=(ImageView)getActivity().findViewById(R.id.info_res_logo);
+        infoResname=(TextView)getActivity().findViewById(R.id.info_tv_resname);
+        infoResaddress=(TextView)getActivity().findViewById(R.id.info_tv_address);
+        infoResphone=(TextView)getActivity().findViewById(R.id.info_tv_phone);
+        infoRestimeopen=(TextView)getActivity().findViewById(R.id.info_tv_timeopen);
+        infoResminimumm=(TextView)getActivity().findViewById(R.id.info_tv_mcharge);
     }
 }

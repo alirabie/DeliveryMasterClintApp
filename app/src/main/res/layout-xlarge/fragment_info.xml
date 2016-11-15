@@ -1,13 +1,117 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Info">
+    tools:context=".Fragments.Info"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:gravity="end">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@drawable/containerbackg">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/info_res_logo"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/infolink" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView5"
+            android:text="@string/info_resname"
+            android:layout_marginTop="100dp"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+        @string/info_resname
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Creviano"
+            android:id="@+id/info_tv_resname"
+            android:layout_marginTop="5dp"
+            android:textSize="22dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_resaddress"
+            android:id="@+id/textView8"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Cairo El Haram "
+            android:id="@+id/info_tv_address"
+            android:layout_marginTop="5dp"
+            android:textSize="22dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_restelephone"
+            android:id="@+id/textView99"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="002255588888"
+            android:id="@+id/info_tv_phone"
+            android:layout_marginTop="5dp"
+            android:textSize="22dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_resotime"
+            android:id="@+id/textView5v"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="10:00  11:00"
+            android:id="@+id/info_tv_timeopen"
+            android:layout_marginTop="5dp"
+            android:textSize="22dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/info_resminimumm"
+            android:id="@+id/textView5c"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="80 SR"
+            android:id="@+id/info_tv_mcharge"
+            android:layout_marginTop="5dp"
+            android:textSize="22dp" />
+    </LinearLayout>
+</LinearLayout>

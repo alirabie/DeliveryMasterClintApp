@@ -37,4 +37,9 @@
     <string name="droplistlang2">العربية</string>
     <string name="dropprefs">تفضيل الخدمات</string>
     <string name="photoload">تحميل الصور</string>
+    <string name="info_resname">اسم المطعم</string>
+    <string name="info_resaddress">العناويين الرئيسية</string>
+    <string name="info_restelephone">رقم الجوال </string>
+    <string name="info_resotime">وقت الفتح </string>
+    <string name="info_resminimumm">رسوم الحد الادنى</string>
 </resources>

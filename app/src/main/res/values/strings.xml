@@ -42,6 +42,13 @@
     <string name="droplistlang2">Arabic</string>
     <string name="dropprefs">Service Preference</string>
     <string name="photoload">Load Images</string>
+    <string name="info_resname">Name Of Restaurant </string>
+    <string name="info_resaddress">Head Address </string>
+    <string name="info_restelephone">Telephone </string>
+    <string name="info_resotime">Opening Time </string>
+    <string name="info_resminimumm">Minimum Charge</string>
+
+
 
 
 
