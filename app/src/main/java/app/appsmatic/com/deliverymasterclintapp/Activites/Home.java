@@ -17,13 +17,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import app.appsmatic.com.deliverymasterclintapp.Screens.CurrentOrder;
-import app.appsmatic.com.deliverymasterclintapp.Screens.FoodMenu;
-import app.appsmatic.com.deliverymasterclintapp.Screens.Info;
-import app.appsmatic.com.deliverymasterclintapp.Screens.MyAccount;
-import app.appsmatic.com.deliverymasterclintapp.Screens.PrevOrders;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.FoodMenu;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.Info;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.MyAccount;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.PrevOrders;
 import app.appsmatic.com.deliverymasterclintapp.R;
-import app.appsmatic.com.deliverymasterclintapp.Screens.Settings;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 public class Home extends AppCompatActivity

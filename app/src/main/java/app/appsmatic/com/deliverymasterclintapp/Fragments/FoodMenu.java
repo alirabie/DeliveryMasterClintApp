@@ -1,4 +1,4 @@
-package app.appsmatic.com.deliverymasterclintapp.Screens;
+package app.appsmatic.com.deliverymasterclintapp.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

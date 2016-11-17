@@ -1,4 +1,4 @@
-package app.appsmatic.com.deliverymasterclintapp.Screens;
+package app.appsmatic.com.deliverymasterclintapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
