@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/frame"
     android:fitsSystemWindows="true"
-    tools:context="app.appsmatic.com.deliverymasterclintapp.Screens.GuestSplash">
+    tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.GuestSplash">
 
 
 

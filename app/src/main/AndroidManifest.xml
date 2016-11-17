@@ -9,11 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Screens.Home"
+            android:name=".Activites.Home"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screens.Splash"
+            android:name=".Activites.Splash"
             android:label="@string/title_activity_splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,25 +23,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Screens.SignIn"
+            android:name=".Activites.SignIn"
             android:label="@string/title_activity_sign_in"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screens.SignUp"
+            android:name=".Activites.SignUp"
             android:label="@string/title_activity_sign_up"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screens.ForgetpasswordS1"
+            android:name=".Activites.ForgetpasswordS1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screens.SecurityCode"
+            android:name=".Activites.SecurityCode"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screens.NewPassword"
+            android:name=".Activites.NewPassword"
             android:label="@string/title_activity_new_password"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Screens.GuestSplash"
+            android:name=".Activites.GuestSplash"
             android:label="@string/title_activity_guest_splash"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

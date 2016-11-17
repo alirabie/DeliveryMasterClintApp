@@ -1,8 +1,6 @@
-package app.appsmatic.com.deliverymasterclintapp.Fragments;
+package app.appsmatic.com.deliverymasterclintapp.Screens;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,11 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import app.appsmatic.com.deliverymasterclintapp.R;
-import app.appsmatic.com.deliverymasterclintapp.Screens.Home;
-import app.appsmatic.com.deliverymasterclintapp.Screens.Splash;
+import app.appsmatic.com.deliverymasterclintapp.Activites.Splash;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 

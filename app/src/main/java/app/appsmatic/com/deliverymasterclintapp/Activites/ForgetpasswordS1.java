@@ -1,4 +1,4 @@
-package app.appsmatic.com.deliverymasterclintapp.Screens;
+package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.content.Intent;
 import android.os.Build;

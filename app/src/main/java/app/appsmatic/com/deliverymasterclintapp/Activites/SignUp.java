@@ -1,39 +1,32 @@
-package app.appsmatic.com.deliverymasterclintapp.Screens;
+package app.appsmatic.com.deliverymasterclintapp.Activites;
 
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.Locale;
 
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
-public class SignIn extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
-    private ImageView logo,signinbtn;
-    private EditText phonenum,password;
-    private TextView forgetpass,signup;
-
+    private ImageView logo,signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        setLang(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_sign_up);
+        setLang(R.layout.activity_sign_up);
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -43,23 +36,21 @@ public class SignIn extends AppCompatActivity {
         }
 
 
-        forgetpass=(TextView)findViewById(R.id.tv_forgetpass);
-        signup=(TextView)findViewById(R.id.tv_newaccount);
-        logo=(ImageView)findViewById(R.id.logo);
-        signinbtn=(ImageView)findViewById(R.id.loginbtn);
+        logo=(ImageView)findViewById(R.id.signup_logo);
+        signup=(ImageView)findViewById(R.id.signup_btn);
 
-
-        //Set image language for logo and login button
+        //Set image language for logo and Signin button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             logo.setImageResource(R.drawable.logoarabic);
-            signinbtn.setImageResource(R.drawable.signinbtnar);
+            signup.setImageResource(R.drawable.signupbuttonarabic);
         }else{
             logo.setImageResource(R.drawable.logo);
-            signinbtn.setImageResource(R.drawable.signinbtn);
+            signup.setImageResource(R.drawable.signupbtnen);
         }
 
+        //Animate Signup Layout
         Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toptodown);
-        LinearLayout loginpanel=(LinearLayout)findViewById(R.id.loginlayout);
+        LinearLayout loginpanel=(LinearLayout)findViewById(R.id.signuplayout);
         loginpanel.clearAnimation();
         loginpanel.setAnimation(anim);
 
@@ -76,46 +67,13 @@ public class SignIn extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-        //Forgot password button
-        forgetpass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplication(),ForgetpasswordS1.class));
-            }
-        });
-
-        //SignUp button
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplication(),SignUp.class));
-            }
-        });
-
-
-
-
-
-
     }
-
-
-
 
 
 
     // Change language method
     public void setLang(int layout){
-        String languageToLoad =SaveSharedPreference.getLangId(this);
+        String languageToLoad = SaveSharedPreference.getLangId(this);
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".Screens.SignIn"
+    tools:context=".Activites.SignIn"
     android:background="@drawable/signinscreenbackg"
     android:orientation="vertical"
     android:gravity="end">

@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/prevorder_itemlayout-reorderbtn"
+            android:id="@+id/prevorder_itemlayout_smsbtn"
             android:src="@drawable/reorderbtn"
             android:padding="5dp"
             android:layout_gravity="right|bottom"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="002555"
-            android:id="@+id/prevorder_itemlayout-ordernum"
+            android:id="@+id/prevorder_itemlayout_ordernum"
             android:textSize="13dp"
             android:textColor="#000000"
             android:padding="3dp" />
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="155 SR"
-                android:id="@+id/prevorder_itemlayout-price"
+                android:id="@+id/prevorder_itemlayout_price"
                 android:textSize="13dp"
                 android:textColor="#000000"
                 android:padding="3dp" />
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="60 Mintes"
-                android:id="@+id/prevorder_itemlayout-time"
+                android:id="@+id/prevorder_itemlayout_time"
                 android:textSize="13dp"
                 android:textColor="#000000"
                 android:padding="3dp" />
