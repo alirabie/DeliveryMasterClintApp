@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="140dp"
+            android:id="@+id/meal_home_mealpic"
+            android:src="@drawable/mealpic" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Name Of meal"
+                android:id="@+id/tv_meal_home_mealname"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15dp"
+                android:textColor="#ff2222" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="sfnjshf jkkjbg kjdfgjk kzccxv xvxcv xv xcv xv  xcv jbfdkgbkj kjbdfgb "
+                android:id="@+id/tv_meal_home_maildetails"
+                android:layout_gravity="center_horizontal"
+                android:textSize="11dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/linearLayout"
+                    android:layout_toRightOf="@+id/linearLayout3"
+                    android:layout_toEndOf="@+id/linearLayout3"
+                    android:padding="2dp"
+                    android:layout_weight="1"
+                    android:gravity="center|start|end">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView5"
+                        android:src="@drawable/moneyicon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="155 SR"
+                        android:id="@+id/tv_meal_home_price"
+                        android:textSize="9dp"
+                        android:textColor="#000000"
+                        android:padding="3dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addmeal_home_meals_btn"
+                    android:src="@drawable/addmealicon"
+                    android:layout_weight="2" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
