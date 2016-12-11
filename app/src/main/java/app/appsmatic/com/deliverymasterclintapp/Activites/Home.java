@@ -64,6 +64,8 @@ public class Home extends AppCompatActivity
         fragmentTransaction.commit();
 
 
+
+
         //logout button implementation
         logoutbtn=(ImageView)findViewById(R.id.logoutbtn);
         //Set image language for logout button

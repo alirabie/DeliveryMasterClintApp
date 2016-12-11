@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Mido PC on 12/4/2016.
  */
 public class Genrator {
-    private static final String API_URL = "http://www.5osomaat.com/WebService/API.ASMX/";
+    private static final String API_URL = "http://deliverymaster.co/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

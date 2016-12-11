@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/signup_name_input"
+            android:id="@+id/signup_f_name"
             android:padding="15dp"
             android:hint="@string/signup_username"
             android:background="@drawable/inputfield"
@@ -55,9 +55,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
             android:ems="10"
-            android:id="@+id/signup_phone_input"
+            android:id="@+id/signup_l_name"
             android:hint="@string/signup_mobnum"
             android:padding="15dp"
             android:layout_marginTop="10dp"
@@ -66,14 +65,14 @@
             android:layout_marginLeft="15dp"
             android:textColorHint="#d4d4d4"
             android:textSize="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:inputType="text" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/signup_password_input"
+            android:id="@+id/signup_phone_num"
             android:hint="@string/signup_password"
             android:textAlignment="viewStart"
             android:gravity="start"
@@ -84,7 +83,8 @@
             android:layout_marginRight="15dp"
             android:textColorHint="#d4d4d4"
             android:textSize="20dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:inputType="phone" />
 
         <EditText
             android:layout_width="match_parent"
@@ -94,7 +94,7 @@
             android:hint="@string/signup_re_password"
             android:textAlignment="viewStart"
             android:gravity="start"
-            android:id="@+id/signup_repassword_input"
+            android:id="@+id/signup_password_input"
             android:padding="15dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/inputfield"

@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/signup_name_input"
+            android:id="@+id/signup_f_name"
             android:padding="20dp"
             android:hint="@string/signup_username"
             android:background="@drawable/inputfield"
@@ -55,9 +55,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
             android:ems="10"
-            android:id="@+id/signup_phone_input"
+            android:id="@+id/signup_l_name"
             android:hint="@string/signup_mobnum"
             android:padding="20dp"
             android:layout_marginTop="15dp"
@@ -66,14 +65,15 @@
             android:layout_marginLeft="20dp"
             android:textColorHint="#d4d4d4"
             android:textSize="25dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:inputType="text" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="phone|textPassword"
             android:ems="10"
-            android:id="@+id/signup_password_input"
+            android:id="@+id/signup_phone_num"
             android:hint="@string/signup_password"
             android:textAlignment="viewStart"
             android:gravity="start"
@@ -89,12 +89,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
             android:ems="10"
             android:hint="@string/signup_re_password"
             android:textAlignment="viewStart"
             android:gravity="start"
-            android:id="@+id/signup_repassword_input"
+            android:id="@+id/signup_password_input"
             android:padding="20dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/inputfield"
@@ -102,7 +101,8 @@
             android:layout_marginLeft="20dp"
             android:textColorHint="#d4d4d4"
             android:textSize="25dp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:inputType="textPassword" />
 
         <ImageView
             android:layout_width="match_parent"

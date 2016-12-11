@@ -1,25 +1,50 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.Locale;
 
+import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.RegNewUser;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUp extends AppCompatActivity {
 
     private ImageView logo,signup;
+    private HashMap<String,Object> hash =new HashMap<>();
+    private EditText
+            fname,
+            lname,
+            password,
+            phonenum;
+    private ImageView signupbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +52,14 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         setLang(R.layout.activity_sign_up);
+        fname=(EditText)findViewById(R.id.signup_f_name);
+        lname=(EditText)findViewById(R.id.signup_l_name);
+        password=(EditText)findViewById(R.id.signup_password_input);
+        phonenum=(EditText)findViewById(R.id.signup_phone_num);
+        signupbtn=(ImageView)findViewById(R.id.signup_btn);
+
+
+
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -53,6 +86,115 @@ public class SignUp extends AppCompatActivity {
         LinearLayout loginpanel=(LinearLayout)findViewById(R.id.signuplayout);
         loginpanel.clearAnimation();
         loginpanel.setAnimation(anim);
+
+
+
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if(fname.getText().toString().isEmpty()||
+                        lname.getText().toString().isEmpty()||
+                        phonenum.getText().toString().isEmpty()||
+                        password.getText().toString().isEmpty()){
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                    builder.setMessage(R.string.dontleavefildes)
+                            .setCancelable(false)
+                            .setTitle(R.string.ErrorDialog)
+                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+
+                }else {
+
+
+                    Genrator.createService(ClintAppApi.class).SignUp(
+                            "2",
+                            "11",
+                            fname.getText().toString() + "",
+                            lname.getText().toString() + "",
+                            phonenum.getText().toString() + "",
+                            password.getText().toString() + "").enqueue(new Callback<Msg>() {
+                        @Override
+                        public void onResponse(Call<Msg> call, Response<Msg> response) {
+                            if (response.isSuccessful()) {
+
+                                if (response.body().getMessage() == null) {
+                                    SignUp.this.finish();
+                                    Toast.makeText(getApplicationContext(), R.string.RegSucusess, Toast.LENGTH_LONG).show();
+                                } else {
+                                    final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                                    builder.setMessage(response.body().getMessage() + "")
+                                            .setCancelable(false)
+                                            .setTitle(R.string.sysMsg)
+                                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                }
+
+                            } else {
+
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                                builder.setMessage(R.string.Responsenotsucusess)
+                                        .setCancelable(false)
+                                        .setTitle(R.string.communicationerorr)
+                                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Msg> call, Throwable t) {
+
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                            builder.setMessage(t.getMessage().toString()+"")
+                                    .setCancelable(false)
+                                    .setTitle(R.string.connectionerorr)
+                                    .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+
+                        }
+                    });
+
+
+                }
+
+
+
+            }
+        });
+
+
+
+
+
+
+
+
 
 
 

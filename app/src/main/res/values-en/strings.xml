@@ -13,10 +13,10 @@
     <string name="forgetpassword">Forgot Password ?</string>
     <string name="newaccount">New Account! Sign Up</string>
     <string name="tv_Signup">Sign Up</string>
-    <string name="signup_username">Username</string>
-    <string name="signup_mobnum">Mobile No</string>
-    <string name="signup_password">Password</string>
-    <string name="signup_re_password">Password Conf</string>
+    <string name="signup_username">First Name</string>
+    <string name="signup_mobnum">Last Name</string>
+    <string name="signup_password">Phone Number</string>
+    <string name="signup_re_password">Password</string>
     <string name="doyouforgetpassword">Forget Password ?</string>
     <string name="insertyourphone">Enter your Mobile Number To Reset Password By SMS</string>
     <string name="hintforgetpasswordtxtinput">Mobile No</string>
@@ -42,5 +42,15 @@
     <string name="info_restelephone">Telephone </string>
     <string name="info_resotime">Opening Time </string>
     <string name="info_resminimumm">Minimum Charge</string>
+    <string name="ErrorDialog">Error Message</string>
+    <string name="Dissmiss">Dismiss</string>
+    <string name="RegSucusess">Registration Success</string>
+    <string name="sysMsg">System Message</string>
+    <string name="Responsenotsucusess">Response From Server not Success !!!</string>
+    <string name="communicationerorr">Communication Error</string>
+    <string name="connectionerorr">Connection Error</string>
+    <string name="dontleavefildes">please Fill Empty Fields !!</string>
+
+
 
 </resources>
