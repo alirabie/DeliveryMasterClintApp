@@ -21,7 +21,7 @@ public class Settings extends Fragment {
 
     private Spinner lang,serprefs,loadimages;
     private ImageView savebtn;
-    private int langflag=1;
+    private int langflag=0;
 
 
     @Override
@@ -33,9 +33,6 @@ public class Settings extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_settings, container, false);
-
-
-
     }
 
     @Override
@@ -43,7 +40,7 @@ public class Settings extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        //Lang dropdwon list
+        //Lang dropdown list
         lang=(Spinner)getActivity().findViewById(R.id.langlist);
         String[] items = new String[]{"العربية", "English"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
@@ -51,14 +48,11 @@ public class Settings extends Fragment {
         lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                langflag = position;
-
-                //Set Layout Language
-                if(position==0) {
-                    SaveSharedPreference.setLangId(getActivity().getApplicationContext(), "ar");
+                //Set Lang Flag
+               if(position==0){
+                    langflag=0;
                 }else if(position==1){
-                    SaveSharedPreference.setLangId(getActivity().getApplicationContext(), "en");
-
+                    langflag=1;
                 }
             }
 
@@ -95,10 +89,29 @@ public class Settings extends Fragment {
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Save Lang Selection depended on lang flag
+                switch (langflag){
+                    case 0:
+                        SaveSharedPreference.setLangId(getActivity().getApplicationContext(), "ar");
+                        break;
+                    case 1:
+                        SaveSharedPreference.setLangId(getActivity().getApplicationContext(), "en");
+                        break;
+
+
+
+                }
+
+                //Restart App
                 getActivity().finish();
                 startActivity(new Intent(getContext(), Splash.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
+
+
+
+
 
         //Set save button lang
         if(SaveSharedPreference.getLangId(getActivity().getApplicationContext()).equals("ar")){

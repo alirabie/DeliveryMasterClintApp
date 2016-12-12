@@ -17,14 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Locale;
-
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.RegNewUser;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
@@ -52,14 +48,18 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         setLang(R.layout.activity_sign_up);
+
+        //SetUp Items
         fname=(EditText)findViewById(R.id.signup_f_name);
         lname=(EditText)findViewById(R.id.signup_l_name);
         password=(EditText)findViewById(R.id.signup_password_input);
         phonenum=(EditText)findViewById(R.id.signup_phone_num);
         signupbtn=(ImageView)findViewById(R.id.signup_btn);
+        logo=(ImageView)findViewById(R.id.signup_logo);
+        signup=(ImageView)findViewById(R.id.signup_btn);
 
 
-
+        //Setup Status Bar for OS
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -69,10 +69,9 @@ public class SignUp extends AppCompatActivity {
         }
 
 
-        logo=(ImageView)findViewById(R.id.signup_logo);
-        signup=(ImageView)findViewById(R.id.signup_btn);
 
-        //Set image language for logo and Signin button
+
+        //Set image language for logo and Sign in button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             logo.setImageResource(R.drawable.logoarabic);
             signup.setImageResource(R.drawable.signupbuttonarabic);
@@ -81,7 +80,8 @@ public class SignUp extends AppCompatActivity {
             signup.setImageResource(R.drawable.signupbtnen);
         }
 
-        //Animate Signup Layout
+
+        //Animate Sign up Layout
         Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toptodown);
         LinearLayout loginpanel=(LinearLayout)findViewById(R.id.signuplayout);
         loginpanel.clearAnimation();
@@ -89,17 +89,18 @@ public class SignUp extends AppCompatActivity {
 
 
 
+        //Sign Up Button Action
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-
+                //Check if there is Empty filed
                 if(fname.getText().toString().isEmpty()||
                         lname.getText().toString().isEmpty()||
                         phonenum.getText().toString().isEmpty()||
                         password.getText().toString().isEmpty()){
 
+                    //Alert Dialog for indicate that there is Empty Filed
                     final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                     builder.setMessage(R.string.dontleavefildes)
                             .setCancelable(false)
@@ -115,7 +116,7 @@ public class SignUp extends AppCompatActivity {
 
                 }else {
 
-
+                    //Post Data To Server
                     Genrator.createService(ClintAppApi.class).SignUp(
                             "2",
                             "11",
@@ -127,6 +128,7 @@ public class SignUp extends AppCompatActivity {
                         public void onResponse(Call<Msg> call, Response<Msg> response) {
                             if (response.isSuccessful()) {
 
+                                //Check If Post Success Or Not
                                 if (response.body().getMessage() == null) {
                                     SignUp.this.finish();
                                     Toast.makeText(getApplicationContext(), R.string.RegSucusess, Toast.LENGTH_LONG).show();
