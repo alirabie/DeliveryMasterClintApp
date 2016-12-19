@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="240dp"
         android:id="@+id/top_slider_image_item_layout"
         android:src="@drawable/sliderpic" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="PIZZA"

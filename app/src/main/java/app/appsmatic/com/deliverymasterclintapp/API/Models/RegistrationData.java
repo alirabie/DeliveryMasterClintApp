@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Mido PC on 12/11/2016.
  */
-public class RegNewUser {
+public class RegistrationData {
 
     @SerializedName("AccountType")
     @Expose

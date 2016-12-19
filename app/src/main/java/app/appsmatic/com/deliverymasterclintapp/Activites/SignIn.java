@@ -1,5 +1,8 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
@@ -15,17 +18,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
+import app.appsmatic.com.deliverymasterclintapp.API.Models.LoginData;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignIn extends AppCompatActivity {
 
     private ImageView logo,signinbtn;
     private EditText phonenum,password;
     private TextView forgetpass,signup;
+    private LoginData loginData;
 
 
     @Override
@@ -34,6 +46,15 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         setLang(R.layout.activity_sign_in);
+
+        loginData=new LoginData();
+        phonenum=(EditText)findViewById(R.id.phonenum_login);
+        password=(EditText)findViewById(R.id.password_login);
+        signinbtn=(ImageView)findViewById(R.id.loginbtn);
+
+
+
+
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -59,12 +80,167 @@ public class SignIn extends AppCompatActivity {
         }
 
         Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toptodown);
-        LinearLayout loginpanel=(LinearLayout)findViewById(R.id.loginlayout);
+        final LinearLayout loginpanel=(LinearLayout)findViewById(R.id.loginlayout);
         loginpanel.clearAnimation();
         loginpanel.setAnimation(anim);
 
 
 
+        //Sign in button Action
+        signinbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Check if there is Empty Filed
+                if(phonenum.getText().toString().equals("")||password.getText().toString().equals("")){
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                    builder.setMessage(R.string.dontleavefildes)
+                            .setCancelable(false)
+                            .setIcon(R.drawable.erroricon)
+                            .setTitle(R.string.sysMsg)
+                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+
+                }else{
+
+
+
+                    //Loading Dialog
+                    final ProgressDialog mProgressDialog = new ProgressDialog(SignIn.this);
+                    mProgressDialog.setIndeterminate(true);
+                    mProgressDialog.setIcon(android.R.drawable.ic_lock_idle_alarm);
+                    mProgressDialog.setTitle(R.string.loadingdialog);
+                    mProgressDialog.setMessage("Loading .... ");
+                    mProgressDialog.show();
+
+                    //Post Data Object Json to server
+                    loginData.setUserName(phonenum.getText().toString() + "");
+                    loginData.setPassword(password.getText().toString() + "");
+
+                    Genrator.createService(ClintAppApi.class).Login(loginData).enqueue(new Callback<Msg>() {
+                        @Override
+                        public void onResponse(Call<Msg> call, Response<Msg> response) {
+
+
+                            //If Server response successfully move to home Activity
+                            if(response.isSuccessful()){
+
+                                if (mProgressDialog.isShowing())
+                                    mProgressDialog.dismiss();
+                                //Check if Message response have String Success move to Home Activity and send user ID
+                                String code=response.body().getCode()+"";
+                                if(!code.equals("0")){
+
+                                    startActivity(new Intent(SignIn.this,Home.class).putExtra("UserId",response.body().getUserid()));
+                                    SignIn.this.finish();
+
+                                }else{
+
+
+                                    if (mProgressDialog.isShowing())
+                                        mProgressDialog.dismiss();
+                                    final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                                    builder.setMessage(response.body().getMessage()+"")
+                                            .setCancelable(false)
+                                            .setIcon(R.drawable.erroricon)
+                                            .setTitle(R.string.sysMsg)
+                                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+
+
+                                }
+
+
+
+
+
+
+
+
+
+
+                            }else{
+
+                                if (mProgressDialog.isShowing())
+                                    mProgressDialog.dismiss();
+
+
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                                builder.setMessage(R.string.Responsenotsucusess)
+                                        .setCancelable(false)
+                                        .setIcon(R.drawable.erroricon)
+                                        .setTitle(R.string.communicationerorr)
+                                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+
+
+                            }
+
+
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Msg> call, Throwable t) {
+                            if (mProgressDialog.isShowing())
+                                mProgressDialog.dismiss();
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                            builder.setMessage(t.getMessage().toString()+"")
+                                    .setCancelable(false)
+                                    .setIcon(R.drawable.erroricon)
+                                    .setTitle(R.string.connectionerorr)
+                                    .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+
+                        }
+                    });
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        });
 
 
 

@@ -1,13 +1,13 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -17,12 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.google.gson.Gson;
-import org.json.JSONObject;
-import java.util.HashMap;
+
 import java.util.Locale;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
-import app.appsmatic.com.deliverymasterclintapp.API.Models.RegNewUser;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.RegistrationData;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.R;
@@ -34,7 +32,7 @@ import retrofit2.Response;
 public class SignUp extends AppCompatActivity {
 
     private ImageView logo,signup;
-    private HashMap<String,Object> hash =new HashMap<>();
+    private RegistrationData registrationData;
     private EditText
             fname,
             lname,
@@ -50,6 +48,7 @@ public class SignUp extends AppCompatActivity {
         setLang(R.layout.activity_sign_up);
 
         //SetUp Items
+        registrationData =new RegistrationData();
         fname=(EditText)findViewById(R.id.signup_f_name);
         lname=(EditText)findViewById(R.id.signup_l_name);
         password=(EditText)findViewById(R.id.signup_password_input);
@@ -104,6 +103,7 @@ public class SignUp extends AppCompatActivity {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                     builder.setMessage(R.string.dontleavefildes)
                             .setCancelable(false)
+                            .setIcon(R.drawable.erroricon)
                             .setTitle(R.string.ErrorDialog)
                             .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -115,26 +115,48 @@ public class SignUp extends AppCompatActivity {
 
 
                 }else {
+                    //Loading Dialog
+                    final ProgressDialog mProgressDialog = new ProgressDialog(SignUp.this);
+                    mProgressDialog.setIndeterminate(true);
+                    mProgressDialog.setIcon(android.R.drawable.ic_lock_idle_alarm);
+                    mProgressDialog.setTitle(R.string.loadingdialog);
+                    mProgressDialog.setMessage("Loading .... ");
+                    mProgressDialog.show();
 
                     //Post Data To Server
-                    Genrator.createService(ClintAppApi.class).SignUp(
-                            "2",
-                            "11",
-                            fname.getText().toString() + "",
-                            lname.getText().toString() + "",
-                            phonenum.getText().toString() + "",
-                            password.getText().toString() + "").enqueue(new Callback<Msg>() {
+
+                    registrationData.setFirstName(fname.getText().toString() + "");
+                    registrationData.setLastName(lname.getText().toString() + "");
+                    registrationData.setMobileNo(phonenum.getText().toString() + "");
+                    registrationData.setNewPassword(password.getText().toString()+"");
+                    registrationData.setAccountType("2");
+                    registrationData.setRestaurantID("11");
+
+
+
+
+
+                    Genrator.createService(ClintAppApi.class).SignUp(registrationData).enqueue(new Callback<Msg>() {
                         @Override
                         public void onResponse(Call<Msg> call, Response<Msg> response) {
+
+
                             if (response.isSuccessful()) {
 
+                                if (mProgressDialog.isShowing())
+                                    mProgressDialog.dismiss();
+
+                                String code=response.body().getCode()+"";
+
+
                                 //Check If Post Success Or Not
-                                if (response.body().getMessage() == null) {
+                                if (!code.equals("0")) {
                                     SignUp.this.finish();
                                     Toast.makeText(getApplicationContext(), R.string.RegSucusess, Toast.LENGTH_LONG).show();
                                 } else {
                                     final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                                     builder.setMessage(response.body().getMessage() + "")
+                                            .setIcon(R.drawable.erroricon)
                                             .setCancelable(false)
                                             .setTitle(R.string.sysMsg)
                                             .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
@@ -148,9 +170,12 @@ public class SignUp extends AppCompatActivity {
 
                             } else {
 
+                                if (mProgressDialog.isShowing())
+                                    mProgressDialog.dismiss();
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                                 builder.setMessage(R.string.Responsenotsucusess)
                                         .setCancelable(false)
+                                        .setIcon(R.drawable.erroricon)
                                         .setTitle(R.string.communicationerorr)
                                         .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
@@ -166,10 +191,13 @@ public class SignUp extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<Msg> call, Throwable t) {
+                            if (mProgressDialog.isShowing())
+                                mProgressDialog.dismiss();
 
                             final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                             builder.setMessage(t.getMessage().toString()+"")
                                     .setCancelable(false)
+                                    .setIcon(R.drawable.erroricon)
                                     .setTitle(R.string.connectionerorr)
                                     .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {

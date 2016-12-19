@@ -1,7 +1,10 @@
 package app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -11,14 +14,22 @@ import retrofit2.http.POST;
  */
 public interface ClintAppApi {
 
-    @FormUrlEncoded
-    @POST("Account/Register")
-    Call<Msg> SignUp(@Field("AccountType") String Atyp,
-                     @Field("RestaurantID") String Rid,
-                     @Field("FirstName") String fname,
-                     @Field("LastName") String lname,
-                     @Field("MobileNo") String mnum,
-                     @Field("NewPassword") String pass);
+
+
+    //Sign Up method
+    @POST("account/Register")
+    Call<Msg> SignUp(@Body Object signup);
+
+    //Login Method
+    @POST("account/login")
+    Call<Msg>Login(@Body Object loginData);
+
+    //Categories Method
+    @POST("menu/categories")
+    Call<ResCats>GetCategories(@Body Object resId);
+
+    @POST("menu/meals")
+    Call<ResMeals>GetMeals(@Body Object catdata);
 
 
 

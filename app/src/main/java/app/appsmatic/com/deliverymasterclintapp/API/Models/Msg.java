@@ -11,6 +11,9 @@ public class Msg {
     private Integer code;
     @SerializedName("message")
     private String message;
+    @SerializedName("userid")
+    @Expose
+    private String userid;
 
     /**
      *
@@ -48,4 +51,11 @@ public class Msg {
         this.message = message;
     }
 
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 }

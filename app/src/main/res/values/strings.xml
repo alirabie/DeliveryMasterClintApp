@@ -54,11 +54,9 @@
     <string name="Responsenotsucusess">Response From Server not Success !!!</string>
     <string name="communicationerorr">Communication Error</string>
     <string name="connectionerorr">Connection Error</string>
-    <string name="dontleavefildes">please Fill Empty Fields !!</string>
-
-
-
-
+    <string name="dontleavefildes">Please Fill Empty Fields !!</string>
+    <string name="loadingdialog">Please Wait</string>
+    <string name="Loading">Loading ... </string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

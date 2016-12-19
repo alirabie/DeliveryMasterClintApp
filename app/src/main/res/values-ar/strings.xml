@@ -50,4 +50,6 @@
     <string name="communicationerorr">خطأ فى التواصل</string>
     <string name="connectionerorr">خطأ فى الاتصال بالانترنت</string>
     <string name="dontleavefildes">من فضلك لاتترك حقول فارغة !!</string>
+    <string name="loadingdialog">من فضلك انتظر</string>
+    <string name="Loading">جار التحميل .... </string>
 </resources>
