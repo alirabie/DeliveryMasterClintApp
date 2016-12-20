@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.MealsFrag;
+import app.appsmatic.com.deliverymasterclintapp.URLS.BaseURL;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
 /**
@@ -28,7 +29,6 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
     private MealsFrag mealsFrag;
     private String transId;
     private Bundle bundle;
-    final String IMGURL ="https://deliverymaster.co";
     private static final String ALLOWED_URI_CHARS = "@#&=*+-_.,:!?()/~'%";
 
     public CategoriesAdb(Context context, ResCats resCats) {
@@ -43,15 +43,21 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
 
     @Override
     public void onBindViewHolder(final CategoriesAdb.vh holder, final int position) {
+
         holder.catLbl.setText(resCats.getMessage().get(position).getName() + "");
 
-        String url = Uri.encode(IMGURL+resCats.getMessage().get(position).getIcon().toString(),ALLOWED_URI_CHARS);
+        //Encoding Img URl
+        String url = Uri.encode(BaseURL.IMGS+resCats.getMessage().get(position).getIcon().toString(),ALLOWED_URI_CHARS);
+
+
         Picasso.with(context)
                 .load(url)
-                .placeholder(R.drawable.itemplaceholder)
+                .fit()
+                .placeholder(R.drawable.rotat)
                 .into(holder.catImg);
 
 
+        //Category img button to meals
         holder.catImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,13 +80,10 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
     }
 
     public static class vh extends RecyclerView.ViewHolder{
-
         ImageView catImg;
         TextView catLbl;
-
         public vh(View itemView) {
             super(itemView);
-
             catImg=(ImageView)itemView.findViewById(R.id.top_slider_image_item_layout);
             catLbl=(TextView)itemView.findViewById(R.id.top_slider_tv_item_layout_name);
         }

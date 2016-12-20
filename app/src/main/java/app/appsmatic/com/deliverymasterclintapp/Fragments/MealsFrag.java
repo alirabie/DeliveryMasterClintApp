@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +34,7 @@ import retrofit2.Response;
 public class MealsFrag extends android.app.Fragment {
     private RecyclerView mealsList;
     private MealsAdb mealsAdb;
+    private String codeid="";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,13 +60,16 @@ public class MealsFrag extends android.app.Fragment {
         catDate.put("RestaurantID", "11");
         catDate.put("CategoryID", id);
 
-        //Loading Dialog
-        final ProgressDialog mProgressDialog = new ProgressDialog(getActivity());
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setIcon(android.R.drawable.ic_lock_idle_alarm);
-        mProgressDialog.setTitle(R.string.loadingdialog);
-        mProgressDialog.setMessage("Loading .... ");
-        mProgressDialog.show();
+
+            //Loading Dialog
+            final ProgressDialog mProgressDialog = new ProgressDialog(getActivity(),R.style.AppCompatAlertDialogStyle);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setIcon(R.drawable.loadicon);
+            mProgressDialog.setTitle(R.string.loadingdialog);
+            mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
+            mProgressDialog.show();
+
+
 
         //freeze screen when progress dialog on
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -76,8 +83,9 @@ public class MealsFrag extends android.app.Fragment {
 
                     //un freeze screen
                     getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
                     //get message code
-                    String codeid = response.body().getCode() + "";
+                    codeid = response.body().getCode()+"";
 
                     //Check If message Success Or Not
                     if (!codeid.equals("0")) {

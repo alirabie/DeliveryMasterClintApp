@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -112,11 +113,11 @@ public class SignIn extends AppCompatActivity {
 
 
                     //Loading Dialog
-                    final ProgressDialog mProgressDialog = new ProgressDialog(SignIn.this);
+                    final ProgressDialog mProgressDialog = new ProgressDialog(SignIn.this,R.style.AppCompatAlertDialogStyle);
                     mProgressDialog.setIndeterminate(true);
-                    mProgressDialog.setIcon(android.R.drawable.ic_lock_idle_alarm);
+                    mProgressDialog.setIcon(R.drawable.loadicon);
                     mProgressDialog.setTitle(R.string.loadingdialog);
-                    mProgressDialog.setMessage("Loading .... ");
+                    mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
                     mProgressDialog.show();
 
                     //Post Data Object Json to server
@@ -160,14 +161,6 @@ public class SignIn extends AppCompatActivity {
 
 
                                 }
-
-
-
-
-
-
-
-
 
 
                             }else{
