@@ -52,4 +52,6 @@
     <string name="dontleavefildes">من فضلك لاتترك حقول فارغة !!</string>
     <string name="loadingdialog">من فضلك انتظر</string>
     <string name="Loading">جار التحميل .... </string>
+    <string name="Amount">القيمة</string>
+    <string name="Additions">الإضافات</string>
 </resources>

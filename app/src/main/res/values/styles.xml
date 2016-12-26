@@ -41,9 +41,9 @@
 
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
-    <item name="colorAccent">@color/colorAccent</item>
-    <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
-    <item name="android:background">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
 </resources>

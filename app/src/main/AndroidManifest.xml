@@ -64,6 +64,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".Activites.Customization"
+            android:label="@string/title_activity_customization"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
     </application>
 
 </manifest>

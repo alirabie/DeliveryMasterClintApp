@@ -26,20 +26,18 @@ import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
-public class Home extends AppCompatActivity
-
-
-
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ImageView logoutbtn;
     private TextView toolbartitle;
-    FoodMenu foodMenu;
-    CurrentOrder currentOrder;
-    PrevOrders prevOrders;
-    MyAccount myAccount;
-    Settings settings;
-    Info info;
+
+    //Fragments
+    private FoodMenu foodMenu;
+    private CurrentOrder currentOrder;
+    private PrevOrders prevOrders;
+    private MyAccount myAccount;
+    private Settings settings;
+    private Info info;
 
 
 
@@ -68,7 +66,7 @@ public class Home extends AppCompatActivity
 
         //logout button implementation
         logoutbtn=(ImageView)findViewById(R.id.logoutbtn);
-        //Set image language for logout button
+            //Set image language for logout button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             logoutbtn.setImageResource(R.drawable.logoutbtnar);
         }else{

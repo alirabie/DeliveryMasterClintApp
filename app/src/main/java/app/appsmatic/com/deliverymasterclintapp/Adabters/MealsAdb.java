@@ -1,6 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
+import app.appsmatic.com.deliverymasterclintapp.Activites.Customization;
 import app.appsmatic.com.deliverymasterclintapp.URLS.BaseURL;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
@@ -34,7 +36,7 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
     }
 
     @Override
-    public void onBindViewHolder(vh2 holder, int position) {
+    public void onBindViewHolder(vh2 holder, final int position) {
         holder.title.setText(meals.getMessage().get(position).getName()+"");
         holder.details.setText(meals.getMessage().get(position).getDescription()+"");
         holder.price.setText(meals.getMessage().get(position).getPrice()+" SR");
@@ -56,13 +58,12 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
             @Override
             public void onClick(View v) {
 
+                context.startActivity(new Intent(context,Customization.class)
+                        .putExtra("price",meals.getMessage().get(position).getPrice()+"")
+                        .putExtra("mealId",meals.getMessage().get(position).getID()+""));
+
             }
         });
-
-
-
-
-
 
     }
 

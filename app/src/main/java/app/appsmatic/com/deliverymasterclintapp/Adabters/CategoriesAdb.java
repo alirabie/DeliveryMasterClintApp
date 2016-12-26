@@ -88,13 +88,5 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
             catLbl=(TextView)itemView.findViewById(R.id.top_slider_tv_item_layout_name);
         }
     }
-
-
-
     }
-
-
-
-
-
 

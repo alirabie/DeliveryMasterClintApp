@@ -43,6 +43,7 @@ public class ForgetpasswordS1 extends AppCompatActivity {
             contbtn.setImageResource(R.drawable.continuebtnenglish);
         }
 
+        //Continue Button
         contbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

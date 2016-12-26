@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import okhttp3.ResponseBody;
@@ -30,6 +31,9 @@ public interface ClintAppApi {
 
     @POST("menu/meals")
     Call<ResMeals>GetMeals(@Body Object catdata);
+
+    @POST("menu/additions")
+    Call<ResAdditions>GetAdditions(@Body Object mealData);
 
 
 

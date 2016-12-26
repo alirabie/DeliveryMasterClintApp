@@ -95,7 +95,6 @@ public class FoodMenu extends Fragment {
 
                 }
 
-//*
             }
 
             @Override
