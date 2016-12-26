@@ -85,7 +85,7 @@ public class Customization extends AppCompatActivity {
 
 
 
-        //Get Additions
+        //Get Additions by meal id
 
         HashMap mealData = new HashMap();
         mealData.put("MealID", "3074");

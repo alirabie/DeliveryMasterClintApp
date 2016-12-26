@@ -54,6 +54,8 @@
     <string name="Loading">Loading ... </string>
     <string name="Amount">Amount</string>
     <string name="Additions">Additions</string>
+    <string name="pickupservice">Pick Up Service</string>
+    <string name="LocationOnMap">Location On Map</string>
 
 
 

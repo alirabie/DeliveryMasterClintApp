@@ -54,4 +54,6 @@
     <string name="Loading">جار التحميل .... </string>
     <string name="Amount">القيمة</string>
     <string name="Additions">الإضافات</string>
+    <string name="pickupservice">خدمة الاستلام</string>
+    <string name="LocationOnMap">الموقع على الخريطة</string>
 </resources>
