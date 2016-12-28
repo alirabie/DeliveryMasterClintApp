@@ -14,12 +14,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/enterfulladdress"
+            android:id="@+id/textView13"
+            android:textColor="#000000" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/full_address_input" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/LocationOnMap"
             android:id="@+id/textView12"
             android:padding="10dp"
             android:textColor="#000000"
             android:gravity="start"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="15dp" />
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -27,7 +43,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             tools:context=".Activites.PickUpService"
             android:layout_alignWithParentIfMissing="false"
             android:layout_below="@+id/frameLayout"
@@ -45,27 +61,27 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal|top"
         android:background="@color/colorPrimary">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/pickupservice"
+            android:text="@string/deliveryservice"
             android:id="@+id/textView10"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pickup_btn"
+        android:id="@+id/delivery_btn"
         android:layout_gravity="bottom"
-        android:src="@drawable/selectbranchbtn_en"
+        android:src="@drawable/send_address_btn_en"
         android:padding="20dp" />
 
 </FrameLayout>

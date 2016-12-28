@@ -56,4 +56,6 @@
     <string name="Additions">الإضافات</string>
     <string name="pickupservice">خدمة الاستلام</string>
     <string name="LocationOnMap">الموقع على الخريطة</string>
+    <string name="deliveryservice">خدمة التوصيل</string>
+    <string name="enterfulladdress">أدخل العنوان كاملا : </string>
 </resources>

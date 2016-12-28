@@ -29,7 +29,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.PickUpServ"
+            tools:context=".Activites.PickUpService"
             android:layout_alignWithParentIfMissing="false"
             android:layout_below="@+id/frameLayout"
             android:layout_alignParentLeft="true"

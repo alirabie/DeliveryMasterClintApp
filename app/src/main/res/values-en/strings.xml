@@ -56,7 +56,8 @@
     <string name="Additions">Additions</string>
     <string name="pickupservice">Pick Up Service</string>
     <string name="LocationOnMap">Location On Map</string>
-
+    <string name="deliveryservice">Delivery Service</string>
+    <string name="enterfulladdress">Enter Your Full Address :</string>
 
 
 </resources>
