@@ -23,7 +23,9 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/full_address_input" />
+            android:id="@+id/full_address_input"
+            android:background="@drawable/blockback"
+            android:padding="8dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -43,7 +45,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             tools:context=".Activites.PickUpService"
             android:layout_alignWithParentIfMissing="false"
             android:layout_below="@+id/frameLayout"
@@ -73,7 +75,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <ImageView

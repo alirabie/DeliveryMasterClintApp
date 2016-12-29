@@ -67,6 +67,8 @@
         android:id="@+id/pickup_btn"
         android:layout_gravity="bottom"
         android:src="@drawable/selectbranchbtn_en"
-        android:padding="20dp" />
+        android:padding="20dp"
+        android:background="@drawable/ripple"
+        android:clickable="true"/>
 
 </FrameLayout>

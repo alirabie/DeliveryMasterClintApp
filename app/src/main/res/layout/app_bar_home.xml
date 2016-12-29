@@ -46,7 +46,9 @@
                 android:layout_gravity="end"
                 android:src="@drawable/searchicon"
                 android:padding="10dp"
-                android:id="@+id/serchbtn" />
+                android:id="@+id/serchbtn"
+                android:background="@drawable/ripple"
+                android:clickable="true"/>
 
 
         </android.support.v7.widget.Toolbar>

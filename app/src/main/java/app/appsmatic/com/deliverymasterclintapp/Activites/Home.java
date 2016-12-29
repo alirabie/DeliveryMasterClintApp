@@ -31,6 +31,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private ImageView logoutbtn;
     private TextView toolbartitle;
 
+    private ImageView shoppingCart;
+
     //Fragments
     private FoodMenu foodMenu;
     private CurrentOrder currentOrder;
@@ -105,6 +107,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+        //setup shopping Cart
+
+        shoppingCart=(ImageView)findViewById(R.id.cartbtn);
+        shoppingCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this,ShoppingCart.class));
+            }
+        });
 
 
 
@@ -188,6 +199,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
 
 
 

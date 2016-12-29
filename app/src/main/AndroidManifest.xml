@@ -73,7 +73,8 @@
         <activity
             android:name=".Activites.PickUpService"
             android:label="@string/title_activity_pick_up_serv" />
-        <activity android:name=".Activites.ShoppingCart" />
+        <activity android:name=".Activites.ShoppingCart"
+                  android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activites.DeliveryService"></activity>
     </application>
 

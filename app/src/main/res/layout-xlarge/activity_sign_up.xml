@@ -109,6 +109,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/signup_btn"
             android:src="@drawable/signupbtnen"
-            android:layout_marginTop="25dp" />
+            android:layout_marginTop="25dp"
+            android:background="@drawable/ripple"
+            android:clickable="true"/>
     </LinearLayout>
 </LinearLayout>

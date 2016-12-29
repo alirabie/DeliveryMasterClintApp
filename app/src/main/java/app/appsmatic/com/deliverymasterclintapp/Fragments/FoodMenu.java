@@ -69,8 +69,12 @@ public class FoodMenu extends Fragment {
                         String transId =response.body().getMessage().get(0).getID()+"";
                         bundle.putString("catid", transId);
                         mealsFrag.setArguments(bundle);
-                        FragmentManager fragmentManager = getActivity().getFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.foodmealsfragmentcontener, mealsFrag).commit();
+                        try {
+                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            fragmentManager.beginTransaction().replace(R.id.foodmealsfragmentcontener, mealsFrag).commit();
+                        }catch (Exception e){
+
+                        }
 
                     } else {
 

@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart"
+android:orientation="vertical">
+<android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart"
-    android:orientation="vertical">
-    <android.support.v7.widget.RecyclerView
+    android:id="@+id/cart_meals_list">
+</android.support.v7.widget.RecyclerView>
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:layout_gravity="bottom"
+    android:padding="15dp"
+    android:background="#ffffff">
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cart_meals_list">
-    </android.support.v7.widget.RecyclerView>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/cart_pickup_btn"
+        android:src="@drawable/cart_picup_btn_english"
         android:layout_weight="1"
-        android:layout_gravity="bottom"
-        android:padding="15dp"
-        android:background="#ffffff">
+        android:background="@drawable/ripple"
+        android:clickable="true"/>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_pickup_btn"
-            android:src="@drawable/cart_picup_btn_english"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/cart_delvery_btn"
-            android:src="@drawable/cart_delivery_btn_english"
-            android:layout_weight="1" />
-    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cart_delvery_btn"
+        android:src="@drawable/cart_delivery_btn_english"
+        android:layout_weight="1"
+        android:background="@drawable/ripple"
+        android:clickable="true"/>
+</LinearLayout>
 
 </FrameLayout>

@@ -23,5 +23,6 @@
         android:background="#a30b0b0b"
         android:textStyle="bold"
         android:textColor="#ffffff"
-        android:padding="10dp" />
+        android:padding="10dp"
+        />
 </FrameLayout>

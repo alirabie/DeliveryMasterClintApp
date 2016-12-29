@@ -55,12 +55,14 @@
             android:id="@+id/password_login" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/loginbtn"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/signinbtn"
-            android:layout_marginTop="25dp" />
+            android:layout_marginTop="25dp"
+            android:background="@drawable/ripple"
+            android:clickable="true"/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -78,7 +80,9 @@
                 android:gravity="center"
                 android:textColor="#ffa600"
                 android:layout_marginTop="5dp"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:background="@drawable/ripple"
+                android:clickable="true"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -90,7 +94,9 @@
                 android:gravity="center"
                 android:textColor="#ffa600"
                 android:layout_marginTop="10dp"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:background="@drawable/ripple"
+                android:clickable="true"/>
 
         </LinearLayout>
 

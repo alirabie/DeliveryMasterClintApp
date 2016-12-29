@@ -62,7 +62,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/securty_cont_2"
             android:src="@drawable/continuebtnenglish"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ripple"
+            android:clickable="true"/>
 
     </LinearLayout>
 </LinearLayout>
