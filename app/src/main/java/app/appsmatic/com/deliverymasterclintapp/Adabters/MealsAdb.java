@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
+import app.appsmatic.com.deliverymasterclintapp.Activites.Customization;
 import app.appsmatic.com.deliverymasterclintapp.Activites.DeliveryService;
 import app.appsmatic.com.deliverymasterclintapp.Activites.PickUpService;
 import app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart;
@@ -60,7 +61,7 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
             @Override
             public void onClick(View v) {
 
-                context.startActivity(new Intent(context, DeliveryService.class)
+                context.startActivity(new Intent(context, Customization.class)
                         .putExtra("price", meals.getMessage().get(position).getPrice() + "")
                         .putExtra("mealId", meals.getMessage().get(position).getID() + ""));
 

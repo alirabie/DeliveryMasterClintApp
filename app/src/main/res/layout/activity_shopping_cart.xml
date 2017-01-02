@@ -8,7 +8,8 @@ android:orientation="vertical">
 <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/cart_meals_list">
+    android:id="@+id/cart_meals_list"
+    android:background="#e4e4e4">
 </android.support.v7.widget.RecyclerView>
 
 <LinearLayout
@@ -18,7 +19,7 @@ android:orientation="vertical">
     android:layout_weight="1"
     android:layout_gravity="bottom"
     android:padding="15dp"
-    android:background="#ffffff">
+    android:background="#e4e4e4">
 
     <ImageView
         android:layout_width="match_parent"

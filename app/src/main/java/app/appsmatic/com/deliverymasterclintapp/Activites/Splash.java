@@ -1,11 +1,14 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -65,8 +68,7 @@ public class Splash extends AppCompatActivity {
         });
 
 
-
-
+        Log.e("KEY",getAppID());
 
 
 
@@ -82,6 +84,17 @@ public class Splash extends AppCompatActivity {
     }
 
 
+
+    // Get App Id
+    private String getAppID() {
+        PackageInfo pi;
+        try {
+            pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+            return pi.packageName;
+        } catch (final PackageManager.NameNotFoundException e) {
+            return "na";
+        }
+    }
 
 
 
