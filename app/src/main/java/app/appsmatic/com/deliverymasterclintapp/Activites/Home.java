@@ -74,6 +74,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }else{
            logoutbtn.setImageResource(R.drawable.logoutbtnen);
         }
+
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            logoutbtn.setBackgroundResource(R.drawable.ripple);
+        }
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +115,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         //setup shopping Cart
 
         shoppingCart=(ImageView)findViewById(R.id.cartbtn);
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            shoppingCart.setBackgroundResource(R.drawable.ripple);
+        }
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -90,6 +90,10 @@ public class SignUp extends AppCompatActivity {
 
 
         //Sign Up Button Action
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            signupbtn.setBackgroundResource(R.drawable.ripple);
+        }
         signupbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

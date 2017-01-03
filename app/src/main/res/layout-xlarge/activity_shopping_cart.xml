@@ -27,7 +27,6 @@
             android:id="@+id/cart_pickup_btn"
             android:src="@drawable/cart_picup_btn_english"
             android:layout_weight="1"
-            android:background="@drawable/ripple"
             android:clickable="true"/>
 
         <ImageView
@@ -36,7 +35,6 @@
             android:id="@+id/cart_delvery_btn"
             android:src="@drawable/cart_delivery_btn_english"
             android:layout_weight="1"
-            android:background="@drawable/ripple"
             android:clickable="true"/>
     </LinearLayout>
 

@@ -71,6 +71,7 @@ public class SignIn extends AppCompatActivity {
         signinbtn=(ImageView)findViewById(R.id.loginbtn);
 
 
+
         //Set image language for logo and login button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             logo.setImageResource(R.drawable.logoarabic);
@@ -88,6 +89,12 @@ public class SignIn extends AppCompatActivity {
 
 
         //Sign in button Action
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            signinbtn.setBackgroundResource(R.drawable.ripple);
+            forgetpass.setBackgroundResource(R.drawable.ripple);
+            signup.setBackgroundResource(R.drawable.ripple);
+        }
         signinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

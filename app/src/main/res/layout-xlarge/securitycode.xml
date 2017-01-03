@@ -64,7 +64,6 @@
             android:id="@+id/securty_cont_2"
             android:src="@drawable/continuebtnenglish"
             android:layout_marginTop="35dp"
-            android:background="@drawable/ripple"
             android:clickable="true"/>
 
     </LinearLayout>

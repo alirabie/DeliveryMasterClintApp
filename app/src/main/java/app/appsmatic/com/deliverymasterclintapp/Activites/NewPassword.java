@@ -48,6 +48,10 @@ public class NewPassword extends AppCompatActivity {
         }
 
 
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           resetpassbtn.setBackgroundResource(R.drawable.ripple);
+        }
         resetpassbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

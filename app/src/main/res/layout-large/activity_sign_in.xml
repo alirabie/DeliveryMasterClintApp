@@ -61,7 +61,6 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/signinbtn"
             android:layout_marginTop="25dp"
-            android:background="@drawable/ripple"
             android:clickable="true"/>
 
         <LinearLayout
@@ -81,7 +80,6 @@
                 android:textColor="#ffa600"
                 android:layout_marginTop="5dp"
                 android:textSize="25dp"
-                android:background="@drawable/ripple"
                 android:clickable="true"/>
 
             <TextView
@@ -95,7 +93,6 @@
                 android:textColor="#ffa600"
                 android:layout_marginTop="10dp"
                 android:textSize="25dp"
-                android:background="@drawable/ripple"
                 android:clickable="true"/>
 
         </LinearLayout>

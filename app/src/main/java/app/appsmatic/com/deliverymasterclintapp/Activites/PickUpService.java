@@ -39,6 +39,10 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
         pickupbtn=(ImageView)findViewById(R.id.pickup_btn);
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            pickupbtn.setBackgroundResource(R.drawable.ripple);
+        }
         //Set image language for pickup button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             pickupbtn.setImageResource(R.drawable.selectbranchbtn_ar);

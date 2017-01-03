@@ -28,7 +28,6 @@
             android:padding="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@drawable/ripple"
             android:clickable="true"/>
 
         <TextView
@@ -43,7 +42,6 @@
             android:padding="10dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@drawable/ripple"
             android:clickable="true"/>
     </LinearLayout>
 
@@ -58,7 +56,6 @@
         android:textSize="25dp"
         android:padding="10dp"
         android:gravity="center"
-        android:background="@drawable/ripple"
         android:clickable="true"/>
 
 </LinearLayout>

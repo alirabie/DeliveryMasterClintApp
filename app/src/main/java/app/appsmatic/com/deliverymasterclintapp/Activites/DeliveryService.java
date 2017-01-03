@@ -58,6 +58,11 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         }
 
         //set action for delivery button
+
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            deliverybtn.setBackgroundResource(R.drawable.ripple);
+        }
         deliverybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

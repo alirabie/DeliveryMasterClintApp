@@ -44,6 +44,10 @@ public class ForgetpasswordS1 extends AppCompatActivity {
         }
 
         //Continue Button
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           contbtn.setBackgroundResource(R.drawable.ripple);
+        }
         contbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

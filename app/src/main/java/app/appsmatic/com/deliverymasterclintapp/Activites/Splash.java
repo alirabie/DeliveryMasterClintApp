@@ -46,6 +46,14 @@ public class Splash extends AppCompatActivity {
         guest=(TextView)findViewById(R.id.tv_guest);
 
 
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            signin.setBackgroundResource(R.drawable.ripple);
+            signup.setBackgroundResource(R.drawable.ripple);
+            guest.setBackgroundResource(R.drawable.ripple);
+        }
+
+
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -47,7 +47,6 @@
                 android:src="@drawable/searchicon"
                 android:padding="10dp"
                 android:id="@+id/serchbtn"
-                android:background="@drawable/ripple"
                 android:clickable="true"/>
 
 

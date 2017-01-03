@@ -2,9 +2,11 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -145,6 +147,10 @@ public class Customization extends AppCompatActivity {
 
 
         //AddCart Button Action
+             //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           addCart.setBackgroundResource(R.drawable.ripple);
+        }
         addCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

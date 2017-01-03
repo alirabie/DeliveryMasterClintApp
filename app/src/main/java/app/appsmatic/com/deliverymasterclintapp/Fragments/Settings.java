@@ -1,6 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Fragments;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -86,6 +87,10 @@ public class Settings extends Fragment {
 
         //Save button
         savebtn=(ImageView)getActivity().findViewById(R.id.savebtn);
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            savebtn.setBackgroundResource(R.drawable.ripple);
+        }
         savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

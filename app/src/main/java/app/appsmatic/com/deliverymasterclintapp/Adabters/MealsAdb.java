@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Adabters;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,10 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
 
 
         //Customize order button
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            holder.btn.setBackgroundResource(R.drawable.ripple);
+        }
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

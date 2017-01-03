@@ -48,6 +48,11 @@ public class ShoppingCart extends AppCompatActivity {
 
 
         //Pick Uo action button
+        //Check Os Ver
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            pickuBtn.setBackgroundResource(R.drawable.ripple);
+            deleviryBtn.setBackgroundResource(R.drawable.ripple);
+        }
         pickuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

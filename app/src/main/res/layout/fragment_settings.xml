@@ -113,7 +113,6 @@ android:gravity="end">
         android:src="@drawable/savebtnenn"
         android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:background="@drawable/ripple"
         android:clickable="true"/>
 
 </LinearLayout>
