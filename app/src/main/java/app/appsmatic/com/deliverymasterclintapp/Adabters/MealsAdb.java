@@ -16,6 +16,7 @@ import app.appsmatic.com.deliverymasterclintapp.Activites.Customization;
 import app.appsmatic.com.deliverymasterclintapp.Activites.DeliveryService;
 import app.appsmatic.com.deliverymasterclintapp.Activites.PickUpService;
 import app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import app.appsmatic.com.deliverymasterclintapp.URLS.BaseURL;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
@@ -49,11 +50,20 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
         String url = Uri.encode(BaseURL.IMGS+meals.getMessage().get(position).getImagePreview().toString(), ALLOWED_URI_CHARS);
 
 
+        //Check Settings For Load images
+        if(SaveSharedPreference.getImgLoadingSatatus(context)){
         Picasso.with(context)
                 .load(url)
                 .placeholder(R.drawable.rotat)
                 .fit()
                 .into(holder.img);
+        }else {
+
+            Picasso.with(context)
+                    .load(R.drawable.itemplaceholder)
+                    .fit()
+                    .into(holder.img);
+        }
 
 
 

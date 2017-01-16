@@ -23,6 +23,7 @@ public class Settings extends Fragment {
     private Spinner lang,serprefs,loadimages;
     private ImageView savebtn;
     private int langflag=0;
+    private Boolean imgsLoadSatatus=true;
 
 
     @Override
@@ -46,14 +47,20 @@ public class Settings extends Fragment {
         String[] items = new String[]{"العربية", "English"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
         lang.setAdapter(adapter);
+        //Check Current Status for languages and set it first choice
+        if(SaveSharedPreference.getLangId(getContext().getApplicationContext()).equals("ar")){
+            lang.setSelection(0);
+        }else if (SaveSharedPreference.getLangId(getContext().getApplicationContext()).equals("en")){
+            lang.setSelection(1);
+        }
         lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //Set Lang Flag
-               if(position==0){
-                    langflag=0;
-                }else if(position==1){
-                    langflag=1;
+                if (position == 0) {
+                    langflag = 0;
+                } else if (position == 1) {
+                    langflag = 1;
                 }
             }
 
@@ -77,6 +84,31 @@ public class Settings extends Fragment {
 
         //load pics dropdwonlist
         loadimages=(Spinner)getActivity().findViewById(R.id.pics);
+        String[] status = new String[]{"Yes", "No"};
+        final ArrayAdapter<String> imgStatusAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, status);
+        loadimages.setAdapter(imgStatusAdapter);
+        //Check Current Status for Loading Images and set it first choice
+        if(SaveSharedPreference.getImgLoadingSatatus(getContext())){
+            loadimages.setSelection(0);
+        }else {
+            loadimages.setSelection(1);
+        }
+        loadimages.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Set img status Flag
+                if (position == 0) {
+                    imgsLoadSatatus = true;
+                } else if (position == 1) {
+                    imgsLoadSatatus = false;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -103,9 +135,13 @@ public class Settings extends Fragment {
                     case 1:
                         SaveSharedPreference.setLangId(getActivity().getApplicationContext(), "en");
                         break;
+                }
 
-
-
+               //save Img Load Status
+                if(imgsLoadSatatus==true){
+                    SaveSharedPreference.setImgLoadStatus(getActivity().getApplicationContext(),true);
+                }else {
+                    SaveSharedPreference.setImgLoadStatus(getActivity().getApplicationContext(),false);
                 }
 
                 //Restart App

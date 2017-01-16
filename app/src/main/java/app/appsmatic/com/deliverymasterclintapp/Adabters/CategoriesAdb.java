@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.MealsFrag;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import app.appsmatic.com.deliverymasterclintapp.URLS.BaseURL;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
@@ -50,11 +51,19 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
         String url = Uri.encode(BaseURL.IMGS+resCats.getMessage().get(position).getIcon().toString(),ALLOWED_URI_CHARS);
 
 
+        //Check Settings For Load images
+        if(SaveSharedPreference.getImgLoadingSatatus(context)){
         Picasso.with(context)
                 .load(url)
                 .fit()
                 .placeholder(R.drawable.rotat)
                 .into(holder.catImg);
+        }else{
+            Picasso.with(context)
+                    .load(R.drawable.itemplaceholder)
+                    .fit()
+                    .into(holder.catImg);
+        }
 
 
         //Category img button to meals

@@ -19,7 +19,7 @@
         android:id="@+id/top_slider_tv_item_layout_name"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:textSize="35dp"
+        android:textSize="25dp"
         android:background="#a30b0b0b"
         android:textStyle="bold"
         android:textColor="#ffffff"

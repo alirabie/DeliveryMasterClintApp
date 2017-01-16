@@ -12,6 +12,7 @@ public class SaveSharedPreference {
     static final String PREF_USER_NAME = "username";
     static final String PREF_USER_PASS = "password";
     static final String LANG_ID="langId";
+    static final String lOAD_IMG_ID="imagesStatus";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -33,6 +34,19 @@ public class SaveSharedPreference {
     public static String getLangId(Context context){
         return getSharedPreferences(context).getString(LANG_ID, "");
     }
+
+    public static Boolean getImgLoadingSatatus(Context context){
+        return getSharedPreferences(context).getBoolean(lOAD_IMG_ID,true);
+    }
+
+
+    public static void setImgLoadStatus(Context context,Boolean status){
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putBoolean(lOAD_IMG_ID,status);
+        editor.commit();
+    }
+
+
 
 
     public static String getUserName(Context ctx) {
