@@ -11,17 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.AdditionsAdb;
+import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
+import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealAddition;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import retrofit2.Call;
@@ -38,6 +44,10 @@ public class Customization extends AppCompatActivity {
     private String mealId,price;
     private RecyclerView additionsList;
     private ImageView addCart;
+    private List<MealAddition> mealAdditionList =new ArrayList<>();
+    private CartMeal cartMeal=new CartMeal();
+    private String mealName="";
+    AdditionsAdb adb;
 
 
     @Override
@@ -45,9 +55,11 @@ public class Customization extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customization);
 
+
         //Receive Data from Meals Adapter
         price=getIntent().getStringExtra("price");
         mealId=getIntent().getStringExtra("mealId");
+        mealName=getIntent().getStringExtra("mealname");
 
 
         //Setup Items
@@ -77,6 +89,8 @@ public class Customization extends AppCompatActivity {
         down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(count==0)
+                    return;
                 count--;
                 countTv.setText(count+"");
             }
@@ -98,7 +112,7 @@ public class Customization extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String code = response.body().getCode() + "";
                     if (!code.equals("0")) {
-                        additionsList.setAdapter(new AdditionsAdb(response.body(), getApplicationContext()));
+                        additionsList.setAdapter(adb=new AdditionsAdb(response.body(), getApplicationContext()));
                         additionsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     } else {
 
@@ -151,12 +165,34 @@ public class Customization extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
            addCart.setBackgroundResource(R.drawable.ripple);
         }
-        addCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
+
+
+
+
+            addCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //Fill addition List from list Adapter
+                    for(int i=0;i<adb.mealAdditions.size();i++) {
+                        if (adb.mealAdditions.get(i).getAddCount() != 0) {
+                            mealAdditionList.add(i, adb.mealAdditions.get(i));
+                        }
+
+                    }
+
+
+                    cartMeal.setMealName(mealName);
+                    cartMeal.setMealCount(count);
+                    cartMeal.setMealAdditions(mealAdditionList);
+                    Home.cartMeals.add(Home.cartNumber, cartMeal);
+                    Home.cartNumber++;
+                    Customization.this.finish();
+
+
+                }
+            });
 
 
 

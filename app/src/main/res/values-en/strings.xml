@@ -7,7 +7,7 @@
     <string name="home">Food Menu</string>
     <string name="signin">Sign In</string>
     <string name="signup">Sign Up</string>
-    <string name="guest">Iam Guest</string>
+    <string name="guest">I am Guest</string>
     <string name="hintloginphonenumber">PHONE NUMBER</string>
     <string name="hintloginpassword">PASSWORD</string>
     <string name="forgetpassword">Forgot Password ?</string>

@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +18,12 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import app.appsmatic.com.deliverymasterclintapp.API.Models.Meal;
+import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
+import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartOrders;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.FoodMenu;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.Info;
@@ -28,8 +35,10 @@ import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static int cartNumber=0;
     private ImageView logoutbtn;
     private TextView toolbartitle;
+    public static List<CartMeal>cartMeals=new ArrayList<>();
 
     private ImageView shoppingCart;
 
@@ -122,7 +131,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this,ShoppingCart.class));
+              //  startActivity(new Intent(Home.this,ShoppingCart.class));
+
+                Log.e("Meal Name : ", Home.cartMeals.get(0).getMealName());
+                Log.e("Items Count : ", Home.cartMeals.get(0).getMealCount()+"");
+                Log.e("additions : ", Home.cartMeals.get(0).getMealAdditions().get(0).getAdditionName());
             }
         });
 
@@ -208,6 +221,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+
 
 
 
