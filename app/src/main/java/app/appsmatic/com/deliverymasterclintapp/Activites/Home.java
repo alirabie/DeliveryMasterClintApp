@@ -131,11 +131,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  startActivity(new Intent(Home.this,ShoppingCart.class));
+               startActivity(new Intent(Home.this,ShoppingCart.class));
 
-                Log.e("Meal Name : ", Home.cartMeals.get(0).getMealName());
-                Log.e("Items Count : ", Home.cartMeals.get(0).getMealCount()+"");
-                Log.e("additions : ", Home.cartMeals.get(0).getMealAdditions().get(0).getAdditionName());
+                for(int i=0;i<Home.cartMeals.size();i++){
+                    Log.e("Meal name : ",Home.cartMeals.get(i).getMealName()+"  Count :"+Home.cartMeals.get(i).getMealCount()+"");
+                    for(int x=0;x<Home.cartMeals.get(i).getMealAdditions().size();x++){
+                        Log.e("Addition Name :",Home.cartMeals.get(i).getMealAdditions().get(x).getAdditionName()+" Count :"+Home.cartMeals.get(i).getMealAdditions().get(x).getAddCount()+"");
+                    }
+                }
+
             }
         });
 

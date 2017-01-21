@@ -60,7 +60,7 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
                 .into(holder.catImg);
         }else{
             Picasso.with(context)
-                    .load(R.drawable.itemplaceholder)
+                    .load(R.drawable.catsplaceholder)
                     .fit()
                     .into(holder.catImg);
         }

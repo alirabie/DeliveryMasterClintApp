@@ -175,19 +175,28 @@ public class Customization extends AppCompatActivity {
                 public void onClick(View v) {
 
                     //Fill addition List from list Adapter
-                    for(int i=0;i<adb.mealAdditions.size();i++) {
+                    int i;
+                    for(i=0;i<adb.mealAdditions.size();i++) {
                         if (adb.mealAdditions.get(i).getAddCount() != 0) {
-                            mealAdditionList.add(i, adb.mealAdditions.get(i));
+                            mealAdditionList.add(adb.mealAdditions.get(i));
                         }
-
                     }
+
 
 
                     cartMeal.setMealName(mealName);
                     cartMeal.setMealCount(count);
                     cartMeal.setMealAdditions(mealAdditionList);
-                    Home.cartMeals.add(Home.cartNumber, cartMeal);
-                    Home.cartNumber++;
+
+                    Log.e("Meal Name : ", cartMeal.getMealName());
+                    Log.e("Items Count : ", cartMeal.getMealCount() + "");
+                    for (int x=0;x<cartMeal.getMealAdditions().size();x++){
+                        Log.e("additions : ", cartMeal.getMealAdditions().get(x).getAdditionName()+"  Count : "+cartMeal.getMealAdditions().get(x).getAddCount()+"");
+
+                    }
+
+                    Home.cartMeals.add(cartMeal);
+                    adb.mealAdditions.clear();
                     Customization.this.finish();
 
 

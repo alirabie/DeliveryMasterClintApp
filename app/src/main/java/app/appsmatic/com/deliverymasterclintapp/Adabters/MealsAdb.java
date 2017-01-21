@@ -60,7 +60,7 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
         }else {
 
             Picasso.with(context)
-                    .load(R.drawable.itemplaceholder)
+                    .load(R.drawable.mealsplaceholder)
                     .fit()
                     .into(holder.img);
         }

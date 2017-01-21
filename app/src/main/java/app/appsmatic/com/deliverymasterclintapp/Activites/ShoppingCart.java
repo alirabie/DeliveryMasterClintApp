@@ -5,12 +5,14 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import app.appsmatic.com.deliverymasterclintapp.Adabters.CartAdb;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
@@ -31,6 +33,32 @@ public class ShoppingCart extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+
+        mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
+        mealslist.setAdapter(new CartAdb(Home.cartMeals,getApplicationContext()));
+        mealslist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         pickuBtn=(ImageView)findViewById(R.id.cart_pickup_btn);
         deleviryBtn=(ImageView)findViewById(R.id.cart_delvery_btn);
