@@ -58,4 +58,10 @@
     <string name="LocationOnMap">الموقع على الخريطة</string>
     <string name="deliveryservice">خدمة التوصيل</string>
     <string name="enterfulladdress">أدخل العنوان كاملا : </string>
+    <string name="dialogmessagedeleteconfirmation">هل تريد حذف هذه الاضافة ؟؟</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="emptyerorr">لايمكنك اضافة هذه الوجبه الى سلة الشراء حتى تقوم بتحديد العدد المطلوب !</string>
+    <string name="dismiss">إخفاء</string>
+    <string name="deletemeal">هل تريد حذف هذه الوجبة ؟؟</string>
 </resources>

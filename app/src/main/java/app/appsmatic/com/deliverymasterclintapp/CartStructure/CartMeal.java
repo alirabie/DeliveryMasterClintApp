@@ -8,7 +8,26 @@ import java.util.List;
 public class CartMeal {
     private String mealName;
     private int mealCount;
-    private float mealPrice;
+    private Double mealPrice;
+    private String mealDecription;
+    private String mealPic;
+
+    public String getMealDecription() {
+        return mealDecription;
+    }
+
+    public void setMealDecription(String mealDecription) {
+        this.mealDecription = mealDecription;
+    }
+
+    public String getMealPic() {
+        return mealPic;
+    }
+
+    public void setMealPic(String mealPic) {
+        this.mealPic = mealPic;
+    }
+
     private List<MealAddition>mealAdditions;
 
 
@@ -28,11 +47,11 @@ public class CartMeal {
         this.mealCount = mealCount;
     }
 
-    public float getMealPrice() {
+    public Double getMealPrice() {
         return mealPrice;
     }
 
-    public void setMealPrice(float mealPrice) {
+    public void setMealPrice(Double mealPrice) {
         this.mealPrice = mealPrice;
     }
 

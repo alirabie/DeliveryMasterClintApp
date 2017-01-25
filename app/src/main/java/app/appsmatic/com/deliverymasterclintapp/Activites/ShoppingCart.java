@@ -34,9 +34,10 @@ public class ShoppingCart extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
+
         mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
-        mealslist.setAdapter(new CartAdb(Home.cartMeals,getApplicationContext()));
-        mealslist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mealslist.setAdapter(new CartAdb(Home.cartMeals,this));
+        mealslist.setLayoutManager(new LinearLayoutManager(this));
 
 
 

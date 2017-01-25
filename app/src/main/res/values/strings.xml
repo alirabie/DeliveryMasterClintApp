@@ -63,6 +63,12 @@
     <string name="LocationOnMap">Location On Map</string>
     <string name="deliveryservice">Delivery Service</string>
     <string name="enterfulladdress">Enter Your Full Address :</string>
+    <string name="dialogmessagedeleteconfirmation">Do You Want to Delete This Addition ??</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="emptyerorr">You Cant add this meal to Cart until Increment meal count , please select meal count !!</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="deletemeal">Do You Want to Delete This Meal ??</string>
 
 
 

@@ -77,9 +77,11 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
             public void onClick(View v) {
 
                 context.startActivity(new Intent(context, Customization.class)
-                        .putExtra("price", meals.getMessage().get(position).getPrice() + "")
+                        .putExtra("price", meals.getMessage().get(position).getPrice())
                         .putExtra("mealId", meals.getMessage().get(position).getID() + "")
-                        .putExtra("mealname", meals.getMessage().get(position).getName()+""));
+                        .putExtra("mealname", meals.getMessage().get(position).getName()+"")
+                        .putExtra("mealdec",meals.getMessage().get(position).getDescription()+"")
+                        .putExtra("mealspic",meals.getMessage().get(position).getImagePreview()+""));
 
 
             }

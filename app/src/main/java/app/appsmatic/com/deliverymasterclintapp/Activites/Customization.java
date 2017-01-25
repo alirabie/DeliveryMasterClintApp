@@ -41,12 +41,15 @@ public class Customization extends AppCompatActivity {
     private int count =0;
     private ImageView up;
     private ImageView down;
-    private String mealId,price;
+    private String mealId;
+    private Double price;
     private RecyclerView additionsList;
     private ImageView addCart;
     private List<MealAddition> mealAdditionList =new ArrayList<>();
     private CartMeal cartMeal=new CartMeal();
     private String mealName="";
+    private String mealDec;
+    private String mealImg;
     AdditionsAdb adb;
 
 
@@ -57,9 +60,11 @@ public class Customization extends AppCompatActivity {
 
 
         //Receive Data from Meals Adapter
-        price=getIntent().getStringExtra("price");
+        price=getIntent().getDoubleExtra("price", 1.0);
         mealId=getIntent().getStringExtra("mealId");
         mealName=getIntent().getStringExtra("mealname");
+        mealDec=getIntent().getStringExtra("mealdec");
+        mealImg=getIntent().getStringExtra("mealspic");
 
 
         //Setup Items
@@ -174,32 +179,51 @@ public class Customization extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    //Fill addition List from list Adapter
-                    int i;
-                    for(i=0;i<adb.mealAdditions.size();i++) {
-                        if (adb.mealAdditions.get(i).getAddCount() != 0) {
-                            mealAdditionList.add(adb.mealAdditions.get(i));
+                    //Check meals count if 0 don't add any thing to cart !
+                    if(count==0){
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(Customization.this);
+                        builder.setMessage(R.string.emptyerorr)
+                                .setCancelable(false)
+                                .setIcon(R.drawable.erroricon)
+                                .setTitle(R.string.sysMsg)
+                                .setPositiveButton(R.string.dismiss, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }else {
+
+                        //Fill addition List from list Adapter
+                        int i;
+                        for (i = 0; i < adb.mealAdditions.size(); i++) {
+                            if (adb.mealAdditions.get(i).getAddCount() != 0) {
+                                mealAdditionList.add(adb.mealAdditions.get(i));
+                            }
                         }
+
+
+                        cartMeal.setMealName(mealName);
+                        cartMeal.setMealCount(count);
+                        cartMeal.setMealAdditions(mealAdditionList);
+                        cartMeal.setMealDecription(mealDec);
+                        cartMeal.setMealPic(mealImg);
+                        cartMeal.setMealPrice(price);
+
+                        Log.e("Meal Name : ", cartMeal.getMealName());
+                        Log.e("Items Count : ", cartMeal.getMealCount() + "");
+                        for (int x = 0; x < cartMeal.getMealAdditions().size(); x++) {
+                            Log.e("additions : ", cartMeal.getMealAdditions().get(x).getAdditionName() + "  Count : " + cartMeal.getMealAdditions().get(x).getAddCount() + "");
+
+                        }
+
+                        Home.cartMeals.add(cartMeal);
+                        adb.mealAdditions.clear();
+                        Customization.this.finish();
+
+
                     }
-
-
-
-                    cartMeal.setMealName(mealName);
-                    cartMeal.setMealCount(count);
-                    cartMeal.setMealAdditions(mealAdditionList);
-
-                    Log.e("Meal Name : ", cartMeal.getMealName());
-                    Log.e("Items Count : ", cartMeal.getMealCount() + "");
-                    for (int x=0;x<cartMeal.getMealAdditions().size();x++){
-                        Log.e("additions : ", cartMeal.getMealAdditions().get(x).getAdditionName()+"  Count : "+cartMeal.getMealAdditions().get(x).getAddCount()+"");
-
-                    }
-
-                    Home.cartMeals.add(cartMeal);
-                    adb.mealAdditions.clear();
-                    Customization.this.finish();
-
-
                 }
             });
 
