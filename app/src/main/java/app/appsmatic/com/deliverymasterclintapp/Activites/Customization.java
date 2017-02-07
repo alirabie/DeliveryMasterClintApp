@@ -4,25 +4,25 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import app.appsmatic.com.deliverymasterclintapp.API.Models.CartData;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.Order;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.AdditionsAdb;
@@ -41,7 +41,7 @@ public class Customization extends AppCompatActivity {
     private int count =0;
     private ImageView up;
     private ImageView down;
-    private String mealId;
+    private int mealId;
     private Double price;
     private RecyclerView additionsList;
     private ImageView addCart;
@@ -50,18 +50,74 @@ public class Customization extends AppCompatActivity {
     private String mealName="";
     private String mealDec;
     private String mealImg;
+    private CartData cartData;
+
     AdditionsAdb adb;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein, R.anim.alpha);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_customization);
+
+
+
+
+
+
+
+        //Create Cart Place
+        cartData=new CartData();
+        cartData.setOwner("0f660ed7-7855-46b3-a627-4931cf2540d4");
+        cartData.setRestaurantid("11");
+        cartData.setSource("3");
+
+
+        Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
+            @Override
+            public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getCode().equals("0")) {
+                        return;
+                    } else {
+                        if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
+                            SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
+                        } else {
+                            return;
+                        }
+                    }
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ResCreateCart> call, Throwable t) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(Customization.this);
+                builder.setMessage(t.getMessage() + "")
+                        .setCancelable(false)
+                        .setIcon(R.drawable.erroricon)
+                        .setTitle(R.string.sysMsg)
+                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+
+
+
+
+
 
 
         //Receive Data from Meals Adapter
         price=getIntent().getDoubleExtra("price", 1.0);
-        mealId=getIntent().getStringExtra("mealId");
+        mealId=getIntent().getIntExtra("mealId",0);
         mealName=getIntent().getStringExtra("mealname");
         mealDec=getIntent().getStringExtra("mealdec");
         mealImg=getIntent().getStringExtra("mealspic");
@@ -108,7 +164,7 @@ public class Customization extends AppCompatActivity {
 
         //Get Additions by meal id
 
-        HashMap mealData = new HashMap();
+        final HashMap mealData = new HashMap();
         mealData.put("MealID", "3074");
 
         Genrator.createService(ClintAppApi.class).GetAdditions(mealData).enqueue(new Callback<ResAdditions>() {
@@ -179,6 +235,9 @@ public class Customization extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+
+
+
                     //Check meals count if 0 don't add any thing to cart !
                     if(count==0){
                         final AlertDialog.Builder builder = new AlertDialog.Builder(Customization.this);
@@ -204,6 +263,41 @@ public class Customization extends AppCompatActivity {
                         }
 
 
+
+                        //fill orders list for server
+                        Order order=new Order();
+                        order.setMealItemID(mealId);
+                        order.setAdditions(mealAdditionList);
+                        order.setCustomization(null);
+                        order.setQuatnitiy(count);
+                        order.setPrice(price);
+                        Home.orders.add(order);
+
+
+
+
+
+
+
+
+
+
+                        /*
+                        cartOrder.setCartId(SaveSharedPreference.getCartId(getApplicationContext())+"");
+                        cartOrder.setMealItemID(mealId);
+                        cartOrder.setPrice(price);
+                        cartOrder.setQuatnitiy(count);
+                        cartOrder.setAdditions(mealAdditionList);
+                        cartOrder.setCustomization(null);
+                        */
+
+
+
+
+
+
+
+                        //add data to local storage
                         cartMeal.setMealName(mealName);
                         cartMeal.setMealCount(count);
                         cartMeal.setMealAdditions(mealAdditionList);

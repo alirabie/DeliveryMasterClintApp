@@ -13,6 +13,7 @@ public class SaveSharedPreference {
     static final String PREF_USER_PASS = "password";
     static final String LANG_ID="langId";
     static final String lOAD_IMG_ID="imagesStatus";
+    static final String CART_ID="cartId";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -48,6 +49,22 @@ public class SaveSharedPreference {
 
 
 
+    public static void setCartId(Context context,String lang){
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(CART_ID,lang);
+        editor.commit();
+    }
+
+    public static String getCartId(Context context){
+        return getSharedPreferences(context).getString(CART_ID, "");
+    }
+
+
+
+
+
+
+
 
     public static String getUserName(Context ctx) {
         return getSharedPreferences(ctx).getString(PREF_USER_NAME, "");
@@ -62,5 +79,9 @@ public class SaveSharedPreference {
         editor.clear(); //clear all stored data
         editor.commit();
     }
+
+
+
+
 
 }

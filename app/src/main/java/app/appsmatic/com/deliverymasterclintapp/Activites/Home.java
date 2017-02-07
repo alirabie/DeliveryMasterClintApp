@@ -18,10 +18,18 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Meal;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.Order;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.ServerCart;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartOrders;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
@@ -32,13 +40,19 @@ import app.appsmatic.com.deliverymasterclintapp.Fragments.PrevOrders;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static int cartNumber=0;
+    public static String userId="";
     private ImageView logoutbtn;
     private TextView toolbartitle;
     public static List<CartMeal>cartMeals=new ArrayList<>();
+    public static ServerCart serverCart=new ServerCart();
+    public static List<Order> orders=new ArrayList<>();
 
     private ImageView shoppingCart;
 
@@ -64,6 +78,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+
+        //Receive user id from login operation
+        userId=getIntent().getStringExtra("UserId");
+
+
 
         //Add Start Fragment Food menu
         foodMenu=new FoodMenu();
@@ -133,12 +152,50 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                startActivity(new Intent(Home.this,ShoppingCart.class));
 
+
+
+                //test send all orders to server
+                Home.serverCart.setCartid(SaveSharedPreference.getCartId(getApplicationContext()) + "");
+                Home.serverCart.setOrder(Home.orders);
+                Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
+                    @Override
+                    public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+                        if (response.isSuccessful()) {
+                            Log.e("Response", "Sucsesss  : " + response.body().getCode() + "");
+                            Log.e("Response", response.body().getMessage() + "");
+                        } else {
+
+                            Log.e("Response", "Not Sucsesss");
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResCreateCart> call, Throwable t) {
+
+                        Log.e("Response", t.getMessage());
+                    }
+                });
+
+
+                Gson gson = new Gson();
+                String dataJson=gson.toJson(Home.serverCart);
+                Log.e("dataJson : ", dataJson);
+
+
+
+
+
+
+
+                /*
                 for(int i=0;i<Home.cartMeals.size();i++){
                     Log.e("Meal name : ",Home.cartMeals.get(i).getMealName()+"  Count :"+Home.cartMeals.get(i).getMealCount()+"");
                     for(int x=0;x<Home.cartMeals.get(i).getMealAdditions().size();x++){
                         Log.e("Addition Name :",Home.cartMeals.get(i).getMealAdditions().get(x).getAdditionName()+" Count :"+Home.cartMeals.get(i).getMealAdditions().get(x).getAddCount()+"");
                     }
                 }
+                */
 
             }
         });

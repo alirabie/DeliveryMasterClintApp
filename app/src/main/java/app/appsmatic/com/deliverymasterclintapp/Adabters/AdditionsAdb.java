@@ -85,6 +85,7 @@ public class AdditionsAdb extends RecyclerView.Adapter<AdditionsAdb.vh00> {
                     mealAddition.setAdditionName(additions.getMessage().get(position).getName() + "");
                     mealAddition.setAddprice(additions.getMessage().get(position).getPrice());
                     mealAddition.setAddCount(counts.get(position));
+                    mealAddition.setiD(additions.getMessage().get(position).getID());
                     mealAdditions.set(position,mealAddition);
 
                 }

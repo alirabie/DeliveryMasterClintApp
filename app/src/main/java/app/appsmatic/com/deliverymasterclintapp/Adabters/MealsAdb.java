@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,10 +79,12 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
 
                 context.startActivity(new Intent(context, Customization.class)
                         .putExtra("price", meals.getMessage().get(position).getPrice())
-                        .putExtra("mealId", meals.getMessage().get(position).getID() + "")
+                        .putExtra("mealId", meals.getMessage().get(position).getID())
                         .putExtra("mealname", meals.getMessage().get(position).getName()+"")
                         .putExtra("mealdec",meals.getMessage().get(position).getDescription()+"")
                         .putExtra("mealspic",meals.getMessage().get(position).getImagePreview()+""));
+
+
 
 
             }

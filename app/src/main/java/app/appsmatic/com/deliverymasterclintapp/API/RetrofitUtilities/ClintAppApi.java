@@ -2,6 +2,7 @@ package app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -29,12 +30,21 @@ public interface ClintAppApi {
     @POST("menu/categories")
     Call<ResCats>GetCategories(@Body Object resId);
 
+    //Meals
     @POST("menu/meals")
     Call<ResMeals>GetMeals(@Body Object catdata);
 
+    //Additions
     @POST("menu/additions")
     Call<ResAdditions>GetAdditions(@Body Object mealData);
 
+    //Create Shopping Cart
+    @POST("ShoppingCart/Create")
+    Call<ResCreateCart>cereateShoppingCart(@Body Object cartdata);
+
+
+    @POST("ShoppingCart/AddToCart")
+    Call<ResCreateCart>addtocart(@Body Object cartorder);
 
 
 }
