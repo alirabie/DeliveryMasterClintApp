@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -145,7 +146,14 @@ public class SignIn extends AppCompatActivity {
                                 String code=response.body().getCode()+"";
                                 if(!code.equals("0")){
 
-                                    startActivity(new Intent(SignIn.this,Home.class).putExtra("UserId",response.body().getUserid()));
+                                    String fulltext=response.body().getUserid()+"";
+
+
+
+                                   startActivity(new Intent(SignIn.this, Home.class).putExtra("UserId", fulltext.substring(fulltext.indexOf(",")+1, fulltext.length())));
+
+
+
                                     SignIn.this.finish();
 
                                 }else{

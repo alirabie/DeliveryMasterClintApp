@@ -1,5 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,21 +19,19 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import app.appsmatic.com.deliverymasterclintapp.API.Models.Meal;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.CartData;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
-import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.Order;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.ServerCart;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
-import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartOrders;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.FoodMenu;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.Info;
@@ -47,12 +47,12 @@ import retrofit2.Response;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static int cartNumber=0;
-    public static String userId="";
     private ImageView logoutbtn;
     private TextView toolbartitle;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
-    public static List<Order> orders=new ArrayList<>();
+    public static String ownerCode="";
+
 
     private ImageView shoppingCart;
 
@@ -63,6 +63,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private MyAccount myAccount;
     private Settings settings;
     private Info info;
+
 
 
 
@@ -80,7 +81,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
 
         //Receive user id from login operation
-        userId=getIntent().getStringExtra("UserId");
+       ownerCode=getIntent().getStringExtra("UserId");
+
 
 
 
@@ -151,31 +153,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
                startActivity(new Intent(Home.this,ShoppingCart.class));
-
-
-
-                //test send all orders to server
-                Home.serverCart.setCartid(SaveSharedPreference.getCartId(getApplicationContext()) + "");
-                Home.serverCart.setOrder(Home.orders);
-                Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
-                    @Override
-                    public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
-                        if (response.isSuccessful()) {
-                            Log.e("Response", "Sucsesss  : " + response.body().getCode() + "");
-                            Log.e("Response", response.body().getMessage() + "");
-                        } else {
-
-                            Log.e("Response", "Not Sucsesss");
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResCreateCart> call, Throwable t) {
-
-                        Log.e("Response", t.getMessage());
-                    }
-                });
 
 
                 Gson gson = new Gson();
@@ -288,12 +265,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+

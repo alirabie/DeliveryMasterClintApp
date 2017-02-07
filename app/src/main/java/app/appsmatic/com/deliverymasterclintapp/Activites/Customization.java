@@ -12,8 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +21,6 @@ import java.util.List;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.CartData;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
-import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.Order;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.AdditionsAdb;
@@ -50,7 +48,7 @@ public class Customization extends AppCompatActivity {
     private String mealName="";
     private String mealDec;
     private String mealImg;
-    private CartData cartData;
+
 
     AdditionsAdb adb;
 
@@ -68,46 +66,6 @@ public class Customization extends AppCompatActivity {
 
 
 
-        //Create Cart Place
-        cartData=new CartData();
-        cartData.setOwner("0f660ed7-7855-46b3-a627-4931cf2540d4");
-        cartData.setRestaurantid("11");
-        cartData.setSource("3");
-
-
-        Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
-            @Override
-            public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getCode().equals("0")) {
-                        return;
-                    } else {
-                        if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
-                            SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
-                        } else {
-                            return;
-                        }
-                    }
-                }
-            }
-
-
-            @Override
-            public void onFailure(Call<ResCreateCart> call, Throwable t) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(Customization.this);
-                builder.setMessage(t.getMessage() + "")
-                        .setCancelable(false)
-                        .setIcon(R.drawable.erroricon)
-                        .setTitle(R.string.sysMsg)
-                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.dismiss();
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
 
 
 
@@ -150,10 +108,10 @@ public class Customization extends AppCompatActivity {
         down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(count==0)
+                if (count == 0)
                     return;
                 count--;
-                countTv.setText(count+"");
+                countTv.setText(count + "");
             }
         });
 
@@ -164,8 +122,11 @@ public class Customization extends AppCompatActivity {
 
         //Get Additions by meal id
 
+
         final HashMap mealData = new HashMap();
+        //NOTE :::: Remember to add received meal id  not 3074
         mealData.put("MealID", "3074");
+        Toast.makeText(getApplicationContext(), mealId+"", Toast.LENGTH_SHORT).show();
 
         Genrator.createService(ClintAppApi.class).GetAdditions(mealData).enqueue(new Callback<ResAdditions>() {
             @Override
@@ -176,8 +137,7 @@ public class Customization extends AppCompatActivity {
                         additionsList.setAdapter(adb=new AdditionsAdb(response.body(), getApplicationContext()));
                         additionsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     } else {
-
-                        //Fail 0 Error
+                        Toast.makeText(getApplicationContext(), response.body().getMessage()+"", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -263,47 +223,21 @@ public class Customization extends AppCompatActivity {
                         }
 
 
-
-                        //fill orders list for server
-                        Order order=new Order();
-                        order.setMealItemID(mealId);
-                        order.setAdditions(mealAdditionList);
-                        order.setCustomization(null);
-                        order.setQuatnitiy(count);
-                        order.setPrice(price);
-                        Home.orders.add(order);
-
-
-
-
-
-
-
-
-
-
-                        /*
-                        cartOrder.setCartId(SaveSharedPreference.getCartId(getApplicationContext())+"");
-                        cartOrder.setMealItemID(mealId);
-                        cartOrder.setPrice(price);
-                        cartOrder.setQuatnitiy(count);
-                        cartOrder.setAdditions(mealAdditionList);
-                        cartOrder.setCustomization(null);
-                        */
-
-
-
-
-
-
-
-                        //add data to local storage
-                        cartMeal.setMealName(mealName);
-                        cartMeal.setMealCount(count);
+                        //add data to local storage and server
+                        cartMeal.setMealItemID(mealId);
                         cartMeal.setMealAdditions(mealAdditionList);
+                        cartMeal.setCustomization(null);
+                        cartMeal.setMealCount(count);
+                        cartMeal.setMealPrice(price);
+
+                        cartMeal.setMealName(mealName);
                         cartMeal.setMealDecription(mealDec);
                         cartMeal.setMealPic(mealImg);
-                        cartMeal.setMealPrice(price);
+
+
+                        Home.cartMeals.add(cartMeal);
+                        adb.mealAdditions.clear();
+                        Customization.this.finish();
 
                         Log.e("Meal Name : ", cartMeal.getMealName());
                         Log.e("Items Count : ", cartMeal.getMealCount() + "");
@@ -312,9 +246,7 @@ public class Customization extends AppCompatActivity {
 
                         }
 
-                        Home.cartMeals.add(cartMeal);
-                        adb.mealAdditions.clear();
-                        Customization.this.finish();
+
 
 
                     }

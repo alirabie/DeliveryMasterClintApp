@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Addition;
+import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealAddition;
 
 /**
@@ -15,16 +16,16 @@ public class ServerCart {
 
     @SerializedName("order")
     @Expose
-    private List<Order> order = null;
+    private List<CartMeal> order = null;
     @SerializedName("cartid")
     @Expose
     private String cartid;
 
-    public List<Order> getOrder() {
+    public List<CartMeal> getOrder() {
         return order;
     }
 
-    public void setOrder(List<Order> order) {
+    public void setOrder(List<CartMeal> order) {
         this.order = order;
     }
 

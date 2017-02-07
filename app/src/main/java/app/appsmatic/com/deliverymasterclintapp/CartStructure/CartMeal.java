@@ -1,16 +1,53 @@
 package app.appsmatic.com.deliverymasterclintapp.CartStructure;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
  * Created by Mido PC on 1/19/2017.
  */
 public class CartMeal {
-    private String mealName;
-    private int mealCount;
+
+    @SerializedName("MealItemID")
+    @Expose
+    private Integer mealItemID;
+    @SerializedName("Price")
+    @Expose
     private Double mealPrice;
+    @SerializedName("Quantity")
+    @Expose
+    private int mealCount;
+    @SerializedName("additions")
+    @Expose
+    private List<MealAddition>mealAdditions;
+
+    public Integer getMealItemID() {
+        return mealItemID;
+    }
+
+    public void setMealItemID(Integer mealItemID) {
+        this.mealItemID = mealItemID;
+    }
+
+    public Object getCustomization() {
+        return customization;
+    }
+
+    public void setCustomization(Object customization) {
+        this.customization = customization;
+    }
+
+    @SerializedName("customization")
+    @Expose
+    private Object customization;
+
+
+    private String mealName;
     private String mealDecription;
     private String mealPic;
+
 
     public String getMealDecription() {
         return mealDecription;
@@ -27,9 +64,6 @@ public class CartMeal {
     public void setMealPic(String mealPic) {
         this.mealPic = mealPic;
     }
-
-    private List<MealAddition>mealAdditions;
-
 
     public String getMealName() {
         return mealName;
