@@ -70,6 +70,11 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
         holder.additinsList.setAdapter(new CartMealsAdditionsAdb(cartMeals.get(position).getMealAdditions(), context));
         holder.additinsList.setLayoutManager(new LinearLayoutManager(context));
 
+        //Setup Customizations List
+
+        holder.customizatinsList.setAdapter(new CartCustomizationsAdb(cartMeals.get(position).getCustomization(),context));
+        holder.customizatinsList.setLayoutManager(new LinearLayoutManager(context));
+
         //Increment Count of meal
         holder.upcount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +156,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
         private TextView name,mealdec,mealprice,mealcount;
         private ImageView upcount,downcount,mealpic,deleteMeal;
         private RecyclerView additinsList;
+        private RecyclerView customizatinsList;
 
         public VH1001(View itemView) {
             super(itemView);
@@ -165,6 +171,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
             deleteMeal=(ImageView)itemView.findViewById(R.id.delete_meal_btn);
 
             additinsList=(RecyclerView)itemView.findViewById(R.id.cart_additions_list);
+            customizatinsList=(RecyclerView)itemView.findViewById(R.id.cart_customization_list);
 
 
         }

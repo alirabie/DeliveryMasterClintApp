@@ -64,4 +64,5 @@
     <string name="emptyerorr">لايمكنك اضافة هذه الوجبه الى سلة الشراء حتى تقوم بتحديد العدد المطلوب !</string>
     <string name="dismiss">إخفاء</string>
     <string name="deletemeal">هل تريد حذف هذه الوجبة ؟؟</string>
+    <string name="customizations">تخصيصات الوجبه</string>
 </resources>

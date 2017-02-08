@@ -103,8 +103,6 @@ public class ShoppingCart extends AppCompatActivity {
 
                 //test create shopping cart and send all orders to server
                 //Create Cart Place
-
-
                 if(Home.ownerCode==null){
                     final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
                     builder.setMessage("You Should Login before confirm order !!")
@@ -174,10 +172,10 @@ public class ShoppingCart extends AppCompatActivity {
                             if (response.isSuccessful()) {
 
                                 //if Orders failed to added
-                                if(response.body().getCode()==0){
+                                if (response.body().getCode() == 0) {
 
                                     final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
-                                    builder.setMessage(response.body().getMessage()+"")
+                                    builder.setMessage(response.body().getMessage() + "")
                                             .setCancelable(false)
                                             .setIcon(R.drawable.erroricon)
                                             .setTitle(R.string.communicationerorr)
@@ -188,12 +186,12 @@ public class ShoppingCart extends AppCompatActivity {
                                             });
                                     AlertDialog alert = builder.create();
                                     alert.show();
-                                }else{
+                                } else {
                                     //if Orders added successfully
                                     Toast.makeText(ShoppingCart.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                                    //Clear Cart Id
+                                    SaveSharedPreference.setCartId(ShoppingCart.this,"");
                                 }
-
-
 
 
                             }
@@ -201,16 +199,17 @@ public class ShoppingCart extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<ResCreateCart> call, Throwable t) {
-                            Toast.makeText(ShoppingCart.this,t.getMessage() + "", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ShoppingCart.this, t.getMessage() + "", Toast.LENGTH_LONG).show();
                         }
                     });
 
-                    Gson gson = new Gson();
-                    String dataJson=gson.toJson(Home.serverCart);
-                    Log.e("dataJson : ", dataJson);
 
 
                 }
+
+                Gson gson = new Gson();
+                String dataJson=gson.toJson(Home.serverCart);
+                Log.e("dataJson : ", dataJson);
 
 //end
 

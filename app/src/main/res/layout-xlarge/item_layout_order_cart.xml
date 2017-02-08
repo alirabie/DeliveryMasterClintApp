@@ -133,12 +133,54 @@
             android:src="@drawable/mealpic"
             android:layout_weight="1" />
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cart_additions_list">
 
-    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cart_customizations_box" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/Additions"
+            android:id="@+id/textView21"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#ff0000" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cart_customization_list" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/catr_additions_box" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/customizations"
+            android:id="@+id/textView20"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:textColor="#ff0000" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cart_additions_list" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"

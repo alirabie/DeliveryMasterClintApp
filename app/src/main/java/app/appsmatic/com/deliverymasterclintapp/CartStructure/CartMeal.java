@@ -22,6 +22,13 @@ public class CartMeal {
     @SerializedName("additions")
     @Expose
     private List<MealAddition>mealAdditions;
+    @SerializedName("customization")
+    @Expose
+    private List<MealCustomization> customization;
+
+    private String mealName;
+    private String mealDecription;
+    private String mealPic;
 
     public Integer getMealItemID() {
         return mealItemID;
@@ -30,24 +37,6 @@ public class CartMeal {
     public void setMealItemID(Integer mealItemID) {
         this.mealItemID = mealItemID;
     }
-
-    public Object getCustomization() {
-        return customization;
-    }
-
-    public void setCustomization(Object customization) {
-        this.customization = customization;
-    }
-
-    @SerializedName("customization")
-    @Expose
-    private Object customization;
-
-
-    private String mealName;
-    private String mealDecription;
-    private String mealPic;
-
 
     public String getMealDecription() {
         return mealDecription;
@@ -97,6 +86,10 @@ public class CartMeal {
         this.mealAdditions = mealAdditions;
     }
 
-
-
+    public List<MealCustomization> getCustomization() {
+        return customization;
+    }
+    public void setCustomization(List<MealCustomization> customization) {
+        this.customization = customization;
+    }
 }

@@ -12,13 +12,8 @@ public class MealAddition {
 
     @SerializedName("AdditionID")
     @Expose
-
     private Integer iD;
-
-    @SerializedName("AdditionName")
-    @Expose
     private String additionName;
-
     @SerializedName("AdditionQuantity")
     @Expose
     private int addCount;
