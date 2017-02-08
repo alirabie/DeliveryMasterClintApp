@@ -10,11 +10,11 @@
         android:text="Medium Text"
         android:id="@+id/tv_customization_tap_type"
         android:layout_gravity="center_horizontal"
-        android:padding="10dp"
+        android:padding="5dp"
         android:gravity="center"
         android:textColor="#ffffff"
         android:background="#ff0000"
-        android:textSize="22dp" />
+        android:textSize="18dp" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

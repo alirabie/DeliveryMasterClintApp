@@ -12,6 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -23,10 +26,12 @@ public class Splash extends AppCompatActivity {
 
     private TextView signin,signup,guest;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -34,6 +39,8 @@ public class Splash extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+
+
 
 
         //set app lang
@@ -53,6 +60,12 @@ public class Splash extends AppCompatActivity {
             guest.setBackgroundResource(R.drawable.ripple);
         }
 
+
+        //animate Control panel
+        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toptodown);
+        final LinearLayout controalPanell=(LinearLayout)findViewById(R.id.c_panel);
+        controalPanell.clearAnimation();
+        controalPanell.setAnimation(anim);
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override

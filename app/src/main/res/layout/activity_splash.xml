@@ -12,48 +12,55 @@
 
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/c_panel">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/signup"
+                android:id="@+id/tv_signup"
+                android:textColor="#ffa600"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/signin"
+                android:id="@+id/tv_signin"
+                android:textColor="#ffa600"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:clickable="true"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/signup"
-            android:id="@+id/tv_signup"
+            android:text="@string/guest"
+            android:id="@+id/tv_guest"
+            android:layout_gravity="center_horizontal"
             android:textColor="#ffa600"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:padding="10dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:clickable="true"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/signin"
-            android:id="@+id/tv_signin"
-            android:textColor="#ffa600"
-            android:textSize="20dp"
-            android:padding="10dp"
-            android:layout_weight="1"
             android:gravity="center"
             android:clickable="true"/>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/guest"
-        android:id="@+id/tv_guest"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#ffa600"
-        android:textSize="20dp"
-        android:padding="10dp"
-        android:gravity="center"
-        android:clickable="true"/>
 
 </LinearLayout>

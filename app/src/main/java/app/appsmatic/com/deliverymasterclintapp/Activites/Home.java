@@ -203,12 +203,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         int id = item.getItemId();
 
         if (id == R.id.nav_myaccout) {
-            myAccount=new MyAccount();
-            toolbartitle.setText(R.string.item1myaccount);
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentcontener, myAccount);
-            fragmentTransaction.commit();
+            if(ownerCode==null){
+
+            }else {
+                myAccount=new MyAccount();
+                toolbartitle.setText(R.string.item1myaccount);
+                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentcontener, myAccount);
+                fragmentTransaction.commit();
+            }
+
 
         } else if (id == R.id.nav_foodmun) {
             foodMenu=new FoodMenu();
