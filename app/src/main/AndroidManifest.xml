@@ -70,13 +70,18 @@
         <activity
             android:name=".Activites.Customization"
             android:label="@string/title_activity_customization"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.MinWidth" />
         <activity
             android:name=".Activites.PickUpService"
             android:label="@string/title_activity_pick_up_serv" />
-        <activity android:name=".Activites.ShoppingCart"
-                  android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activites.DeliveryService"></activity>
+        <activity
+            android:name=".Activites.ShoppingCart"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activites.DeliveryService" />
+        <activity
+            android:name=".Activites.DialogLogin"
+            android:label="@string/title_activity_dialog_login"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
     </application>
 
 </manifest>

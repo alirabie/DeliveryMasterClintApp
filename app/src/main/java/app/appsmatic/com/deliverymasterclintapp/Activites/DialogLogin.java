@@ -4,25 +4,20 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Locale;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.LoginData;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
@@ -34,59 +29,33 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignIn extends AppCompatActivity {
+public class DialogLogin extends AppCompatActivity {
 
     private ImageView logo,signinbtn;
     private EditText phonenum,password;
     private TextView forgetpass,signup;
     private LoginData loginData;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        setLang(R.layout.activity_sign_in);
+        overridePendingTransition(R.anim.toptodown, R.anim.alpha);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_dialog_login);
 
         loginData=new LoginData();
-        phonenum=(EditText)findViewById(R.id.phonenum_login);
-        password=(EditText)findViewById(R.id.password_login);
-        signinbtn=(ImageView)findViewById(R.id.loginbtn);
-
-
-
-
-        Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        //Check Os Ver For Set Status Bar
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        }
-
-
-        forgetpass=(TextView)findViewById(R.id.tv_forgetpass);
-        signup=(TextView)findViewById(R.id.tv_newaccount);
-        logo=(ImageView)findViewById(R.id.logo);
-        signinbtn=(ImageView)findViewById(R.id.loginbtn);
-
-
+        phonenum=(EditText)findViewById(R.id.dialog_phonenum_login);
+        password=(EditText)findViewById(R.id.dialog_password_login);
+        signinbtn=(ImageView)findViewById(R.id.dialog_loginbtn);
+        forgetpass=(TextView)findViewById(R.id.dialog_tv_forgetpass);
+        signup=(TextView)findViewById(R.id.dialog_tv_newaccount);
 
         //Set image language for logo and login button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
-            logo.setImageResource(R.drawable.logoarabic);
             signinbtn.setImageResource(R.drawable.signinbuttonnar);
         }else{
-            logo.setImageResource(R.drawable.logo);
             signinbtn.setImageResource(R.drawable.signinbtn);
         }
-
-        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toptodown);
-        final LinearLayout loginpanel=(LinearLayout)findViewById(R.id.loginlayout);
-        loginpanel.clearAnimation();
-        loginpanel.setAnimation(anim);
-
 
 
         //Sign in button Action
@@ -96,13 +65,15 @@ public class SignIn extends AppCompatActivity {
             forgetpass.setBackgroundResource(R.drawable.ripple);
             signup.setBackgroundResource(R.drawable.ripple);
         }
+
+
         signinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Check if there is Empty Filed
                 if(phonenum.getText().toString().equals("")||password.getText().toString().equals("")){
 
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(DialogLogin.this);
                     builder.setMessage(R.string.dontleavefildes)
                             .setCancelable(false)
                             .setIcon(R.drawable.erroricon)
@@ -121,7 +92,7 @@ public class SignIn extends AppCompatActivity {
 
 
                     //Loading Dialog
-                    final ProgressDialog mProgressDialog = new ProgressDialog(SignIn.this,R.style.AppCompatAlertDialogStyle);
+                    final ProgressDialog mProgressDialog = new ProgressDialog(DialogLogin.this,R.style.AppCompatAlertDialogStyle);
                     mProgressDialog.setIndeterminate(true);
                     mProgressDialog.setIcon(R.drawable.loadicon);
                     mProgressDialog.setTitle(R.string.loadingdialog);
@@ -147,21 +118,17 @@ public class SignIn extends AppCompatActivity {
                                 if(!code.equals("0")){
 
                                     String fulltext=response.body().getUserid()+"";
-
-
-
-                                   startActivity(new Intent(SignIn.this, Home.class).putExtra("UserId", fulltext.substring(fulltext.indexOf(",")+1, fulltext.length())));
-
-
-
-                                    SignIn.this.finish();
+                                    Home.ownerCode=fulltext.substring(fulltext.indexOf(",")+1, fulltext.length());
+                                    Toast.makeText(DialogLogin.this,"OwnerId : "+Home.ownerCode+"",Toast.LENGTH_LONG).show();
+                                    Home.logoutbtn.setVisibility(View.VISIBLE);
+                                    DialogLogin.this.finish();
 
                                 }else{
 
 
                                     if (mProgressDialog.isShowing())
                                         mProgressDialog.dismiss();
-                                    final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                                    final AlertDialog.Builder builder = new AlertDialog.Builder(DialogLogin.this);
                                     builder.setMessage(response.body().getMessage()+"")
                                             .setCancelable(false)
                                             .setIcon(R.drawable.erroricon)
@@ -184,7 +151,7 @@ public class SignIn extends AppCompatActivity {
                                     mProgressDialog.dismiss();
 
 
-                                final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(DialogLogin.this);
                                 builder.setMessage(R.string.Responsenotsucusess)
                                         .setCancelable(false)
                                         .setIcon(R.drawable.erroricon)
@@ -209,7 +176,7 @@ public class SignIn extends AppCompatActivity {
                         public void onFailure(Call<Msg> call, Throwable t) {
                             if (mProgressDialog.isShowing())
                                 mProgressDialog.dismiss();
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(SignIn.this);
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(DialogLogin.this);
                             builder.setMessage(t.getMessage().toString()+"")
                                     .setCancelable(false)
                                     .setIcon(R.drawable.erroricon)
@@ -228,26 +195,8 @@ public class SignIn extends AppCompatActivity {
 
                 }
 
-
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -269,25 +218,6 @@ public class SignIn extends AppCompatActivity {
 
 
 
-
-
-
-    }
-
-
-
-
-
-
-    // Change language method
-    public void setLang(int layout){
-        String languageToLoad =SaveSharedPreference.getLangId(this);
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        this.setContentView(layout);
     }
 
 }

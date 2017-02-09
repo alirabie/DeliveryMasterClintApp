@@ -34,11 +34,17 @@ public class CustomizationCatsAdb extends RecyclerView.Adapter<CustomizationCats
     }
 
     @Override
-    public void onBindViewHolder(V holder, int position) {
+    public void onBindViewHolder(final V holder, final int position) {
 
-        holder.catName.setText(customizationMessages.get(position).getCustomizationType()+"");
-        holder.subCats.setAdapter(catsAdb=new CustomizationsAdb(context, customizationMessages.get(position).getCustomizations()));
+
+        holder.catName.setText(customizationMessages.get(position).getCustomizationType() + "");
+        holder.subCats.setAdapter(catsAdb = new CustomizationsAdb(context, customizationMessages.get(position).getCustomizations()));
         holder.subCats.setLayoutManager(new LinearLayoutManager(context));
+
+
+
+
+
 
 
 

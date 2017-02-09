@@ -70,7 +70,7 @@
     <string name="dismiss">Dismiss</string>
     <string name="deletemeal">Do You Want to Delete This Meal ??</string>
     <string name="customizations">Customizations</string>
-
+    <string name="logindialogallert">You Cannot Access this Until login First !! Please Login </string>
 
 
 
@@ -80,6 +80,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_customization">Customization</string>
     <string name="title_activity_pick_up_serv">Map</string>
+    <string name="title_activity_dialog_login">DialogLogin</string>
 
 
 </resources>

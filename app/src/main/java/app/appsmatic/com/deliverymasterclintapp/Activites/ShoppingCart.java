@@ -104,18 +104,8 @@ public class ShoppingCart extends AppCompatActivity {
                 //test create shopping cart and send all orders to server
                 //Create Cart Place
                 if(Home.ownerCode==null){
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
-                    builder.setMessage("You Should Login before confirm order !!")
-                            .setCancelable(false)
-                            .setIcon(R.drawable.erroricon)
-                            .setTitle(R.string.sysMsg)
-                            .setPositiveButton("Login", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                   startActivity(new Intent(ShoppingCart.this,SignIn.class));
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+
+                    startActivity(new Intent(ShoppingCart.this,DialogLogin.class));
 
                 }else {
 
@@ -161,55 +151,10 @@ public class ShoppingCart extends AppCompatActivity {
 
 
 
-                    //Send order to server
-                    Home.serverCart.setCartid(SaveSharedPreference.getCartId(getApplicationContext()) + "");
-                    Home.serverCart.setOrder(Home.cartMeals);
-                    Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
-                        @Override
-                        public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
-
-                            //if response is successful
-                            if (response.isSuccessful()) {
-
-                                //if Orders failed to added
-                                if (response.body().getCode() == 0) {
-
-                                    final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
-                                    builder.setMessage(response.body().getMessage() + "")
-                                            .setCancelable(false)
-                                            .setIcon(R.drawable.erroricon)
-                                            .setTitle(R.string.communicationerorr)
-                                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-                                                    dialog.dismiss();
-                                                }
-                                            });
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
-                                } else {
-                                    //if Orders added successfully
-                                    Toast.makeText(ShoppingCart.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
-                                    //Clear Cart Id
-                                    SaveSharedPreference.setCartId(ShoppingCart.this,"");
-                                }
-
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResCreateCart> call, Throwable t) {
-                            Toast.makeText(ShoppingCart.this, t.getMessage() + "", Toast.LENGTH_LONG).show();
-                        }
-                    });
-
 
 
                 }
 
-                Gson gson = new Gson();
-                String dataJson=gson.toJson(Home.serverCart);
-                Log.e("dataJson : ", dataJson);
 
 //end
 
@@ -228,7 +173,63 @@ public class ShoppingCart extends AppCompatActivity {
         deleviryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ShoppingCart.this,DeliveryService.class));
+              //  startActivity(new Intent(ShoppingCart.this,DeliveryService.class));
+
+
+
+                //Send order to server code
+                Home.serverCart.setCartid(SaveSharedPreference.getCartId(getApplicationContext()) + "");
+                Home.serverCart.setOrder(Home.cartMeals);
+                Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
+                    @Override
+                    public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+
+                        //if response is successful
+                        if (response.isSuccessful()) {
+
+                            //if Orders failed to added
+                            if (response.body().getCode() == 0) {
+
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                                builder.setMessage(response.body().getMessage() + "")
+                                        .setCancelable(false)
+                                        .setIcon(R.drawable.erroricon)
+                                        .setTitle(R.string.communicationerorr)
+                                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                            } else {
+                                //if Orders added successfully
+                                Toast.makeText(ShoppingCart.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                                //Clear Cart Id
+                                SaveSharedPreference.setCartId(ShoppingCart.this, "");
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResCreateCart> call, Throwable t) {
+                        Toast.makeText(ShoppingCart.this, t.getMessage() + "", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+
+
+
+                Gson gson = new Gson();
+                String dataJson=gson.toJson(Home.serverCart);
+                Log.e("dataJson : ", dataJson);
+
+
+
+
+
             }
         });
 

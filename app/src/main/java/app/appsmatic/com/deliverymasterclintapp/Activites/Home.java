@@ -47,7 +47,7 @@ import retrofit2.Response;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static int cartNumber=0;
-    private ImageView logoutbtn;
+    public static ImageView logoutbtn;
     private TextView toolbartitle;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
@@ -97,6 +97,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         //logout button implementation
+
         logoutbtn=(ImageView)findViewById(R.id.logoutbtn);
             //Set image language for logout button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
@@ -109,10 +110,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             logoutbtn.setBackgroundResource(R.drawable.ripple);
         }
+        if(ownerCode==null){
+            logoutbtn.setVisibility(View.INVISIBLE);
+        }else {
+            logoutbtn.setVisibility(View.VISIBLE);
+        }
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Home.this.finish();
+                Home.ownerCode=null;
+                logoutbtn.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
         });
@@ -204,7 +212,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         if (id == R.id.nav_myaccout) {
             if(ownerCode==null){
-
+                startActivity(new Intent(Home.this,DialogLogin.class));
             }else {
                 myAccount=new MyAccount();
                 toolbartitle.setText(R.string.item1myaccount);
@@ -225,30 +233,39 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         } else if (id == R.id.nav_corder) {
-           currentOrder=new CurrentOrder();
-            toolbartitle.setText(R.string.item3currntorder);
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentcontener, currentOrder);
-            fragmentTransaction.commit();
+
+            if(Home.ownerCode==null){
+                startActivity(new Intent(Home.this,DialogLogin.class));
+            }else {
+                currentOrder=new CurrentOrder();
+                toolbartitle.setText(R.string.item3currntorder);
+                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentcontener, currentOrder);
+                fragmentTransaction.commit();
+            }
+
 
         } else if (id == R.id.nav_porder) {
-            prevOrders=new PrevOrders();
-            toolbartitle.setText(R.string.item4pervorders);
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentcontener, prevOrders);
-            fragmentTransaction.commit();
+            if(Home.ownerCode==null){
+                startActivity(new Intent(Home.this,DialogLogin.class));
+            }else {
+                prevOrders = new PrevOrders();
+                toolbartitle.setText(R.string.item4pervorders);
+                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentcontener, prevOrders);
+                fragmentTransaction.commit();
+            }
 
 
         } else if (id == R.id.nav_settings) {
-            settings=new Settings();
-            toolbartitle.setText(R.string.item5settngs);
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentcontener, settings);
-            fragmentTransaction.commit();
-
+                settings = new Settings();
+                toolbartitle.setText(R.string.item5settngs);
+                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentcontener, settings);
+                fragmentTransaction.commit();
 
         } else if (id == R.id.nav_info) {
             info=new Info();

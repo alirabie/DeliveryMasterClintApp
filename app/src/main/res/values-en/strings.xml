@@ -65,5 +65,8 @@
     <string name="dismiss">Dismiss</string>
     <string name="deletemeal">Do You Want to Delete This Meal ??</string>
     <string name="customizations">Customizations</string>
+    <string name="logindialogallert">You Cannot Access this Until login First !! Please Login </string>
+
+
 
 </resources>

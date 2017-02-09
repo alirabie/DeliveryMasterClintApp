@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.DialogLogin"
+    android:orientation="vertical"
+    android:background="#010026">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView9"
+        android:src="@drawable/iconluncher"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/textView22"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:textColor="#ffa600"
+        android:layout_marginTop="20dp"
+        android:text="@string/logindialogallert"
+        android:padding="10dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/dialog_phonenum_login"
+            android:background="@drawable/inputfield"
+            android:textSize="18dp"
+            android:hint="@string/hintloginphonenumber"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:layout_marginTop="25dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:background="@drawable/inputfield"
+            android:textSize="18dp"
+            android:hint="@string/hintloginpassword"
+            android:textAlignment="viewStart"
+            android:gravity="start"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:layout_marginTop="10dp"
+            android:id="@+id/dialog_password_login" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dialog_loginbtn"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/signinbtn"
+            android:layout_marginTop="20dp"
+            android:clickable="true"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/forgetpassword"
+                android:id="@+id/dialog_tv_forgetpass"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ffa600"
+                android:layout_marginTop="5dp"
+                android:clickable="true"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/dialog_tv_newaccount"
+                android:text="@string/newaccount"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#ffa600"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

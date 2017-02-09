@@ -64,7 +64,7 @@ public class Customization extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.fadein, R.anim.alpha);
+        overridePendingTransition(R.anim.toptodown, R.anim.alpha);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_customization);
 

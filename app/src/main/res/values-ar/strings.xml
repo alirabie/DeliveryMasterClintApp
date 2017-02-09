@@ -65,4 +65,7 @@
     <string name="dismiss">إخفاء</string>
     <string name="deletemeal">هل تريد حذف هذه الوجبة ؟؟</string>
     <string name="customizations">تخصيصات الوجبه</string>
+    <string name="logindialogallert">لا يمكنك الدخول هنا قبل تسجيل الدخول اولا !! من فضلك قم بتسجيل دخولك</string>
+
+
 </resources>
