@@ -7,11 +7,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,9 +21,16 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DeliveryService extends FragmentActivity implements OnMapReadyCallback {
 
@@ -63,10 +72,15 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             deliverybtn.setBackgroundResource(R.drawable.ripple);
         }
+
+
+        //Delivery button action
         deliverybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(addressInput.getText().toString().isEmpty()){
+              /*
+              //Check if address input empty or not and inform user
+               if(addressInput.getText().toString().isEmpty()){
                     final AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryService.this);
                     builder.setMessage(R.string.dontleavefildes)
                             .setCancelable(false)
@@ -85,8 +99,66 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                     //do
 
                 }
+*/
 
-            }
+
+                //Send order to server code
+                Home.serverCart.setCartid(SaveSharedPreference.getCartId(getApplicationContext()) + "");
+                Home.serverCart.setOrder(Home.cartMeals);
+
+                    Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
+                        @Override
+                        public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+
+                            //if response is successful
+                            if (response.isSuccessful()) {
+
+                                //if Orders failed to added
+                                if (response.body().getCode() == 0) {
+
+                                    final AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryService.this);
+                                    builder.setMessage(response.body().getMessage() + "")
+                                            .setCancelable(false)
+                                            .setIcon(R.drawable.erroricon)
+                                            .setTitle(R.string.communicationerorr)
+                                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                } else {
+                                    //if Orders added successfully
+                                    Toast.makeText(DeliveryService.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                                    //Clear Cart Id
+                                    SaveSharedPreference.setCartId(DeliveryService.this, "");
+                                }
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResCreateCart> call, Throwable t) {
+                            Toast.makeText(DeliveryService.this, t.getMessage() + "", Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+
+
+
+                    Gson gson = new Gson();
+                    String dataJson=gson.toJson(Home.serverCart);
+                    Log.e("dataJson : ", dataJson);
+
+                }
+
+
+
+
+
+
         });
 
 

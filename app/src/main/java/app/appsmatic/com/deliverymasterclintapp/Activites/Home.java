@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private TextView toolbartitle;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
-    public static String ownerCode="";
+   // public static String ownerCode="";
 
 
     private ImageView shoppingCart;
@@ -68,7 +68,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -80,9 +80,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
-        //Receive user id from login operation
-       ownerCode=getIntent().getStringExtra("UserId");
-
+        //Receive user id from login operation and store it in Shared prefs
+        //SaveSharedPreference.setOwnerId(Home.this,getIntent().getStringExtra("UserId"));
 
 
 
@@ -110,16 +109,20 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             logoutbtn.setBackgroundResource(R.drawable.ripple);
         }
-        if(ownerCode==null){
+
+
+        if(SaveSharedPreference.getOwnerId(Home.this).isEmpty()){
             logoutbtn.setVisibility(View.INVISIBLE);
         }else {
             logoutbtn.setVisibility(View.VISIBLE);
         }
+
+
         logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Home.this.finish();
-                Home.ownerCode=null;
+                SaveSharedPreference.setOwnerId(Home.this,"");
                 logoutbtn.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
@@ -211,7 +214,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         int id = item.getItemId();
 
         if (id == R.id.nav_myaccout) {
-            if(ownerCode==null){
+            if(SaveSharedPreference.getOwnerId(Home.this).isEmpty()){
                 startActivity(new Intent(Home.this,DialogLogin.class));
             }else {
                 myAccount=new MyAccount();
@@ -234,7 +237,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         } else if (id == R.id.nav_corder) {
 
-            if(Home.ownerCode==null){
+            if(SaveSharedPreference.getOwnerId(Home.this).isEmpty()){
                 startActivity(new Intent(Home.this,DialogLogin.class));
             }else {
                 currentOrder=new CurrentOrder();
@@ -247,7 +250,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         } else if (id == R.id.nav_porder) {
-            if(Home.ownerCode==null){
+            if(SaveSharedPreference.getOwnerId(Home.this).isEmpty()){
                 startActivity(new Intent(Home.this,DialogLogin.class));
             }else {
                 prevOrders = new PrevOrders();

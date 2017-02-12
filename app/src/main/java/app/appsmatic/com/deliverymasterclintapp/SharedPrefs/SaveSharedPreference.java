@@ -14,6 +14,7 @@ public class SaveSharedPreference {
     static final String LANG_ID="langId";
     static final String lOAD_IMG_ID="imagesStatus";
     static final String CART_ID="cartId";
+    static final String OWNER_ID="ownerId";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -37,7 +38,7 @@ public class SaveSharedPreference {
     }
 
     public static Boolean getImgLoadingSatatus(Context context){
-        return getSharedPreferences(context).getBoolean(lOAD_IMG_ID,true);
+        return getSharedPreferences(context).getBoolean(lOAD_IMG_ID, true);
     }
 
 
@@ -51,7 +52,7 @@ public class SaveSharedPreference {
 
     public static void setCartId(Context context,String lang){
         SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putString(CART_ID,lang);
+        editor.putString(CART_ID, lang);
         editor.commit();
     }
 
@@ -59,6 +60,16 @@ public class SaveSharedPreference {
         return getSharedPreferences(context).getString(CART_ID, "");
     }
 
+
+    public static void setOwnerId(Context context,String ownerId){
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(OWNER_ID, ownerId);
+        editor.commit();
+    }
+
+    public static String getOwnerId(Context context){
+        return getSharedPreferences(context).getString(OWNER_ID,"");
+    }
 
 
 

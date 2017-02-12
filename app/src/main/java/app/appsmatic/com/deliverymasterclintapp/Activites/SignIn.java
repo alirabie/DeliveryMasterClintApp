@@ -147,13 +147,9 @@ public class SignIn extends AppCompatActivity {
                                 if(!code.equals("0")){
 
                                     String fulltext=response.body().getUserid()+"";
-
-
-
-                                   startActivity(new Intent(SignIn.this, Home.class).putExtra("UserId", fulltext.substring(fulltext.indexOf(",")+1, fulltext.length())));
-
-
-
+                                    SaveSharedPreference.setOwnerId(SignIn.this,fulltext.substring(fulltext.indexOf(",")+1, fulltext.length()));
+                                    Toast.makeText(SignIn.this,"OwnerId : "+SaveSharedPreference.getOwnerId(SignIn.this)+"",Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(SignIn.this,Home.class));
                                     SignIn.this.finish();
 
                                 }else{

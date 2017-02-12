@@ -118,12 +118,13 @@ public class DialogLogin extends AppCompatActivity {
                                 if(!code.equals("0")){
 
                                     String fulltext=response.body().getUserid()+"";
-                                    Home.ownerCode=fulltext.substring(fulltext.indexOf(",")+1, fulltext.length());
-                                    Toast.makeText(DialogLogin.this,"OwnerId : "+Home.ownerCode+"",Toast.LENGTH_LONG).show();
+                                    SaveSharedPreference.setOwnerId(DialogLogin.this,fulltext.substring(fulltext.indexOf(",")+1, fulltext.length()));
+                                    Toast.makeText(DialogLogin.this,"OwnerId : "+SaveSharedPreference.getOwnerId(DialogLogin.this)+"",Toast.LENGTH_LONG).show();
                                     Home.logoutbtn.setVisibility(View.VISIBLE);
                                     DialogLogin.this.finish();
 
                                 }else{
+
 
 
                                     if (mProgressDialog.isShowing())

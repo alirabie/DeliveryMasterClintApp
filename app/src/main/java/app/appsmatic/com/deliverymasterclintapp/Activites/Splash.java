@@ -40,6 +40,10 @@ public class Splash extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
+        //Check Logging Status
+        if(!SaveSharedPreference.getOwnerId(Splash.this).isEmpty()){
+            startActivity(new Intent(Splash.this,Home.class));
+        }
 
 
 
@@ -66,6 +70,7 @@ public class Splash extends AppCompatActivity {
         final LinearLayout controalPanell=(LinearLayout)findViewById(R.id.c_panel);
         controalPanell.clearAnimation();
         controalPanell.setAnimation(anim);
+
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -34,6 +35,7 @@ public class ShoppingCart extends AppCompatActivity {
     private ImageView pickuBtn,deleviryBtn;
     private RecyclerView mealslist;
     private CartData cartData;
+    private TextView cartEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,19 @@ public class ShoppingCart extends AppCompatActivity {
         }
 
 
+        cartEmpty=(TextView)findViewById(R.id.tv_cart_empty);
+        cartEmpty.setVisibility(View.INVISIBLE);
         mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
-        mealslist.setAdapter(new CartAdb(Home.cartMeals,this));
+        mealslist.setAdapter(new CartAdb(Home.cartMeals, this));
         mealslist.setLayoutManager(new LinearLayoutManager(this));
 
+
+        // Show cart Empty TV if cart is empty
+        if(Home.cartMeals.isEmpty()){
+            cartEmpty.setVisibility(View.VISIBLE);
+        }else {
+            cartEmpty.setVisibility(View.INVISIBLE);
+        }
 
 
 
@@ -99,58 +110,71 @@ public class ShoppingCart extends AppCompatActivity {
         pickuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  startActivity(new Intent(ShoppingCart.this,PickUpService.class));
-
                 //test create shopping cart and send all orders to server
                 //Create Cart Place
-                if(Home.ownerCode==null){
-
+               //check if user logged in or guest
+                if(SaveSharedPreference.getOwnerId(ShoppingCart.this).isEmpty()){
                     startActivity(new Intent(ShoppingCart.this,DialogLogin.class));
-
                 }else {
 
-
-                    //Create new cart
-                    cartData=new CartData();
-                    cartData.setOwner(Home.ownerCode);
-                    cartData.setRestaurantid("11");
-                    cartData.setSource("3");
-                    Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
-                        @Override
-                        public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
-                            if (response.isSuccessful()) {
-                                if (response.body().getCode().equals("0")) {
-                                    Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                } else {
-                                    if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
-                                        SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
-                                        Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
-                                    } else {
-
+                    // Check If Cart Is Empty Or not and inform user
+                    if (Home.cartMeals.isEmpty()) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                        builder.setMessage(R.string.emptycartdialog)
+                                .setCancelable(false)
+                                .setIcon(R.drawable.erroricon)
+                                .setTitle(R.string.sysMsg)
+                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
                                     }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }else {
+                        //if cart is full
+                        //Create new cart on server
+                        cartData=new CartData();
+                        cartData.setOwner(SaveSharedPreference.getOwnerId(ShoppingCart.this));
+                        cartData.setRestaurantid("11");
+                        cartData.setSource("3");
+                        Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
+                            @Override
+                            public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+                                if (response.isSuccessful()) {
+                                    if (response.body().getCode().equals("0")) {
+                                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
+                                            SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
+                                            Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
+                                        } else {
+
+                                        }
+                                    }
+
+                                    startActivity(new Intent(ShoppingCart.this, PickUpService.class));
                                 }
                             }
-                        }
-                        @Override
-                        public void onFailure(Call<ResCreateCart> call, Throwable t) {
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
-                            builder.setMessage(t.getMessage() + "")
-                                    .setCancelable(false)
-                                    .setIcon(R.drawable.erroricon)
-                                    .setTitle(R.string.sysMsg)
-                                    .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            AlertDialog alert = builder.create();
-                            alert.show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<ResCreateCart> call, Throwable t) {
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                                builder.setMessage(t.getMessage() + "")
+                                        .setCancelable(false)
+                                        .setIcon(R.drawable.erroricon)
+                                        .setTitle(R.string.sysMsg)
+                                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                            }
+                        });
 
 
-
-
+                    }
 
 
                 }
@@ -173,28 +197,63 @@ public class ShoppingCart extends AppCompatActivity {
         deleviryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  startActivity(new Intent(ShoppingCart.this,DeliveryService.class));
+                //test create shopping cart and send all orders to server
+                //Create Cart Place
+
+                //Check if user logged in or guest
+                if (SaveSharedPreference.getOwnerId(ShoppingCart.this).isEmpty()) {
+                    startActivity(new Intent(ShoppingCart.this, DialogLogin.class));
+                } else {
+
+                    // Check If Cart Is Empty Or not and inform user
+                    if (Home.cartMeals.isEmpty()) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                        builder.setMessage(R.string.emptycartdialog)
+                                .setCancelable(false)
+                                .setIcon(R.drawable.erroricon)
+                                .setTitle(R.string.sysMsg)
+                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        //if cart is full
+                        //Create new cart on server
+                        cartData = new CartData();
+                        cartData.setOwner(SaveSharedPreference.getOwnerId(ShoppingCart.this));
+                        cartData.setRestaurantid("11");
+                        cartData.setSource("3");
+                        Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
+                            @Override
+                            public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+                                if (response.isSuccessful()) {
+                                    if (response.body().getCode().equals("0")) {
+                                        Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
+                                            SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
+                                            Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
+                                        } else {
+
+                                        }
+                                    }
+
+                                    startActivity(new Intent(ShoppingCart.this, DeliveryService.class));
+                                }
 
 
+                            }
 
-                //Send order to server code
-                Home.serverCart.setCartid(SaveSharedPreference.getCartId(getApplicationContext()) + "");
-                Home.serverCart.setOrder(Home.cartMeals);
-                Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
-                    @Override
-                    public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
-
-                        //if response is successful
-                        if (response.isSuccessful()) {
-
-                            //if Orders failed to added
-                            if (response.body().getCode() == 0) {
-
+                            @Override
+                            public void onFailure(Call<ResCreateCart> call, Throwable t) {
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
-                                builder.setMessage(response.body().getMessage() + "")
+                                builder.setMessage(t.getMessage() + "")
                                         .setCancelable(false)
                                         .setIcon(R.drawable.erroricon)
-                                        .setTitle(R.string.communicationerorr)
+                                        .setTitle(R.string.sysMsg)
                                         .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 dialog.dismiss();
@@ -202,36 +261,15 @@ public class ShoppingCart extends AppCompatActivity {
                                         });
                                 AlertDialog alert = builder.create();
                                 alert.show();
-                            } else {
-                                //if Orders added successfully
-                                Toast.makeText(ShoppingCart.this, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
-                                //Clear Cart Id
-                                SaveSharedPreference.setCartId(ShoppingCart.this, "");
                             }
+                        });
 
 
-                        }
                     }
-
-                    @Override
-                    public void onFailure(Call<ResCreateCart> call, Throwable t) {
-                        Toast.makeText(ShoppingCart.this, t.getMessage() + "", Toast.LENGTH_LONG).show();
-                    }
-                });
-
-
-
-
-                Gson gson = new Gson();
-                String dataJson=gson.toJson(Home.serverCart);
-                Log.e("dataJson : ", dataJson);
-
-
-
-
-
+                }
             }
-        });
+
+            });
 
 
 

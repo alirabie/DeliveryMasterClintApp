@@ -38,4 +38,14 @@ android:orientation="vertical">
         android:clickable="true"/>
 </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/shoppingcartempty"
+        android:id="@+id/tv_cart_empty"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="20dp" />
+
 </FrameLayout>
