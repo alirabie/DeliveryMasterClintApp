@@ -360,13 +360,18 @@ public class Customization extends AppCompatActivity {
                         cAdb.catsAdb.mealCustomizations.clear();
                         Customization.this.finish();
 
+                        //Increment Cart tv number
+                        Home.badgeView.setText(Home.cartMeals.size() + "");
+                        Home.badgeView.show();
+
+                        /*
                         Log.e("Meal Name : ", cartMeal.getMealName());
                         Log.e("Items Count : ", cartMeal.getMealCount() + "");
                         for (int x = 0; x < cartMeal.getMealAdditions().size(); x++) {
                             Log.e("additions : ", cartMeal.getMealAdditions().get(x).getAdditionName() + "  Count : " + cartMeal.getMealAdditions().get(x).getAddCount() + "");
 
                         }
-
+                         */
 
                     }
                 }

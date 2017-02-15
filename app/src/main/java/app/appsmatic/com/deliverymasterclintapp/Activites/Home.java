@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.readystatesoftware.viewbadger.BadgeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
    // public static String ownerCode="";
+    public static BadgeView badgeView;
 
 
     private ImageView shoppingCart;
@@ -122,7 +124,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             @Override
             public void onClick(View v) {
                 Home.this.finish();
-                SaveSharedPreference.setOwnerId(Home.this,"");
+                SaveSharedPreference.setOwnerId(Home.this, "");
                 logoutbtn.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
@@ -156,6 +158,18 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         //setup shopping Cart
 
         shoppingCart=(ImageView)findViewById(R.id.cartbtn);
+
+
+        //Create cart icon meals count
+        badgeView=new BadgeView(this,shoppingCart);
+        if(cartMeals.isEmpty()){
+            //don't show any numbers on cart icon
+        }else {
+            badgeView.setText(cartMeals.size()+"");
+            badgeView.show();
+        }
+
+
         //Check Os Ver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             shoppingCart.setBackgroundResource(R.drawable.ripple);

@@ -72,7 +72,6 @@ public class AdditionsAdb extends RecyclerView.Adapter<AdditionsAdb.vh00> {
                 counts.set(position, counts.get(position) + 1);
                 holder.count.setText("" + counts.get(position));
 
-
                 //when set count 0 replace addition item with default value
                 if (counts.get(position) == 0) {
 

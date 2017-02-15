@@ -8,11 +8,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
         android:background="#cdcdcd">
 
         <ImageView
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="100dp"
             android:id="@+id/meal_home_mealpic"
             android:src="@drawable/mealpic" />
