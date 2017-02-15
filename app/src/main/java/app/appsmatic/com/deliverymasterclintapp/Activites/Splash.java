@@ -42,7 +42,8 @@ public class Splash extends AppCompatActivity {
 
         //Check Logging Status
         if(!SaveSharedPreference.getOwnerId(Splash.this).isEmpty()){
-            startActivity(new Intent(Splash.this,Home.class));
+            startActivity(new Intent(Splash.this, Home.class));
+            Splash.this.finish();
         }
 
 

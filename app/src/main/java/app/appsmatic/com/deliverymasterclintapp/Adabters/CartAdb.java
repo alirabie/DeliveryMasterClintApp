@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import app.appsmatic.com.deliverymasterclintapp.Activites.Home;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
@@ -128,6 +129,14 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                             public void onClick(DialogInterface dialog, int id) {
                                 cartMeals.remove(position);
                                 notifyDataSetChanged();
+                                //update cart badge count
+                                if(Home.cartMeals.isEmpty()){
+                                    Home.badgeView.hide();
+                                }else {
+                                    Home.badgeView.setText(Home.cartMeals.size() + "");
+                                    Home.badgeView.show();
+                                }
+
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
