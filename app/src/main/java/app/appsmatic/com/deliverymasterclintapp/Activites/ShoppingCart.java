@@ -40,7 +40,7 @@ public class ShoppingCart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.toptodown, R.anim.fadein);
+        overridePendingTransition(R.anim.slidetop, R.anim.slidetop);
         setContentView(R.layout.activity_shopping_cart);
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

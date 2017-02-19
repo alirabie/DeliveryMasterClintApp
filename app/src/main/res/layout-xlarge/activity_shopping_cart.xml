@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffffff">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/cart_meals_list"
-        android:background="#e4e4e4">
+        android:background="#ffffff">
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
@@ -19,7 +20,7 @@
         android:layout_weight="1"
         android:layout_gravity="bottom"
         android:padding="15dp"
-        android:background="#e4e4e4">
+        android:background="#ffffff">
 
         <ImageView
             android:layout_width="match_parent"

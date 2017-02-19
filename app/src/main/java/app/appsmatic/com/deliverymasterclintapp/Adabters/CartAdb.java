@@ -22,6 +22,7 @@ import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import app.appsmatic.com.deliverymasterclintapp.URLS.BaseURL;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Mido PC on 1/21/2017.
@@ -175,9 +176,10 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
     public static class VH1001 extends RecyclerView.ViewHolder{
 
         private TextView name,mealdec,mealprice,mealcount,tvAdd,tvCust;
-        private ImageView upcount,downcount,mealpic,deleteMeal;
+        private ImageView upcount,downcount,deleteMeal;
         private RecyclerView additinsList;
         private RecyclerView customizatinsList;
+        private CircleImageView mealpic;
 
         public VH1001(View itemView) {
             super(itemView);
@@ -190,7 +192,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
             upcount=(ImageView)itemView.findViewById(R.id.cart_meal_inc);
             downcount=(ImageView)itemView.findViewById(R.id.cart_meal_dec);
-            mealpic=(ImageView)itemView.findViewById(R.id.cart_meal_pic);
+            mealpic=(CircleImageView)itemView.findViewById(R.id.cart_meal_pic);
             deleteMeal=(ImageView)itemView.findViewById(R.id.delete_meal_btn);
 
             additinsList=(RecyclerView)itemView.findViewById(R.id.cart_additions_list);
