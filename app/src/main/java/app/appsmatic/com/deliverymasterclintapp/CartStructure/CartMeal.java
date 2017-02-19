@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.CartStructure;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

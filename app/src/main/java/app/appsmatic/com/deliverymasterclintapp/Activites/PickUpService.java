@@ -1,12 +1,19 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,13 +22,28 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
+import java.util.List;
+
+import app.appsmatic.com.deliverymasterclintapp.API.Models.LocatioN;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
+import app.appsmatic.com.deliverymasterclintapp.Adabters.BuranchesPickupAdb;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PickUpService extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ImageView pickupbtn;
+    private RecyclerView brunchesList;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +60,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+
         pickupbtn=(ImageView)findViewById(R.id.pickup_btn);
         //Check Os Ver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -49,6 +72,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
         }else{
             pickupbtn.setImageResource(R.drawable.selectbranchbtn_en);
         }
+
 
 
 
@@ -73,13 +97,92 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
+        //get pickup branches :
+        HashMap data=new HashMap();
+        data.put("restaurantid",5);
+        Genrator.createService(ClintAppApi.class).getPicupBranches(data).enqueue(new Callback<ResLocations>() {
+            @Override
+            public void onResponse(Call<ResLocations> call, Response<ResLocations> response) {
+                //if response success
+                if(response.isSuccessful()){
+                    //if code from server not 0
+                    if(!response.body().getCode().equals(0)){
+                        //if locations empty
+                        if(response.body().getMessage().isEmpty()){
+                            //locations Empty
+                        }else {
+
+                            //setup locations list
+                            brunchesList=(RecyclerView)findViewById(R.id.branches_list_pickup);
+                            brunchesList.setAdapter(new BuranchesPickupAdb(getApplicationContext(),response.body()));
+                            brunchesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+                            //put locations on map
+                            for(int i=0;i<response.body().getMessage().size();i++){
+                                LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(),response.body().getMessage().get(i).getLongtitude());
+                                mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                float zoomLevel = (float) 10.0; //This goes up to 21
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                            }
+                        }
+
+                    }else{
+
+                        //Code 0 error message
+
+                    }
+
+                }else {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(PickUpService.this);
+                    builder.setMessage(R.string.Responsenotsucusess)
+                            .setCancelable(false)
+                            .setIcon(R.drawable.erroricon)
+                            .setTitle(R.string.communicationerorr)
+                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResLocations> call, Throwable t) {
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(PickUpService.this);
+                builder.setMessage(t.getMessage().toString()+"")
+                        .setCancelable(false)
+                        .setIcon(R.drawable.erroricon)
+                        .setTitle(R.string.connectionerorr)
+                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        LatLng latLng = new LatLng(-33,155);
-        mMap.addMarker(new MarkerOptions().position(latLng).title("egy"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        float zoomLevel = (float) 5.0; //This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+
+/*
+        for(int i=0;i<locatioNList.size();i++){
+            LatLng sydney = new LatLng(locatioNList.get(i).getLatitude(),locatioNList.get(i).getLongtitude());
+            mMap.addMarker(new MarkerOptions().position(sydney).title(locatioNList.get(i).getBranchName()));
+        }
+*/
+
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+       // float zoomLevel = (float) 5.0; //This goes up to 21
+       //  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
     }
 }

@@ -68,6 +68,7 @@
     <string name="logindialogallert">لا يمكنك الدخول هنا قبل تسجيل الدخول اولا !! من فضلك قم بتسجيل دخولك</string>
     <string name="emptycartdialog">سلة الشراء فارغه ! من فضلك قم بملئها  </string>
     <string name="shoppingcartempty">السلة فارغة ..</string>
+    <string name="pleaseselectbranch">من فضلك قم بإختيار الفرع : </string>
 
 
 </resources>

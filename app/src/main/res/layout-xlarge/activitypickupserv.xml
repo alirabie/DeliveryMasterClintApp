@@ -13,6 +13,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/pickup_location_address"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="Address"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/LocationOnMap"
             android:id="@+id/textView12"
@@ -20,7 +31,7 @@
             android:textColor="#000000"
             android:gravity="start"
             android:textStyle="bold"
-            android:textSize="20dp" />
+            android:textSize="25dp" />
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -28,7 +39,7 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="400dp"
             tools:context=".Activites.PickUpService"
             android:layout_alignWithParentIfMissing="false"
             android:layout_below="@+id/frameLayout"
@@ -46,7 +57,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal|top"
         android:background="@color/colorPrimary">
         <TextView
@@ -58,7 +69,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="25dp" />
+            android:textSize="15dp" />
     </LinearLayout>
 
     <ImageView

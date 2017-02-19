@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.Activites.Home;
@@ -27,7 +28,7 @@ import app.appsmatic.com.deliverymasterclintapp.URLS.BaseURL;
  */
 public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
-    private List<CartMeal>cartMeals;
+    private List<CartMeal>cartMeals=new ArrayList<>();
     private Context context;
     private static final String ALLOWED_URI_CHARS = "@#&=*+-_.,:!?()/~'%";
 
@@ -68,13 +69,24 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
         }
 
         //Setup Addition list
-        holder.additinsList.setAdapter(new CartMealsAdditionsAdb(cartMeals.get(position).getMealAdditions(), context));
-        holder.additinsList.setLayoutManager(new LinearLayoutManager(context));
+        if(cartMeals.get(position).getMealAdditions().isEmpty()){
+           holder.tvAdd.setVisibility(View.INVISIBLE);
+        }else {
+            holder.tvAdd.setVisibility(View.VISIBLE);
+            holder.additinsList.setAdapter(new CartMealsAdditionsAdb(cartMeals.get(position).getMealAdditions(), context));
+            holder.additinsList.setLayoutManager(new LinearLayoutManager(context));
+        }
+
 
         //Setup Customizations List
+        if(cartMeals.get(position).getCustomization()==null||cartMeals.get(position).getCustomization().isEmpty()){
+            holder.tvCust.setVisibility(View.INVISIBLE);
+        }else {
+            holder.tvCust.setVisibility(View.VISIBLE);
+            holder.customizatinsList.setAdapter(new CartCustomizationsAdb(cartMeals.get(position).getCustomization(),context));
+            holder.customizatinsList.setLayoutManager(new LinearLayoutManager(context));
+        }
 
-        holder.customizatinsList.setAdapter(new CartCustomizationsAdb(cartMeals.get(position).getCustomization(),context));
-        holder.customizatinsList.setLayoutManager(new LinearLayoutManager(context));
 
         //Increment Count of meal
         holder.upcount.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +174,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
     public static class VH1001 extends RecyclerView.ViewHolder{
 
-        private TextView name,mealdec,mealprice,mealcount;
+        private TextView name,mealdec,mealprice,mealcount,tvAdd,tvCust;
         private ImageView upcount,downcount,mealpic,deleteMeal;
         private RecyclerView additinsList;
         private RecyclerView customizatinsList;
@@ -173,6 +185,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
             mealdec=(TextView)itemView.findViewById(R.id.cart_tv_meal_info);
             mealprice=(TextView)itemView.findViewById(R.id.cart_tv_meal_price);
             mealcount=(TextView)itemView.findViewById(R.id.cart_meal_count);
+            tvAdd=(TextView)itemView.findViewById(R.id.add_tv_cart);
+            tvCust=(TextView)itemView.findViewById(R.id.cust_tv_cart);
 
             upcount=(ImageView)itemView.findViewById(R.id.cart_meal_inc);
             downcount=(ImageView)itemView.findViewById(R.id.cart_meal_dec);
@@ -181,6 +195,9 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
             additinsList=(RecyclerView)itemView.findViewById(R.id.cart_additions_list);
             customizatinsList=(RecyclerView)itemView.findViewById(R.id.cart_customization_list);
+
+
+
 
 
         }

@@ -4,6 +4,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCustomizations;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -53,6 +54,9 @@ public interface ClintAppApi {
     @POST("ShoppingCart/AddToCart")
     Call<ResCreateCart>addtocart(@Body Object cartorder);
 
+    //get Pickup Branches
+    @POST("Location/PickupBranches")
+    Call<ResLocations>getPicupBranches(@Body Object resturantId);
 
 
 }

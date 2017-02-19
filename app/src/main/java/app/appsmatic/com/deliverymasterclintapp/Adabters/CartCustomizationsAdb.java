@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.CustomizationM;
@@ -22,7 +23,7 @@ import app.appsmatic.com.deliverymasterclintapp.R;
 public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizationsAdb.viewholder> {
 
 
-    private List<MealCustomization>customizations;
+    private List<MealCustomization>customizations=new ArrayList<>();
     private Context context;
 
 

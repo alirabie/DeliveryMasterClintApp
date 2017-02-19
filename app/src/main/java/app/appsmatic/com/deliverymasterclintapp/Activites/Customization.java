@@ -181,7 +181,7 @@ public class Customization extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResCustomizations> call, Throwable t) {
 
-                final AlertDialog.Builder builder = new AlertDialog.Builder(Customization.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                 builder.setMessage(t.getMessage().toString() + "")
                         .setCancelable(false)
                         .setIcon(R.drawable.erroricon)
