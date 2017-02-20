@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.readystatesoftware.viewbadger.BadgeView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,7 @@ import app.appsmatic.com.deliverymasterclintapp.Fragments.PrevOrders;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +51,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     public static ImageView logoutbtn;
     private TextView toolbartitle;
+    private CircleImageView userPhoto;
+    private TextView userNameTv;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
     public static BadgeView badgeView;
@@ -93,6 +97,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         fragmentTransaction.replace(R.id.fragmentcontener, foodMenu);
         fragmentTransaction.commit();
 
+
+
+
+
         //logout button implementation
 
         logoutbtn=(ImageView)findViewById(R.id.logoutbtn);
@@ -133,6 +141,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbartitle=(TextView)findViewById(R.id.main_toolbar_title);
         setSupportActionBar(toolbar);
@@ -146,6 +155,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
+
+
+        //Setup Side menu User Photo and User Name TV
+        View hView =  navigationView.getHeaderView(0);
+        userPhoto=(CircleImageView)hView.findViewById(R.id.sidemenuicon);
+        userNameTv=(TextView)hView.findViewById(R.id.user_name_tv);
+        Picasso.with(getApplicationContext()).load(R.drawable.guesticon).fit().placeholder(R.drawable.guesticon).into(userPhoto);
+        userNameTv.setText("Gust");
 
 
 
@@ -173,12 +190,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         shoppingCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(Home.this,ShoppingCart.class));
+                startActivity(new Intent(Home.this, ShoppingCart.class));
 
 
                 Gson gson = new Gson();
-                String dataJson=gson.toJson(Home.serverCart);
+                String dataJson = gson.toJson(Home.serverCart);
                 Log.e("dataJson : ", dataJson);
+
+
 
 
 
@@ -197,6 +216,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             }
         });
+
+
+
+
+
 
 
 

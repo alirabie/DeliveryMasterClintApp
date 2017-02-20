@@ -12,20 +12,21 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/sidemenuicon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:border_width="7dp"
         app:border_color="#ffff"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@android:drawable/sym_def_app_icon" />
+        android:layout_gravity="center"
+        android:padding="5dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Android Studio"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:gravity="center" />
+        android:gravity="center"
+        android:id="@+id/user_name_tv"
+        android:layout_gravity="center"
+        android:padding="5dp" />
 
 </LinearLayout>

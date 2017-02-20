@@ -23,7 +23,8 @@
         app:theme="@style/NavigationViewStylel"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/activity_home_drawer"
-        android:background="@drawable/sideslidermenubackg">
+        android:background="@drawable/sideslidermenubackg"
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="match_parent"
