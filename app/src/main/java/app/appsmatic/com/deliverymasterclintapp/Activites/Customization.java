@@ -130,7 +130,10 @@ public class Customization extends AppCompatActivity {
         priceTv.setText(price + " SR");
 
 
-        //Get Customizations By Restaurant Id and Meal Id
+
+
+        //Get Customizations By Restaurant Id and Meal Id >>>>>>>>>>>>>>>>
+
         HashMap mealDataForCustomizations = new HashMap();
         mealDataForCustomizations.put("RestaurantID","1");
         mealDataForCustomizations.put("MealID",mealId);
@@ -222,7 +225,7 @@ public class Customization extends AppCompatActivity {
 
 
 
-        //Get Additions by meal id
+        //Get Additions by meal id >>>>>>>>>>>>>>>>>>>>>>
 
         HashMap mealData = new HashMap();
         //NOTE :::: Remember to add received meal id  not 3074
@@ -291,15 +294,15 @@ public class Customization extends AppCompatActivity {
 
 
 
-        //AddCart Button Action
+
+
+        //AddCart Button Action >>>>>>
+
+
              //Check Os Ver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
            addCart.setBackgroundResource(R.drawable.ripple);
         }
-
-
-
-
 
             addCart.setOnClickListener(new View.OnClickListener() {
                 @Override
