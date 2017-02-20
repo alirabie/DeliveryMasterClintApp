@@ -47,12 +47,10 @@ import retrofit2.Response;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static int cartNumber=0;
     public static ImageView logoutbtn;
     private TextView toolbartitle;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
-   // public static String ownerCode="";
     public static BadgeView badgeView;
 
 
@@ -82,6 +80,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
+        Log.e("OwnerId : ",SaveSharedPreference.getOwnerId(this));
         //Receive user id from login operation and store it in Shared prefs
         //SaveSharedPreference.setOwnerId(Home.this,getIntent().getStringExtra("UserId"));
 
@@ -93,9 +92,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentcontener, foodMenu);
         fragmentTransaction.commit();
-
-
-
 
         //logout button implementation
 

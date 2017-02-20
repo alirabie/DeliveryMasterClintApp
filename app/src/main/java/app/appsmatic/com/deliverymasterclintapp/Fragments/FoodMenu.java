@@ -47,7 +47,7 @@ public class FoodMenu extends Fragment {
 
 
         HashMap resid = new HashMap();
-        resid.put("RestaurantID", "11");
+        resid.put("RestaurantID", "1");
 
         Genrator.createService(ClintAppApi.class).GetCategories(resid).enqueue(new Callback<ResCats>() {
             @Override

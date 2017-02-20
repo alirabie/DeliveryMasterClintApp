@@ -15,7 +15,7 @@ public class ResLocations {
     private Integer code;
     @SerializedName("message")
     @Expose
-    private List<LocatioN> message = null;
+    private List<Locaton> message = null;
 
     public Integer getCode() {
         return code;
@@ -25,11 +25,11 @@ public class ResLocations {
         this.code = code;
     }
 
-    public List<LocatioN> getMessage() {
+    public List<Locaton> getMessage() {
         return message;
     }
 
-    public void setMessage(List<LocatioN> message) {
+    public void setMessage(List<Locaton> message) {
         this.message = message;
     }
 }

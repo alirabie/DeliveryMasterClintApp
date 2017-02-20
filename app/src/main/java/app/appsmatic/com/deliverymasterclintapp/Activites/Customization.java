@@ -131,10 +131,9 @@ public class Customization extends AppCompatActivity {
 
 
         //Get Customizations By Restaurant Id and Meal Id
-
         HashMap mealDataForCustomizations = new HashMap();
-        mealDataForCustomizations.put("RestaurantID","11");
-        mealDataForCustomizations.put("MealID",3074);
+        mealDataForCustomizations.put("RestaurantID","1");
+        mealDataForCustomizations.put("MealID",mealId);
 
         Genrator.createService(ClintAppApi.class).GetCustomizations(mealDataForCustomizations).enqueue(new Callback<ResCustomizations>() {
             @Override
@@ -227,7 +226,7 @@ public class Customization extends AppCompatActivity {
 
         HashMap mealData = new HashMap();
         //NOTE :::: Remember to add received meal id  not 3074
-        mealData.put("MealID", 3074);
+        mealData.put("MealID", mealId);
         //Toast.makeText(getApplicationContext(), mealId+"", Toast.LENGTH_SHORT).show();
 
         Genrator.createService(ClintAppApi.class).GetAdditions(mealData).enqueue(new Callback<ResAdditions>() {
