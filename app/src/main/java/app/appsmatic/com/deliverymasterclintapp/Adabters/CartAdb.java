@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Adabters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -144,10 +145,11 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                                 notifyDataSetChanged();
                                 //update cart badge count
                                 if(Home.cartMeals.isEmpty()){
-                                    Home.badgeView.hide();
+                                    Home.icon = (LayerDrawable)Home.itemCart.getIcon();
+                                    Home.setBadgeCount(context, Home.icon, 0 + "");
                                 }else {
-                                    Home.badgeView.setText(Home.cartMeals.size() + "");
-                                    Home.badgeView.show();
+                                    Home.icon = (LayerDrawable)Home.itemCart.getIcon();
+                                    Home.setBadgeCount(context, Home.icon, Home.cartMeals.size() + "");
                                 }
 
                             }

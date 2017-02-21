@@ -22,7 +22,10 @@
         <activity
             android:name=".Activites.Home"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
         <activity
             android:name=".Activites.Splash"
             android:label="@string/title_activity_splash"
@@ -81,7 +84,9 @@
         <activity
             android:name=".Activites.DialogLogin"
             android:label="@string/title_activity_dialog_login"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+
+
     </application>
 
 </manifest>

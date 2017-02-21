@@ -32,26 +32,6 @@
                 android:textColor="#ffffff" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Departure"
-                android:layout_gravity="end"
-                android:src="@drawable/carticon"
-                android:padding="10dp"
-                android:id="@+id/cartbtn"
-                android:clickable="true"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Departure"
-                android:layout_gravity="end"
-                android:src="@drawable/searchicon"
-                android:padding="10dp"
-                android:id="@+id/serchbtn"
-                android:clickable="true"/>
-
         </android.support.v7.widget.Toolbar>
 
 

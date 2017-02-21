@@ -2,12 +2,17 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -360,11 +365,17 @@ public class Customization extends AppCompatActivity {
                         Home.cartMeals.add(cartMeal);
                         adb.mealAdditions.clear();
                         cAdb.catsAdb.mealCustomizations.clear();
+                        //Increment Cart tv number
+                        Home.icon = (LayerDrawable)Home.itemCart.getIcon();
+                        Home.setBadgeCount(getBaseContext(), Home.icon,"");
+                        Home.setBadgeCount(getBaseContext(), Home.icon, Home.cartMeals.size() + "");
                         Customization.this.finish();
 
-                        //Increment Cart tv number
-                        Home.badgeView.setText(Home.cartMeals.size() + "");
-                        Home.badgeView.show();
+
+
+
+
+
 
                         /*
                         Log.e("Meal Name : ", cartMeal.getMealName());

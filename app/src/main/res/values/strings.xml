@@ -37,6 +37,7 @@
     <string name="item4pervorders">Previous Orders</string>
     <string name="item5settngs">Settings</string>
     <string name="item6info">Info</string>
+    <string name="searchfrag">Search Result</string>
     <string name="langdroplangtitle">Language</string>
     <string name="droplistlang">English</string>
     <string name="droplistlang2">Arabic</string>
@@ -76,14 +77,14 @@
     <string name="pleaseselectbranch">Please Select Branch : </string>
 
 
-
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_customization">Customization</string>
     <string name="title_activity_pick_up_serv">Map</string>
     <string name="title_activity_dialog_login">DialogLogin</string>
+    <string name="title_activity_goods">goods</string>
+    <string name="search_hint" />
 
 
 </resources>
