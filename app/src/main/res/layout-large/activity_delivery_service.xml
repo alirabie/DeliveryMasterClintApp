@@ -1,67 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/enterfulladdress"
-            android:id="@+id/textView13"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:id="@+id/full_address_input"
-            android:background="@drawable/blockback"
-            android:padding="10dp"
-            android:inputType="textMultiLine" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/LocationOnMap"
-            android:id="@+id/textView12"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:gravity="start"
-            android:textStyle="bold" />
-
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            tools:context=".Activites.PickUpService"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_below="@+id/frameLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView8"
-        android:layout_gravity="bottom" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -81,12 +22,98 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/locationsbox">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/selectassigenedlocation"
+            android:id="@+id/textView18"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textColor="#000000" />
+
+        <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+            android:padding="6dp"
+            android:id="@+id/deleviry_locatiions_list">
+
+    </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/comments_input"
+            android:background="@drawable/blockback"
+            android:padding="10dp"
+            android:inputType="textMultiLine"
+            android:hint="@string/yourcoument"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/streetname_input"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:hint="@string/streetaddress" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/LocationOnMap"
+            android:id="@+id/textView12"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Activites.PickUpService"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_below="@+id/frameLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/delivery_btn"
         android:layout_gravity="bottom"
         android:src="@drawable/send_address_btn_en"
-        android:padding="20dp" />
+        android:padding="10dp"
+        android:layout_marginBottom="10dp" />
 
-</FrameLayout>
+</LinearLayout>

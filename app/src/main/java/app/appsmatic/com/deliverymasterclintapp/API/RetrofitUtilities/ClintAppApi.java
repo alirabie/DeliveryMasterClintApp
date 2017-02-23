@@ -6,6 +6,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCustomizations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResNewLocation;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -44,11 +45,9 @@ public interface ClintAppApi {
     @POST("menu/customizations")
     Call<ResCustomizations>GetCustomizations(@Body Object data);
 
-
     //Create Shopping Cart
     @POST("ShoppingCart/Create")
     Call<ResCreateCart>cereateShoppingCart(@Body Object cartdata);
-
 
     //add to cart
     @POST("ShoppingCart/AddToCart")
@@ -57,6 +56,16 @@ public interface ClintAppApi {
     //get Pickup Branches
     @POST("Location/PickupBranches")
     Call<ResLocations>getPicupBranches(@Body Object resturantId);
+
+    //get delivery locations
+    @POST("Location/DeliveryLocations")
+    Call<ResLocations>getDeleviryLocatons(@Body Object data);
+
+    //add new location
+    @POST("Location/add")
+    Call<ResNewLocation>addNewLocation(@Body Object data);
+
+
 
 
 }

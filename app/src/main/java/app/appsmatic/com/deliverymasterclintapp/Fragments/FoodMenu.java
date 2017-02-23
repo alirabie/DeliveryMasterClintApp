@@ -23,6 +23,7 @@ import app.appsmatic.com.deliverymasterclintapp.Activites.SignUp;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.CategoriesAdb;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.MealsAdb;
 import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,7 +48,7 @@ public class FoodMenu extends Fragment {
 
 
         HashMap resid = new HashMap();
-        resid.put("RestaurantID", "1");
+        resid.put("RestaurantID", ResturantId.resId);
 
         Genrator.createService(ClintAppApi.class).GetCategories(resid).enqueue(new Callback<ResCats>() {
             @Override
@@ -64,6 +65,19 @@ public class FoodMenu extends Fragment {
                         categoriesAdb = new CategoriesAdb(getContext(), response.body());
                         categoriesList.setLayoutManager(layoutManager);
                         categoriesList.setAdapter(categoriesAdb);
+
+
+
+                        categoriesList.setBackgroundResource(R.color.btn_press_color);
+
+
+
+
+
+
+
+
+
                         MealsFrag mealsFrag = new MealsFrag();
                         Bundle bundle = new Bundle();
                         String transId =response.body().getMessage().get(0).getID()+"";

@@ -1,4 +1,4 @@
-package app.appsmatic.com.deliverymasterclintapp;
+package app.appsmatic.com.deliverymasterclintapp.Tools;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,6 +10,8 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+
+import app.appsmatic.com.deliverymasterclintapp.R;
 
 /**
  * Created by Mido PC on 2/21/2017.

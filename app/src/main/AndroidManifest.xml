@@ -22,10 +22,7 @@
         <activity
             android:name=".Activites.Home"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activites.Splash"
             android:label="@string/title_activity_splash"
@@ -80,13 +77,17 @@
         <activity
             android:name=".Activites.ShoppingCart"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activites.DeliveryService" />
+        <activity
+            android:name=".Activites.DeliveryService"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Activites.DialogLogin"
             android:label="@string/title_activity_dialog_login"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
-
-
+        <activity
+            android:name=".Activites.LocationDetails"
+            android:label="@string/title_activity_location_details"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
     </application>
 
 </manifest>

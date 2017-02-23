@@ -1,59 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/pickup_location_address"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="Address"
-            android:textSize="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/LocationOnMap"
-            android:id="@+id/textView12"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:gravity="start"
-            android:textStyle="bold"
-            android:textSize="25dp" />
-
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            tools:context=".Activites.PickUpService"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_below="@+id/frameLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="center" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView8"
-        android:layout_gravity="bottom" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -69,16 +18,74 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="15dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
-    <ImageView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/pickup_btn"
-        android:layout_gravity="bottom"
-        android:src="@drawable/selectbranchbtn_en"
-        android:padding="20dp"
-        android:clickable="true"/>
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/pleaseselectbranch"
+        android:id="@+id/textView23"
+        android:padding="5dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:gravity="start"
+        android:textSize="20dp" />
 
-</FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:id="@+id/branches_list_pickup"
+            android:padding="5dp">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
+        android:padding="10dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/LocationOnMap"
+            android:id="@+id/textView12"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="20dp" />
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Activites.PickUpService"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_below="@+id/frameLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,22 +3,50 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
-    android:gravity="end">
+    android:id="@+id/layoutbutton"
+    android:gravity="start">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Branche Name"
-        android:id="@+id/b_name_pickup_item"
-        android:textColor="#a32900"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:background="#ffffff"
+        android:gravity="start">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Address"
-        android:id="@+id/b_address_picup_item"
-        android:textColor="#000000" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Branche Name"
+                android:id="@+id/b_name_pickup_item"
+                android:textColor="#a32900"
+                android:textStyle="bold"
+                android:gravity="start" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Address"
+                android:id="@+id/b_address_picup_item"
+                android:textColor="#000000"
+                android:gravity="start" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/locationic"
+            android:padding="10dp" />
+    </LinearLayout>
+
 </LinearLayout>

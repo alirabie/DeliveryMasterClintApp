@@ -38,6 +38,7 @@ import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealAddition;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealCustomization;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -140,7 +141,7 @@ public class Customization extends AppCompatActivity {
         //Get Customizations By Restaurant Id and Meal Id >>>>>>>>>>>>>>>>
 
         HashMap mealDataForCustomizations = new HashMap();
-        mealDataForCustomizations.put("RestaurantID","1");
+        mealDataForCustomizations.put("RestaurantID", ResturantId.resId);
         mealDataForCustomizations.put("MealID",mealId);
 
         Genrator.createService(ClintAppApi.class).GetCustomizations(mealDataForCustomizations).enqueue(new Callback<ResCustomizations>() {

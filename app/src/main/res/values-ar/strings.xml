@@ -56,7 +56,7 @@
     <string name="Amount">القيمة</string>
     <string name="Additions">الإضافات</string>
     <string name="pickupservice">خدمة الاستلام</string>
-    <string name="LocationOnMap">الموقع على الخريطة</string>
+    <string name="LocationOnMap">من فضلك حدد موقعك من الخريطة</string>
     <string name="deliveryservice">خدمة التوصيل</string>
     <string name="enterfulladdress">أدخل العنوان كاملا : </string>
     <string name="dialogmessagedeleteconfirmation">هل تريد حذف هذه الاضافة ؟؟</string>
@@ -70,6 +70,10 @@
     <string name="emptycartdialog">سلة الشراء فارغه ! من فضلك قم بملئها  </string>
     <string name="shoppingcartempty">السلة فارغة ..</string>
     <string name="pleaseselectbranch">من فضلك قم بإختيار الفرع : </string>
+    <string name="nolocations">لا يوجد اماكن مسجلة لهذا الحساب</string>
+    <string name="yourcoument">اضف تعليق للطباخ</string>
+    <string name="streetaddress">من فضلك ضع اسم الشارع</string>
+    <string name="selectassigenedlocation">من فضلك اختار احد من عنواينك</string>
 
 
 </resources>

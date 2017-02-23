@@ -26,6 +26,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.CartAdb;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -136,7 +137,7 @@ public class ShoppingCart extends AppCompatActivity {
                         //Create new cart on server
                         cartData=new CartData();
                         cartData.setOwner(SaveSharedPreference.getOwnerId(ShoppingCart.this));
-                        cartData.setRestaurantid("11");
+                        cartData.setRestaurantid(ResturantId.resId);
                         cartData.setSource("3");
                         Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
                             @Override
@@ -224,7 +225,7 @@ public class ShoppingCart extends AppCompatActivity {
                         //Create new cart on server
                         cartData = new CartData();
                         cartData.setOwner(SaveSharedPreference.getOwnerId(ShoppingCart.this));
-                        cartData.setRestaurantid("11");
+                        cartData.setRestaurantid(ResturantId.resId);
                         cartData.setSource("3");
                         Genrator.createService(ClintAppApi.class).cereateShoppingCart(cartData).enqueue(new Callback<ResCreateCart>() {
                             @Override

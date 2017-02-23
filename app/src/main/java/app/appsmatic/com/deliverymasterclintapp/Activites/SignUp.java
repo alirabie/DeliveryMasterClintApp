@@ -26,6 +26,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppAp
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -135,7 +136,7 @@ public class SignUp extends AppCompatActivity {
                     registrationData.setMobileNo(phonenum.getText().toString() + "");
                     registrationData.setNewPassword(password.getText().toString()+"");
                     registrationData.setAccountType("2");
-                    registrationData.setRestaurantID("11");
+                    registrationData.setRestaurantID(ResturantId.resId);
 
 
                     Genrator.createService(ClintAppApi.class).SignUp(registrationData).enqueue(new Callback<Msg>() {

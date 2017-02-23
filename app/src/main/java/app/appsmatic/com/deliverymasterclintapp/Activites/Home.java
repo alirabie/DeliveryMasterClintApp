@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.ServerCart;
-import app.appsmatic.com.deliverymasterclintapp.BadgeDrawable;
+import app.appsmatic.com.deliverymasterclintapp.Tools.BadgeDrawable;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.FoodMenu;
@@ -55,13 +55,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private TextView userNameTv;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
-    public static BadgeView badgeView;
     public static LayerDrawable icon;
     public static MenuItem itemCart;
     public static  Context context;
 
-
-    private ImageView shoppingCart;
 
     //Fragments
     private FoodMenu foodMenu;

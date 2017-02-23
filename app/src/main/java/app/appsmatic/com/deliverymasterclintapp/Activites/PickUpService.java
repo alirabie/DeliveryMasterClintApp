@@ -11,12 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
@@ -27,6 +29,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.BuranchesPickupAdb;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +39,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ImageView pickupbtn;
     private RecyclerView brunchesList;
+
 
 
 
@@ -55,23 +59,6 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
-
-        pickupbtn=(ImageView)findViewById(R.id.pickup_btn);
-        //Check Os Ver
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            pickupbtn.setBackgroundResource(R.drawable.ripple);
-        }
-        //Set image language for pickup button
-        if(SaveSharedPreference.getLangId(this).equals("ar")){
-            pickupbtn.setImageResource(R.drawable.selectbranchbtn_ar);
-        }else{
-            pickupbtn.setImageResource(R.drawable.selectbranchbtn_en);
-        }
-
-
-
-
-
 
 
 
@@ -95,27 +82,27 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
 
         //get pickup branches :
         HashMap data=new HashMap();
-        data.put("restaurantid",5);
+        data.put("restaurantid", ResturantId.resId);
         Genrator.createService(ClintAppApi.class).getPicupBranches(data).enqueue(new Callback<ResLocations>() {
             @Override
             public void onResponse(Call<ResLocations> call, Response<ResLocations> response) {
                 //if response success
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     //if code from server not 0
-                    if(!response.body().getCode().equals(0)){
+                    if (!response.body().getCode().equals(0)) {
                         //if locations empty
-                        if(response.body().getMessage().isEmpty()){
+                        if (response.body().getMessage().isEmpty()) {
                             //locations Empty
-                        }else {
+                        } else {
 
                             //setup locations list
-                            brunchesList=(RecyclerView)findViewById(R.id.branches_list_pickup);
-                            brunchesList.setAdapter(new BuranchesPickupAdb(getApplicationContext(),response.body()));
+                            brunchesList = (RecyclerView) findViewById(R.id.branches_list_pickup);
+                            brunchesList.setAdapter(new BuranchesPickupAdb(getApplicationContext(), response.body()));
                             brunchesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
                             //put locations on map
-                            for(int i=0;i<response.body().getMessage().size();i++){
-                                LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(),response.body().getMessage().get(i).getLongtitude());
+                            for (int i = 0; i < response.body().getMessage().size(); i++) {
+                                LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
                                 mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
                                 float zoomLevel = (float) 10.0; //This goes up to 21
@@ -123,13 +110,13 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
                             }
                         }
 
-                    }else{
+                    } else {
 
                         //Code 0 error message
 
                     }
 
-                }else {
+                } else {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(PickUpService.this);
                     builder.setMessage(R.string.Responsenotsucusess)
                             .setCancelable(false)
@@ -150,7 +137,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
             public void onFailure(Call<ResLocations> call, Throwable t) {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(PickUpService.this);
-                builder.setMessage(t.getMessage().toString()+"")
+                builder.setMessage(t.getMessage().toString() + "")
                         .setCancelable(false)
                         .setIcon(R.drawable.erroricon)
                         .setTitle(R.string.connectionerorr)
@@ -164,6 +151,18 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
 
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -61,7 +61,7 @@
     <string name="Amount">Amount</string>
     <string name="Additions">Additions</string>
     <string name="pickupservice">Pick Up Service</string>
-    <string name="LocationOnMap">Location On Map</string>
+    <string name="LocationOnMap">Please Pick Your Location From Map</string>
     <string name="deliveryservice">Delivery Service</string>
     <string name="enterfulladdress">Enter Your Full Address :</string>
     <string name="dialogmessagedeleteconfirmation">Do You Want to Delete This Addition ??</string>
@@ -75,6 +75,10 @@
     <string name="emptycartdialog">Shopping Cart Is Empty ! Please Fill it </string>
     <string name="shoppingcartempty">Cart Empty ..</string>
     <string name="pleaseselectbranch">Please Select Branch : </string>
+    <string name="nolocations">No Locations Registered to your Account</string>
+    <string name="yourcoument">Please Add your Comment to Chief</string>
+    <string name="streetaddress">Please Enter Your Full Street Name</string>
+    <string name="selectassigenedlocation">Select From your Assigned Locations</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -85,6 +89,8 @@
     <string name="title_activity_dialog_login">DialogLogin</string>
     <string name="title_activity_goods">goods</string>
     <string name="search_hint" />
+    <string name="title_activity_location_details">Map</string>
+    <string name="title_activity_add_location">AddLocation</string>
 
 
 </resources>

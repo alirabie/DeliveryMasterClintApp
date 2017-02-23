@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -9,22 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import java.util.List;
+import android.widget.Toast;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
+import app.appsmatic.com.deliverymasterclintapp.Activites.DeliveryService;
 import app.appsmatic.com.deliverymasterclintapp.Activites.LocationDetails;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
 /**
- * Created by Mido PC on 2/19/2017.
+ * Created by Mido PC on 2/24/2017.
  */
-public class BuranchesPickupAdb extends RecyclerView.Adapter<BuranchesPickupAdb.Vholder> {
-
+public class DeliveryBrunchesAdb extends RecyclerView.Adapter<DeliveryBrunchesAdb.Vholder> {
     private ResLocations locations;
     private Context context;
 
-    public BuranchesPickupAdb(Context context, ResLocations locations) {
+    public DeliveryBrunchesAdb(Context context, ResLocations locations) {
         this.context = context;
         this.locations = locations;
     }
@@ -45,13 +45,18 @@ public class BuranchesPickupAdb extends RecyclerView.Adapter<BuranchesPickupAdb.
         holder.clckLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 context.startActivity(new Intent(context, LocationDetails.class)
                         .putExtra("locationId",locations.getMessage().get(position).getLocationID()+"")
                         .putExtra("locationName",locations.getMessage().get(position).getBranchName()+"")
                         .putExtra("locationAddress",locations.getMessage().get(position).getStreetAddress())
                         .putExtra("lat",locations.getMessage().get(position).getLatitude()+"")
                         .putExtra("long",locations.getMessage().get(position).getLongtitude()+"")
-                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));*/
+                ((Activity)context).finish();
+
+                Toast.makeText(context,"Your Location Id : "+locations.getMessage().get(position).getLocationID()+"",Toast.LENGTH_LONG).show();
+
             }
         });
     }
