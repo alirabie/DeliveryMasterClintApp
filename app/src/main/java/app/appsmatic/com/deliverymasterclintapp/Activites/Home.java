@@ -1,19 +1,23 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.util.SortedList;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -25,6 +29,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.readystatesoftware.viewbadger.BadgeView;
@@ -33,7 +38,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.ServerCart;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
+import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Tools.BadgeDrawable;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.CurrentOrder;
@@ -46,6 +54,9 @@ import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -83,6 +94,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         //Check Os Ver For Set Status Bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        }
+
+        //Check location permissions for Marshmallow
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
         }
 
         Log.e("OwnerId : ", SaveSharedPreference.getOwnerId(this));
@@ -275,36 +292,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -414,6 +401,70 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
+
+
+
+
+
+    //Send order to server method : if cart id still send updated order
+    // to server and when user confirm order clear cart id and cart items
+    public static void sendOrderToServer(final Context context){
+        //Send order to server code
+        Home.serverCart.setCartid(SaveSharedPreference.getCartId(context) + "");
+        Home.serverCart.setOrder(Home.cartMeals);
+        Genrator.createService(ClintAppApi.class).addtocart(Home.serverCart).enqueue(new Callback<ResCreateCart>() {
+            @Override
+            public void onResponse(Call<ResCreateCart> call, Response<ResCreateCart> response) {
+                //if response is successful
+                if (response.isSuccessful()) {
+                    //if Orders failed to added
+                    if (response.body().getCode() == 0) {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage(response.body().getMessage() + "")
+                                .setCancelable(false)
+                                .setIcon(R.drawable.erroricon)
+                                .setTitle(R.string.communicationerorr)
+                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+                        //if Orders added successfully
+                        Toast.makeText(context, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                        //Clear Cart Id
+                       // SaveSharedPreference.setCartId(context, "");
+                    }
+                }else {
+                    Toast.makeText(context,"Response not success from sending order to server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResCreateCart> call, Throwable t) {
+                Toast.makeText(context, t.getMessage() + "", Toast.LENGTH_LONG).show();
+            }
+        });
+        Gson gson = new Gson();
+        String dataJson=gson.toJson(Home.serverCart);
+        Log.e("dataJson : ", dataJson);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

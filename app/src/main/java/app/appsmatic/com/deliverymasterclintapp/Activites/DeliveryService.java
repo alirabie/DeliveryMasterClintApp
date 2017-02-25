@@ -53,6 +53,8 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_service);
+        //Invoke Send order to server method
+        Home.sendOrderToServer(DeliveryService.this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -85,6 +87,31 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             deliverybtn.setBackgroundResource(R.drawable.ripple);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         HashMap data=new HashMap();
@@ -130,7 +157,6 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         deliverybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 HashMap data=new HashMap();
                 newLocaton=new NewLocaton();

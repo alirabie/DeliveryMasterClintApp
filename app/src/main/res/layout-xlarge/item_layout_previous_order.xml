@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="155 SR"
-                android:id="@+id/prevorder_itemlayout_price"
+                android:id="@+id/prev_itemlayout_price"
                 android:textSize="13dp"
                 android:textColor="#000000"
                 android:padding="3dp" />

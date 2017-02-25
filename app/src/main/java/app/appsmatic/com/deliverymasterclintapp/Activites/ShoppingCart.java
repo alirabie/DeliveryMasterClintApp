@@ -150,7 +150,7 @@ public class ShoppingCart extends AppCompatActivity {
                                             SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
                                             Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
                                         } else {
-
+                                            Toast.makeText(getApplicationContext(),SaveSharedPreference.getCartId(getApplicationContext())+" :  Cart Id still", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 
@@ -234,11 +234,13 @@ public class ShoppingCart extends AppCompatActivity {
                                     if (response.body().getCode().equals("0")) {
                                         Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                     } else {
+
+                                        //Check if cart Id empty if that add new cart id if not empty inform user
                                         if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
                                             SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
                                             Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
                                         } else {
-
+                                            Toast.makeText(getApplicationContext(),SaveSharedPreference.getCartId(getApplicationContext())+" :  Cart Id still", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 

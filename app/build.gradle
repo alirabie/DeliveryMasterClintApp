@@ -1,16 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        app {
+            keyAlias 'Appsmatic'
+            keyPassword '2230880'
+            storeFile file('F:/Eng Ali/Appsmatic/Customer App Keyes/CustomerAppTestRelease.jks')
+            storePassword '2230880'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     dexOptions {
         incremental = true;
         preDexLibraries = false
         javaMaxHeapSize "4g" // 2g should be also OK
     }
-
-
     defaultConfig {
         applicationId "app.appsmatic.com.deliverymasterclintapp"
         minSdkVersion 16
@@ -46,7 +51,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:9.6.1'
     compile 'com.android.support:support-v13:23.+'
     compile 'com.android.support:support-v4:+'
-
     compile files('libs/android-viewbadger.jar')
 }
 dependencies {
@@ -68,6 +72,15 @@ dependencies {
 dependencies {
     compile 'com.google.android.gms:play-services:4.2.42'
     compile 'com.android.support:appcompat-v7:23.+'
+}
+dependencies {
+    compile 'com.google.android.gms:play-services-ads:9.6.1'
+}
+dependencies {
+    compile 'com.google.android.gms:play-services-identity:9.6.1'
+}
+dependencies {
+    compile 'com.google.android.gms:play-services-gcm:9.6.1'
 }
 
 

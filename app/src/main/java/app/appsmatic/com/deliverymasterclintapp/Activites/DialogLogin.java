@@ -42,6 +42,7 @@ public class DialogLogin extends AppCompatActivity {
         overridePendingTransition(R.anim.toptodown, R.anim.alpha);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_dialog_login);
+        //SaveSharedPreference.setOwnerId(DialogLogin.this, "052a2e63-57d0-45c4-a590-b300f2a99950");
 
         loginData=new LoginData();
         phonenum=(EditText)findViewById(R.id.dialog_phonenum_login);

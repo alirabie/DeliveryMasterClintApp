@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">DeliveryMasterClintApp</string>
 
+
+
+    <string name="title_activity_splash">تطبيق العميل</string>
+    <string name="title_activity_sign_in">تسجيل الدخول</string>
+    <string name="title_activity_sign_up">انشاء حساب جديد</string>PHONE NUMBER
+    <string name="title_activity_new_password">باسورد جديد</string>
+    <string name="title_activity_guest_splash">لوحة الترحيب بالضيف</string>
     <string name="navigation_drawer_open">فتح المستعرض</string>
     <string name="navigation_drawer_close">غلق المستعرض</string>
     <string name="action_settings">الاعدادات</string>
@@ -74,6 +81,17 @@
     <string name="yourcoument">اضف تعليق للطباخ</string>
     <string name="streetaddress">من فضلك ضع اسم الشارع</string>
     <string name="selectassigenedlocation">من فضلك اختار احد من عنواينك</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">مرحبا صفحة فارفة</string>
+    <string name="title_activity_maps">الخريطة</string>
+    <string name="title_activity_customization">التخصيص</string>
+    <string name="title_activity_pick_up_serv">الخريطة</string>
+    <string name="title_activity_dialog_login">رسالة تسجيل الدخول</string>
+    <string name="title_activity_goods">جيد</string>
+    <string name="search_hint" />
+    <string name="title_activity_location_details">خرائط</string>
+    <string name="title_activity_add_location">اضافة مكان جديد</string>
 
 
 </resources>
