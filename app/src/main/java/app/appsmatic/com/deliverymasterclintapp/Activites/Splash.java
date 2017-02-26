@@ -3,7 +3,9 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -21,10 +23,12 @@ import java.util.Locale;
 
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class Splash extends AppCompatActivity {
 
     private TextView signin,signup,guest;
+
 
 
     @Override
@@ -39,6 +43,9 @@ public class Splash extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
+
+
+
 
         //Check Logging Status
         if(!SaveSharedPreference.getOwnerId(Splash.this).isEmpty()){
@@ -76,7 +83,7 @@ public class Splash extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(),SignIn.class));
+                startActivity(new Intent(getApplication(), SignIn.class));
             }
         });
 
@@ -95,9 +102,13 @@ public class Splash extends AppCompatActivity {
         });
 
 
-        Log.e("KEY",getAppID());
+        Log.e("KEY", getAppID());
 
 
+        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
+        signin.setTypeface(face);
+        signup.setTypeface(face);
+        guest.setTypeface(face);
 
 
 

@@ -114,7 +114,8 @@
                 android:id="@+id/textView15"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:typeface="serif" />
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -137,7 +138,8 @@
                 android:id="@+id/textView11"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:typeface="serif" />
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

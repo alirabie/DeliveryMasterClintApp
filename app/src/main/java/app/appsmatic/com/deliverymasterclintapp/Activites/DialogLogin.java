@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,12 +45,20 @@ public class DialogLogin extends AppCompatActivity {
         setContentView(R.layout.activity_dialog_login);
         //SaveSharedPreference.setOwnerId(DialogLogin.this, "052a2e63-57d0-45c4-a590-b300f2a99950");
 
+
+
+
         loginData=new LoginData();
         phonenum=(EditText)findViewById(R.id.dialog_phonenum_login);
         password=(EditText)findViewById(R.id.dialog_password_login);
         signinbtn=(ImageView)findViewById(R.id.dialog_loginbtn);
         forgetpass=(TextView)findViewById(R.id.dialog_tv_forgetpass);
         signup=(TextView)findViewById(R.id.dialog_tv_newaccount);
+
+        //Staylling Arabic font
+        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
+        forgetpass.setTypeface(face);
+        signup.setTypeface(face);
 
         //Set image language for logo and login button
         if(SaveSharedPreference.getLangId(this).equals("ar")){

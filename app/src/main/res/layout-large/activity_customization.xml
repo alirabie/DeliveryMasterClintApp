@@ -112,7 +112,8 @@
                 android:text="@string/customizations"
                 android:id="@+id/textView14"
                 android:gravity="center"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:typeface="serif" />
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -134,7 +135,8 @@
                 android:text="@string/Additions"
                 android:id="@+id/textView11"
                 android:gravity="center"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:typeface="serif" />
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

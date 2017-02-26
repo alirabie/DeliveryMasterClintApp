@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
@@ -172,6 +173,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         userNameTv.setText("Gust");
 
 
+
+        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
+        toolbartitle.setTypeface(face);
     }
 
 

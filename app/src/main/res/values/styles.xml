@@ -6,22 +6,33 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="buttonStyle">@style/RobotoTextViewStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+    </style>
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">serif</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+    </style>
 
 
     <style name="NavigationViewStylem">
         <item name="android:textSize">15sp</item>
         <!-- menu item text size-->
         <item name="android:textStyle">bold</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <!-- menu item text size-->
     </style>
 
@@ -36,6 +47,7 @@
         <item name="android:textSize">25sp</item>
         <!-- menu item text size-->
         <item name="android:textStyle">bold</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <!-- menu item text size-->
     </style>
 
@@ -43,6 +55,7 @@
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
