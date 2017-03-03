@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.HashMap;
+import java.util.List;
 
+import app.appsmatic.com.deliverymasterclintapp.API.Models.Meal;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
@@ -65,6 +67,7 @@ public class FoodMenu extends Fragment {
                         categoriesAdb = new CategoriesAdb(getContext(), response.body());
                         categoriesList.setLayoutManager(layoutManager);
                         categoriesList.setAdapter(categoriesAdb);
+
 
 
 

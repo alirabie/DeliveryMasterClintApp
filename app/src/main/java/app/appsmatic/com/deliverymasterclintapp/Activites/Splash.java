@@ -18,12 +18,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.util.Locale;
-
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 
 public class Splash extends AppCompatActivity {
 

@@ -30,7 +30,7 @@ public class BadgeDrawable extends Drawable {
         float mTextSize = context.getResources().getDimension(R.dimen.badge_text_size);
 
         mBadgePaint = new Paint();
-        mBadgePaint.setColor(Color.RED);
+        mBadgePaint.setColor(Color.parseColor("#d90d15"));
         mBadgePaint.setAntiAlias(true);
         mBadgePaint.setStyle(Paint.Style.FILL);
         mBadgePaint1 = new Paint();

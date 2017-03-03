@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Adabters;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +47,8 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
     public void onBindViewHolder(final CategoriesAdb.vh holder, final int position) {
 
         holder.catLbl.setText(resCats.getMessage().get(position).getName() + "");
+        Typeface face=Typeface.createFromAsset(context.getAssets(), "arabicfont.ttf");
+        holder.catLbl.setTypeface(face);
 
         //Encoding Img URl
         String url = Uri.encode(BaseURL.IMGS+resCats.getMessage().get(position).getIcon().toString(),ALLOWED_URI_CHARS);
@@ -95,6 +98,7 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
             super(itemView);
             catImg=(ImageView)itemView.findViewById(R.id.top_slider_image_item_layout);
             catLbl=(TextView)itemView.findViewById(R.id.top_slider_tv_item_layout_name);
+
         }
     }
     }

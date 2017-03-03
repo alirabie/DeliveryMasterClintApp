@@ -4,11 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import app.appsmatic.com.deliverymasterclintapp.API.Models.Meal;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
 public class Search extends Fragment {
@@ -26,11 +32,21 @@ public class Search extends Fragment {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
+
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         tv=(TextView)view.findViewById(R.id.tvtest);
         tv.setText(getArguments().get("query_string")+"");
+
+
     }
+
+
+
+
+
+
 }

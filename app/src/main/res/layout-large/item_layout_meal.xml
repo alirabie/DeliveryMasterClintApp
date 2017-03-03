@@ -32,7 +32,7 @@
                 android:id="@+id/tv_meal_home_mealname"
                 android:layout_gravity="center_horizontal"
                 android:textSize="20dp"
-                android:textColor="#ff2222"
+                android:textColor="#d90d15"
                 android:textStyle="bold" />
 
             <TextView

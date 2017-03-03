@@ -1,6 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -302,8 +303,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
-        }
+
+                super.onBackPressed();
+
+            }
+
     }
 
 
@@ -439,10 +443,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         //if Orders added successfully
                         Toast.makeText(context, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
                         //Clear Cart Id
-                       // SaveSharedPreference.setCartId(context, "");
+                        // SaveSharedPreference.setCartId(context, "");
                     }
-                }else {
-                    Toast.makeText(context,"Response not success from sending order to server", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Response not success from sending order to server", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -459,6 +463,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+    }
 
 
 
@@ -471,7 +476,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
-}
+
 
 
 
