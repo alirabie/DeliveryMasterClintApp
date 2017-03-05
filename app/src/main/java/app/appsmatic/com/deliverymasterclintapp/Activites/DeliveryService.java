@@ -74,7 +74,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
 
 
 
-        //Set image language for Delivery button
+        ///Set image language for Delivery button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
             deliverybtn.setImageResource(R.drawable.send_address_btn_ar);
         }else{
