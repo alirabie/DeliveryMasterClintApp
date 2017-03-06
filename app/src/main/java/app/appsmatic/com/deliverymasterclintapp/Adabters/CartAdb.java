@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Adabters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,8 +49,12 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
     @Override
     public void onBindViewHolder(final VH1001 holder, final int position) {
+        animate(holder);
 
         holder.name.setText(cartMeals.get(position).getMealName()+"");
+        //put title font style
+        Typeface face=Typeface.createFromAsset(context.getAssets(), "bbcfont.ttf");
+        holder.name.setTypeface(face);
         holder.mealcount.setText(cartMeals.get(position).getMealCount()+"");
         holder.mealdec.setText(cartMeals.get(position).getMealDecription());
         //Calc meal Count * price and Show it
@@ -173,6 +180,11 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
     @Override
     public int getItemCount() {
         return cartMeals.size();
+    }
+
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.bounce_interpolator);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
     }
 
     public static class VH1001 extends RecyclerView.ViewHolder{

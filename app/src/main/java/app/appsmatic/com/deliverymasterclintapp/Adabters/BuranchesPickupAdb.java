@@ -2,11 +2,14 @@ package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,7 +39,11 @@ public class BuranchesPickupAdb extends RecyclerView.Adapter<BuranchesPickupAdb.
 
     @Override
     public void onBindViewHolder(Vholder holder, final int position) {
+        animate(holder);
         holder.branchNameTv.setText(locations.getMessage().get(position).getBranchName());
+        //put title font style
+        Typeface face=Typeface.createFromAsset(context.getAssets(), "bbcfont.ttf");
+        holder.branchNameTv.setTypeface(face);
         holder.branchAddressTv.setText(locations.getMessage().get(position).getStreetAddress());
         //Check Os Ver
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -59,6 +66,12 @@ public class BuranchesPickupAdb extends RecyclerView.Adapter<BuranchesPickupAdb.
     @Override
     public int getItemCount() {
         return locations.getMessage().size();
+    }
+
+
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.bounce_interpolator);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
     }
 
     public static class Vholder extends RecyclerView.ViewHolder{

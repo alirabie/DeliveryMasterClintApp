@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,16 +75,17 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
         holder.catImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mealsFrag =new MealsFrag();
+                mealsFrag = new MealsFrag();
                 bundle = new Bundle();
-                transId = resCats.getMessage().get(position).getID()+"";
+                transId = resCats.getMessage().get(position).getID() + "";
                 bundle.putString("catid", transId);
                 mealsFrag.setArguments(bundle);
-                FragmentManager fragmentManager = ((Activity)context).getFragmentManager();
+                FragmentManager fragmentManager = ((Activity) context).getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.foodmealsfragmentcontener, mealsFrag).commit();
 
             }
         });
+
 
     }
 
@@ -90,6 +93,13 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
     public int getItemCount() {
         return resCats.getMessage().size();
     }
+
+
+
+
+
+
+
 
     public static class vh extends RecyclerView.ViewHolder{
         ImageView catImg;
@@ -101,5 +111,9 @@ public class CategoriesAdb extends RecyclerView.Adapter<CategoriesAdb.vh> {
 
         }
     }
+
+
+
     }
+
 

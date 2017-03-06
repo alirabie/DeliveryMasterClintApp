@@ -28,6 +28,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.support.v7.widget.SearchView;
 import android.widget.TextView;
@@ -155,6 +157,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toolbartitle = (TextView) findViewById(R.id.main_toolbar_title);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        //Animate tool bar
+        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_down_animation);
+        toolbar.clearAnimation();
+        toolbar.setAnimation(anim);
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

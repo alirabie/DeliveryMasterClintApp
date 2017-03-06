@@ -2,6 +2,7 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -39,6 +41,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ImageView pickupbtn;
     private RecyclerView brunchesList;
+    private TextView titleTv;
 
 
 
@@ -63,6 +66,11 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
         }
 
 
+
+        titleTv=(TextView)findViewById(R.id.picup_title);
+        //put title font style
+        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
+        titleTv.setTypeface(face);
 
 
     }

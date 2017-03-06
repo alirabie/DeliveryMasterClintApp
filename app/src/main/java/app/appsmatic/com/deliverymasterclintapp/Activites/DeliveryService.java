@@ -1,4 +1,5 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,6 +49,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
     private Double lat,lang;
     private EditText commentInput,streetAddressInput;
     private NewLocaton newLocaton;
+    private TextView titleTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,10 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         userlocationsbox=(LinearLayout)findViewById(R.id.locationsbox);
         commentInput=(EditText)findViewById(R.id.comments_input);
         addressInput=(EditText)findViewById(R.id.streetname_input);
+        titleTv=(TextView)findViewById(R.id.deli_title);
+        //put title font style
+        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
+        titleTv.setTypeface(face);
 
 
 
@@ -113,6 +120,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
 
 
 
+        //User Delivery Locations List Setup
 
         HashMap data=new HashMap();
         data.put("userid",SaveSharedPreference.getOwnerId(DeliveryService.this));
@@ -153,11 +161,17 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
             }
         });
 
+
+
+
+
         //Delivery button action
         deliverybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+                //Select new Location from map
                 HashMap data=new HashMap();
                 newLocaton=new NewLocaton();
                 newLocaton.setStreetAddress(addressInput.getText()+"");
@@ -172,7 +186,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                     public void onResponse(Call<ResNewLocation> call, Response<ResNewLocation> response) {
                         if (response.isSuccessful()) {
                             if (response.body().getCode() == 0) {
-                                Toast.makeText(getApplicationContext(),"code 0 from delivary locations addition",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"code 0 from delivery locations addition",Toast.LENGTH_LONG).show();
 
                             } else {
                                 Toast.makeText(getApplicationContext(),"Your Location Id : "+response.body().getMessage().getLocationID()+"",Toast.LENGTH_LONG).show();

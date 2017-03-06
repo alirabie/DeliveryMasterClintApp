@@ -14,11 +14,11 @@
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/deliveryservice"
-            android:id="@+id/textView10"
+            android:id="@+id/deli_title"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold" />
     </LinearLayout>
 

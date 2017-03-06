@@ -2,6 +2,7 @@ package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
@@ -43,7 +46,14 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
 
     @Override
     public void onBindViewHolder(vh2 holder, final int position) {
+        animate(holder);
         holder.title.setText(meals.getMessage().get(position).getName()+"");
+
+        //put title font style
+        Typeface face=Typeface.createFromAsset(context.getAssets(), "bbcfont.ttf");
+        holder.title.setTypeface(face);
+
+
         holder.details.setText(meals.getMessage().get(position).getDescription()+"");
         holder.price.setText(meals.getMessage().get(position).getPrice()+" SR");
 
@@ -97,7 +107,10 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
         return meals.getMessage().size();
     }
 
-
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.bounce_interpolator);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
+    }
 
     public static class vh2 extends RecyclerView.ViewHolder{
         private TextView title,details,price;

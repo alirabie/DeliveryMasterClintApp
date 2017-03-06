@@ -7,11 +7,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +38,7 @@ public class FoodMenu extends Fragment {
 
     private RecyclerView categoriesList;
     private CategoriesAdb categoriesAdb;
+    private Animation anim;
 
 
     @Override
@@ -47,6 +51,9 @@ public class FoodMenu extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        anim = AnimationUtils.loadAnimation(view.getContext(), R.anim.fadein);
 
 
         HashMap resid = new HashMap();
@@ -62,7 +69,10 @@ public class FoodMenu extends Fragment {
 
                     //Check message code
                     if (!code.equals("0")) {
+
                         categoriesList = (RecyclerView) getActivity().findViewById(R.id.catslist);
+                        categoriesList.clearAnimation();
+                        categoriesList.setAnimation(anim);
                         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
                         categoriesAdb = new CategoriesAdb(getContext(), response.body());
                         categoriesList.setLayoutManager(layoutManager);
