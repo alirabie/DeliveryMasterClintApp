@@ -158,7 +158,8 @@ public class Customization extends AppCompatActivity {
                             customizationsBox.setVisibility(View.INVISIBLE);
                         } else {
                             customizationsList.setAdapter(cAdb = new CustomizationCatsAdb(response.body().getMessage(),getApplicationContext()));
-                            customizationsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+                            customizationsList.setLayoutManager(layoutManager);
                         }
 
 

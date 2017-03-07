@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,8 +45,7 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
     @Override
     public void onBindViewHolder(final VH500 holder, final int position) {
 
-
-
+        animate(holder);
         holder.custName.setText(customizationMs.get(position).getCname());
         holder.price.setText(customizationMs.get(position).getCprice()+" SR");
 
@@ -129,6 +130,10 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
         return customizationMs.size();
     }
 
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.bounce_interpolator);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
+    }
 
     public static class VH500 extends RecyclerView.ViewHolder{
 

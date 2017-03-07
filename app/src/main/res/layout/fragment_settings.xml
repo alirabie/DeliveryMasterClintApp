@@ -37,7 +37,7 @@ android:gravity="end">
         <Spinner
             android:id="@+id/langlist"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="37dp"
             android:background="@android:drawable/btn_dropdown"
             android:layout_weight="1"
             android:spinnerMode="dropdown"
@@ -67,7 +67,7 @@ android:gravity="end">
         <Spinner
             android:id="@+id/prefs"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="37dp"
             android:background="@android:drawable/btn_dropdown"
             android:layout_weight="1"
             android:spinnerMode="dropdown"
@@ -97,7 +97,7 @@ android:gravity="end">
         <Spinner
             android:id="@+id/pics"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="37dp"
             android:background="@android:drawable/btn_dropdown"
             android:layout_weight="1"
             android:spinnerMode="dropdown"

@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public class CustomizationCatsAdb extends RecyclerView.Adapter<CustomizationCats
     public void onBindViewHolder(final V holder, final int position) {
 
 
+        animate(holder);
         holder.catName.setText(customizationMessages.get(position).getCustomizationType() + "");
         holder.subCats.setAdapter(catsAdb = new CustomizationsAdb(context, customizationMessages.get(position).getCustomizations()));
         holder.subCats.setLayoutManager(new LinearLayoutManager(context));
@@ -56,6 +59,11 @@ public class CustomizationCatsAdb extends RecyclerView.Adapter<CustomizationCats
     @Override
     public int getItemCount() {
         return customizationMessages.size();
+    }
+
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.slidetop);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
     }
 
     public static class V extends RecyclerView.ViewHolder{

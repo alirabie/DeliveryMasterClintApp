@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +53,7 @@ public class AdditionsAdb extends RecyclerView.Adapter<AdditionsAdb.vh00> {
     public void onBindViewHolder(final vh00 holder, final int position) {
 
 
+        animate(holder);
         holder.addName.setText(additions.getMessage().get(position).getName() + "");
         holder.price.setText(additions.getMessage().get(position).getPrice() + " SR");
 
@@ -141,6 +144,10 @@ public class AdditionsAdb extends RecyclerView.Adapter<AdditionsAdb.vh00> {
 
     }
 
+    public void animate(RecyclerView.ViewHolder viewHolder) {
+        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.bounce_interpolator);
+        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
+    }
 
 
     public static class vh00 extends RecyclerView.ViewHolder{

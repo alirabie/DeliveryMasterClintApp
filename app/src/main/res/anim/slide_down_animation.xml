@@ -6,6 +6,6 @@
         android:toXDelta="0%"
         android:fromYDelta="200%"
         android:toYDelta="0%"
-        android:duration="2000"
+        android:duration="2500"
         android:zAdjustment="bottom" />
 </set>

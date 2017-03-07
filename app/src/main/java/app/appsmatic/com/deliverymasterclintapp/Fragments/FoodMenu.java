@@ -78,18 +78,7 @@ public class FoodMenu extends Fragment {
                         categoriesList.setLayoutManager(layoutManager);
                         categoriesList.setAdapter(categoriesAdb);
 
-
-
-
                         categoriesList.setBackgroundResource(R.color.btn_press_color);
-
-
-
-
-
-
-
-
 
                         MealsFrag mealsFrag = new MealsFrag();
                         Bundle bundle = new Bundle();

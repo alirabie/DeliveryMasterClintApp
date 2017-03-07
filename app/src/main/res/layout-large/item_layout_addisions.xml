@@ -13,8 +13,6 @@
         android:id="@+id/add_tv_name"
         android:gravity="center"
         android:textSize="20dp"
-        android:textColor="#000000"
-        android:textStyle="bold"
         android:layout_weight="1"
         id="@+id/textView9" />
 
