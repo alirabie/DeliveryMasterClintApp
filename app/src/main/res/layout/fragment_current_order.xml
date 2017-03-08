@@ -5,9 +5,12 @@
     tools:context=".Fragments.CurrentOrder">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+ <android.support.v7.widget.RecyclerView
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:id="@+id/fragment_cerunt_orders_list"
+     android:padding="3dp">
+
+ </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>

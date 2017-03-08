@@ -87,7 +87,15 @@
         <activity
             android:name=".Activites.LocationDetails"
             android:label="@string/title_activity_location_details"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"></activity>
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
+        <activity
+            android:name=".Activites.CurrentOrderDetails"
+            android:label="@string/title_activity_current_order_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activites.PreviuosOrderDetails"
+            android:label="@string/title_activity_previuos_order_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

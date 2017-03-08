@@ -13,7 +13,7 @@
         android:padding="5dp"
         android:gravity="center"
         android:textColor="#ffffff"
-        android:background="#ff0000"
+        android:background="@drawable/cust_bg"
         android:textSize="18dp" />
 
     <android.support.v7.widget.RecyclerView

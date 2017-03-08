@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/prevorder_itemlayout_smsbtn"
+            android:id="@+id/current_order_details_btn"
             android:src="@drawable/reorderbtn"
             android:padding="5dp"
             android:layout_gravity="right|bottom"

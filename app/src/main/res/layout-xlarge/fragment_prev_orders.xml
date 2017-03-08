@@ -5,9 +5,11 @@
     tools:context=".Fragments.PrevOrders">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Fragment prev" />
+        android:id="@+id/fragment_prev_orders_list"
+        android:padding="3dp">
+    </android.support.v7.widget.RecyclerView>
 
 </FrameLayout>

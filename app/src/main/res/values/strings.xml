@@ -91,6 +91,8 @@
     <string name="search_hint" />
     <string name="title_activity_location_details">Map</string>
     <string name="title_activity_add_location">AddLocation</string>
+    <string name="title_activity_current_order_details">CurrentOrderDetails</string>
+    <string name="title_activity_previuos_order_details">PreviuosOrderDetails</string>
 
 
 </resources>
