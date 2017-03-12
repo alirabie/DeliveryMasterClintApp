@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="app.appsmatic.com.deliverymasterclintapp.Activites.Confirmation"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:gravity="start"
+        android:id="@+id/linearLayout6">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView11"
+            android:src="@drawable/timeicon"
+            android:padding="5dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/timetv"
+            android:id="@+id/textView10"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000000"
+            android:padding="3dp"
+            android:textSize="10dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="time"
+            android:ems="10"
+            android:id="@+id/time_tv"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textSize="10dp"
+            android:text="00:00:00"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ebebeb"
+            android:textColor="@color/colorPrimary" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/linearLayout6"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayout7">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/confirmtxtcomment"
+            android:id="@+id/textView13"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/confirm_comment"
+            android:layout_below="@+id/linearLayout6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/blockback"
+            android:textSize="12dp"
+            android:padding="5dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout7"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="28dp"
+        android:id="@+id/linearLayout8"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/confirmorder"
+            android:id="@+id/textView16"
+            android:padding="5dp"
+            android:textColor="#000000"
+            android:textSize="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fdbd24" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView17"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="9dp"
+                android:textStyle="bold"
+                android:text="@string/mealtotlaprice" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/mealcount"
+                android:id="@+id/textView19"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textIsSelectable="false"
+                android:textSize="9dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/mealname"
+                android:id="@+id/textView20"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="9dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:id="@+id/confirmorderlist"
+            android:layout_weight="1">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fdbd24" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="0.0 SR"
+                android:id="@+id/totprice"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="9dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/mealtotlaprice"
+                android:id="@+id/textView25"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="9dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirmbtn"
+        android:layout_below="@+id/linearLayout8"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/confirmbtnen"
+        android:padding="10dp" />
+</LinearLayout>

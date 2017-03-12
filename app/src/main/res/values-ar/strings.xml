@@ -81,6 +81,12 @@
     <string name="yourcoument">اضف تعليق للطباخ</string>
     <string name="streetaddress">من فضلك ضع اسم الشارع</string>
     <string name="selectassigenedlocation">من فضلك اختار احد من عنواينك</string>
+    <string name="timetv">ادخل وقت الاستلام : </string>
+    <string name="confirmtxtcomment">أضف التعليمات الخاصة بك !</string>
+    <string name="confirmorder">طلبك</string>
+    <string name="mealname">الوجبة</string>
+    <string name="mealcount">العدد</string>
+    <string name="mealtotlaprice">السعر الكلى</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">مرحبا صفحة فارفة</string>

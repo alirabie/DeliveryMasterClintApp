@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -75,6 +76,7 @@ public class LocationDetails extends FragmentActivity implements OnMapReadyCallb
             @Override
             public void onClick(View v) {
                 Toast.makeText(LocationDetails.this,"Location Id : "+locationId+" has been selected ",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LocationDetails.this,Confirmation.class).putExtra("locationId",locationId));
                 LocationDetails.this.finish();
 
 

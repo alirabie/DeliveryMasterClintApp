@@ -79,6 +79,13 @@
     <string name="yourcoument">Please Add your Comment to Chief</string>
     <string name="streetaddress">Please Enter Your Full Street Name</string>
     <string name="selectassigenedlocation">Select From your Assigned Locations</string>
+    <string name="timetv">Enter Time Of Receipt : </string>
+    <string name="confirmtxtcomment">Add Your Instructions !</string>
+    <string name="confirmorder">The Order</string>
+    <string name="mealname">Meal</string>
+    <string name="mealcount">Count</string>
+    <string name="mealtotlaprice">Total Price</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

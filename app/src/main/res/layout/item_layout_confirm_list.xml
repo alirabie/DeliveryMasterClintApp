@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dfdfdf">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="50 SR"
+            android:id="@+id/c_meal_total_price"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="5"
+            android:id="@+id/c_meal_count"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textIsSelectable="false"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="برجر"
+            android:id="@+id/c_meal_name"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:padding="5dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="جبن  1 شرائح مقددة 2 بلو تشيز 1 رانش 2"
+        android:id="@+id/c_meal_add_cust"
+        android:gravity="start"
+        android:padding="10dp"
+        android:textSize="10dp" />
+</LinearLayout>
