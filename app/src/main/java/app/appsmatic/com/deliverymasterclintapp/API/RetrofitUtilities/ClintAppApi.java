@@ -7,6 +7,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCustomizations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResNewLocation;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResOrderConfirmation;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -64,6 +65,10 @@ public interface ClintAppApi {
     //add new location
     @POST("Location/add")
     Call<ResNewLocation>addNewLocation(@Body Object data);
+
+    //confirm order
+    @POST("ShoppingCart/ConfirmOrder")
+    Call<ResOrderConfirmation>confirmOrder(@Body Object data);
 
 
 

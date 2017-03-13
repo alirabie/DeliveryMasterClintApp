@@ -1,4 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,6 +59,8 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_service);
+        lat=0.0;
+        lang=0.0;
         //Invoke Send order to server method
         Home.sendOrderToServer(DeliveryService.this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -170,38 +175,59 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
             @Override
             public void onClick(View v) {
 
+                if (lat == 0.0 & lang == 0.0) {
 
-                //Select new Location from map
-                HashMap data=new HashMap();
-                newLocaton=new NewLocaton();
-                newLocaton.setStreetAddress(addressInput.getText()+"");
-                newLocaton.setComment(commentInput.getText() + "");
-                newLocaton.setLongtitude(lang);
-                newLocaton.setLatitude(lat);
-                data.put("userid", SaveSharedPreference.getOwnerId(getApplicationContext()));
-                data.put("location",newLocaton);
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryService.this);
+                    builder.setMessage("Please Pick Your Location From Map ! ")
+                            .setCancelable(false)
+                            .setIcon(R.drawable.erroricon)
+                            .setTitle(R.string.sysMsg)
+                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
 
-                Genrator.createService(ClintAppApi.class).addNewLocation(data).enqueue(new Callback<ResNewLocation>() {
-                    @Override
-                    public void onResponse(Call<ResNewLocation> call, Response<ResNewLocation> response) {
-                        if (response.isSuccessful()) {
-                            if (response.body().getCode() == 0) {
-                                Toast.makeText(getApplicationContext(),"code 0 from delivery locations addition",Toast.LENGTH_LONG).show();
+                } else {
 
+                    //Select new Location from map
+                    HashMap data = new HashMap();
+                    newLocaton = new NewLocaton();
+                    newLocaton.setStreetAddress(addressInput.getText() + "");
+                    newLocaton.setComment(commentInput.getText() + "");
+                    newLocaton.setLongtitude(lang);
+                    newLocaton.setLatitude(lat);
+                    data.put("userid", SaveSharedPreference.getOwnerId(getApplicationContext()));
+                    data.put("location", newLocaton);
+
+                    Genrator.createService(ClintAppApi.class).addNewLocation(data).enqueue(new Callback<ResNewLocation>() {
+                        @Override
+                        public void onResponse(Call<ResNewLocation> call, Response<ResNewLocation> response) {
+                            if (response.isSuccessful()) {
+                                if (response.body().getCode() == 0) {
+                                    Toast.makeText(getApplicationContext(), "code 0 from delivery locations addition", Toast.LENGTH_LONG).show();
+
+                                } else {
+
+                                    startActivity(new Intent(DeliveryService.this, Confirmation.class)
+                                            .putExtra("locationId", response.body().getMessage().getLocationID() + "")
+                                            .putExtra("servicetype", 2));
+                                    Toast.makeText(getApplicationContext(), "Your Location Id : " + response.body().getMessage().getLocationID() + "", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
                             } else {
-                                Toast.makeText(getApplicationContext(),"Your Location Id : "+response.body().getMessage().getLocationID()+"",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "no response from locations addition", Toast.LENGTH_LONG).show();
+
                             }
-                        } else {
-                            Toast.makeText(getApplicationContext(),"no response from locations addition",Toast.LENGTH_LONG).show();
-
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResNewLocation> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<ResNewLocation> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
 
 
                 /*
@@ -211,17 +237,10 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                 */
 
 
-
-
-
-
-
+                }
 
 
             }
-
-
-
 
 
 

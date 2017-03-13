@@ -96,7 +96,9 @@
             android:name=".Activites.PreviuosOrderDetails"
             android:label="@string/title_activity_previuos_order_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activites.Confirmation"></activity>
+        <activity
+            android:name=".Activites.Confirmation"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

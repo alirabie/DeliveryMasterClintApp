@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -59,6 +60,7 @@ public class BuranchesPickupAdb extends RecyclerView.Adapter<BuranchesPickupAdb.
                         .putExtra("lat",locations.getMessage().get(position).getLatitude()+"")
                         .putExtra("long",locations.getMessage().get(position).getLongtitude()+"")
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        ((Activity)context).finish();
             }
         });
     }

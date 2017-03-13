@@ -87,6 +87,8 @@
     <string name="mealname">الوجبة</string>
     <string name="mealcount">العدد</string>
     <string name="mealtotlaprice">السعر الكلى</string>
+    <string name="toptitleconfirom">تأكيد الطلب</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">مرحبا صفحة فارفة</string>
@@ -100,6 +102,8 @@
     <string name="title_activity_add_location">اضافة مكان جديد</string>
     <string name="title_activity_current_order_details">الطلبات الحالية</string>
     <string name="title_activity_previuos_order_details">الطلبات السابقة</string>
+    <string name="confirmdone">: تم تأكيد الطلب بنجاح</string>
+    <string name="selecttime">من فضلك حدد وقت التوصيل !</string>
 
 
 </resources>

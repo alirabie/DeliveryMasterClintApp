@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
+import app.appsmatic.com.deliverymasterclintapp.Activites.Confirmation;
 import app.appsmatic.com.deliverymasterclintapp.Activites.DeliveryService;
 import app.appsmatic.com.deliverymasterclintapp.Activites.LocationDetails;
 import app.appsmatic.com.deliverymasterclintapp.R;
@@ -52,14 +53,9 @@ public class DeliveryBrunchesAdb extends RecyclerView.Adapter<DeliveryBrunchesAd
         holder.clckLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                context.startActivity(new Intent(context, LocationDetails.class)
-                        .putExtra("locationId",locations.getMessage().get(position).getLocationID()+"")
-                        .putExtra("locationName",locations.getMessage().get(position).getBranchName()+"")
-                        .putExtra("locationAddress",locations.getMessage().get(position).getStreetAddress())
-                        .putExtra("lat",locations.getMessage().get(position).getLatitude()+"")
-                        .putExtra("long",locations.getMessage().get(position).getLongtitude()+"")
-                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));*/
+               context.startActivity(new Intent(context, Confirmation.class)
+                       .putExtra("locationId", locations.getMessage().get(position).getLocationID() + "")
+                       .putExtra("servicetype", 2).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 ((Activity)context).finish();
 
                 Toast.makeText(context,"Your Location Id : "+locations.getMessage().get(position).getLocationID()+"",Toast.LENGTH_LONG).show();

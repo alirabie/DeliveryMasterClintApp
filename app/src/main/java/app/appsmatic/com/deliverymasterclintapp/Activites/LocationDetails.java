@@ -76,8 +76,8 @@ public class LocationDetails extends FragmentActivity implements OnMapReadyCallb
             @Override
             public void onClick(View v) {
                 Toast.makeText(LocationDetails.this,"Location Id : "+locationId+" has been selected ",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LocationDetails.this,Confirmation.class).putExtra("locationId",locationId));
-                LocationDetails.this.finish();
+                startActivity(new Intent(LocationDetails.this, Confirmation.class).putExtra("locationId", locationId).putExtra("servicetype",1));
+                finish();
 
 
 

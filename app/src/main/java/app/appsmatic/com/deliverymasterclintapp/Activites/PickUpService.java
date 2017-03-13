@@ -107,9 +107,8 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
 
                             //setup locations list
                             brunchesList = (RecyclerView) findViewById(R.id.branches_list_pickup);
-                            brunchesList.setAdapter(new BuranchesPickupAdb(getApplicationContext(), response.body()));
+                            brunchesList.setAdapter(new BuranchesPickupAdb(PickUpService.this, response.body()));
                             brunchesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
                             //put locations on map
                             for (int i = 0; i < response.body().getMessage().size(); i++) {
                                 LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());

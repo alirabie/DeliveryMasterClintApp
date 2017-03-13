@@ -85,7 +85,9 @@
     <string name="mealname">Meal</string>
     <string name="mealcount">Count</string>
     <string name="mealtotlaprice">Total Price</string>
-
+    <string name="toptitleconfirom">Order Confirmation</string>
+    <string name="selecttime">Please select Time of Receipt !</string>
+    <string name="confirmdone">: Order has been Confirmed</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

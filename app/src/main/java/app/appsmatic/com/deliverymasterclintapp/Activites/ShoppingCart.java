@@ -154,7 +154,9 @@ public class ShoppingCart extends AppCompatActivity {
                                         }
                                     }
 
+
                                     startActivity(new Intent(ShoppingCart.this, PickUpService.class));
+                                    finish();
                                 }
                             }
                             @Override
@@ -245,6 +247,7 @@ public class ShoppingCart extends AppCompatActivity {
                                     }
 
                                     startActivity(new Intent(ShoppingCart.this, DeliveryService.class));
+                                    finish();
                                 }
 
 
