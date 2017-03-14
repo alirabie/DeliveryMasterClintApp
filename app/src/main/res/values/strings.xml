@@ -88,6 +88,7 @@
     <string name="toptitleconfirom">Order Confirmation</string>
     <string name="selecttime">Please select Time of Receipt !</string>
     <string name="confirmdone">: Order has been Confirmed</string>
+    <string name="emptycurrent">No Current Orders</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

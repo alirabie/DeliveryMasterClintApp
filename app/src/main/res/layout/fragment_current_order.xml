@@ -6,11 +6,19 @@
 
     <!-- TODO: Update blank fragment layout -->
  <android.support.v7.widget.RecyclerView
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:id="@+id/fragment_cerunt_orders_list"
-     android:padding="3dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_cerunt_orders_list"
+    android:padding="3dp">
 
- </android.support.v7.widget.RecyclerView>
+</android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/current_orders_empty_flag"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:text="@string/emptycurrent" />
 
 </FrameLayout>

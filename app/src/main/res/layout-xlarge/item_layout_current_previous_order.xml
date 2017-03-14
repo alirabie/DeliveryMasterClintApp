@@ -3,14 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="3dp"
-    android:gravity="center">
+    android:gravity="center|end">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#DCDCDC"
-        android:layout_gravity="center"
-        android:gravity="center">
+        android:layout_gravity="center">
 
         <LinearLayout
             android:orientation="vertical"
@@ -21,40 +20,114 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/linearLayout3"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:gravity="center">
 
-                <TextView
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="Order No . 12345"
-                    android:id="@+id/curntorder_itemlayout_ordernum"
-                    android:textSize="25dp"
-                    android:textColor="#000000"
-                    android:padding="3dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Order No . 12345"
+                        android:id="@+id/curntorder_itemlayout_ordernum"
+                        android:textSize="20dp"
+                        android:textColor="#000000"
+                        android:padding="3dp"
+                        android:textStyle="bold"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Brunch : شارع الجلاء"
+                        android:id="@+id/brunchtv"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp"
+                        android:gravity="start"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:paddingTop="1dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Type : توصيل"
+                        android:id="@+id/type_tv"
+                        android:textSize="15dp"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:paddingTop="1dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Status : جاري التجهيز"
+                        android:id="@+id/status_tv"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15dp"
+                        android:layout_weight="1"
+                        android:textIsSelectable="false"
+                        android:gravity="start"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:paddingTop="1dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/current_order_details_btn"
+                    android:src="@drawable/detailsbtn"
+                    android:padding="5dp"
+                    android:layout_alignParentTop="false"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="3" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/linearLayout3"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:gravity="end">
+
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/linearLayout"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:gravity="center"
                     android:id="@+id/linearLayout2"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:layout_weight="1">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -68,22 +141,23 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="60 Mintes"
                         android:id="@+id/curntorder_itemlayout_date"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:textColor="#000000"
                         android:padding="3dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_alignBottom="@+id/linearLayout"
                     android:layout_toRightOf="@+id/linearLayout3"
                     android:layout_toEndOf="@+id/linearLayout3"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="wrap_content"
+                        android:layout_width="15dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView7"
                         android:src="@drawable/moneyicon" />
@@ -94,32 +168,18 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="155 SR"
                         android:id="@+id/curntorder_itemlayout_price"
-                        android:textSize="15dp"
+                        android:textSize="16dp"
                         android:textColor="#000000"
                         android:padding="3dp" />
                 </LinearLayout>
 
 
-            </LinearLayout>
 
+            </LinearLayout>
 
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/current_order_details_btn"
-            android:src="@drawable/detailsbtn"
-            android:padding="5dp"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="false"
-            android:layout_alignWithParentIfMissing="false"
-            android:layout_gravity="right"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="false"
-            android:layout_centerVertical="true" />
     </RelativeLayout>
 
 

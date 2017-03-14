@@ -57,7 +57,6 @@ public class DeliveryBrunchesAdb extends RecyclerView.Adapter<DeliveryBrunchesAd
                        .putExtra("locationId", locations.getMessage().get(position).getLocationID() + "")
                        .putExtra("servicetype", 2).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 ((Activity)context).finish();
-
                 Toast.makeText(context,"Your Location Id : "+locations.getMessage().get(position).getLocationID()+"",Toast.LENGTH_LONG).show();
 
             }

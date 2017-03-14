@@ -104,6 +104,7 @@
     <string name="title_activity_previuos_order_details">الطلبات السابقة</string>
     <string name="confirmdone">: تم تأكيد الطلب بنجاح</string>
     <string name="selecttime">من فضلك حدد وقت التوصيل !</string>
+    <string name="emptycurrent">لا توجد طلبات حالية !</string>
 
 
 </resources>

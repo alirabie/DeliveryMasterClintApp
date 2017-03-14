@@ -103,5 +103,6 @@
     <string name="title_activity_previuos_order_details">PreviuosOrderDetails</string>
     <string name="confirmdone">: Order has been Confirmed</string>
     <string name="selecttime">Please select Time of Receipt !</string>
+    <string name="emptycurrent">No Current Orders</string>
 
 </resources>
