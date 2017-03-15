@@ -70,7 +70,7 @@ public class Confirmation extends AppCompatActivity {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
-
+//
 
         locationId=getIntent().getStringExtra("locationId");
         serviceType=getIntent().getIntExtra("servicetype", 0);
