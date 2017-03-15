@@ -27,7 +27,7 @@
     <string name="plesechecyourmobile">Please Check Your Mobile For your Security Code SMS </string>
     <string name="entersecurtycode">Enter Security Code</string>
     <string name="title_activity_new_password">NewPassword</string>
-    <string name="newpassword">New Password</string>
+    <string name="newpassword" translatable="false">New Password</string>
     <string name="enteryournewpass">Enter Your New Password</string>
     <string name="newpasswordlabl">New Password</string>
     <string name="title_activity_guest_splash">GuestSplash</string>
@@ -71,7 +71,7 @@
     <string name="dismiss">Dismiss</string>
     <string name="deletemeal">Do You Want to Delete This Meal ??</string>
     <string name="customizations">Customizations</string>
-    <string name="logindialogallert">You Cannot Access this Until login First !! Please Login </string>
+    <string name="logindialogallert">please sign-in </string>
     <string name="emptycartdialog">Shopping Cart Is Empty ! Please Fill it </string>
     <string name="shoppingcartempty">Cart Empty ..</string>
     <string name="pleaseselectbranch">Please Select Branch : </string>
@@ -89,6 +89,8 @@
     <string name="selecttime">Please select Time of Receipt !</string>
     <string name="confirmdone">: Order has been Confirmed</string>
     <string name="emptycurrent">No Current Orders</string>
+    <string name="emptyprev">No Previous Orders</string>
+    <string name="passworderorr">Password should be at least 6 characters !</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

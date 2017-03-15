@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,7 @@ public class ShoppingCart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slidetop, R.anim.slidetop);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_shopping_cart);
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -55,7 +57,7 @@ public class ShoppingCart extends AppCompatActivity {
         cartEmpty=(TextView)findViewById(R.id.tv_cart_empty);
         cartEmpty.setVisibility(View.INVISIBLE);
         mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
-        mealslist.setAdapter(new CartAdb(Home.cartMeals, this));
+        mealslist.setAdapter(new CartAdb(Home.cartMeals, ShoppingCart.this));
         mealslist.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -65,27 +67,6 @@ public class ShoppingCart extends AppCompatActivity {
         }else {
             cartEmpty.setVisibility(View.INVISIBLE);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         pickuBtn=(ImageView)findViewById(R.id.cart_pickup_btn);
         deleviryBtn=(ImageView)findViewById(R.id.cart_delvery_btn);

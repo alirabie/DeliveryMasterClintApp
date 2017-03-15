@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
@@ -72,6 +73,7 @@ public class Customization extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.toptodown, R.anim.alpha);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_customization);
 
 

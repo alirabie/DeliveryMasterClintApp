@@ -3,17 +3,14 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
-import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCurrentOrders;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResUserOrders;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCustomizations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResMeals;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResNewLocation;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResOrderConfirmation;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -73,7 +70,10 @@ public interface ClintAppApi {
 
     //get Current orders
     @POST("ShoppingCart/UserOrders")
-    Call<ResCurrentOrders>getCurrentOrders(@Body Object data);
+    Call<ResUserOrders>getCurrentOrders(@Body Object data);
+
+
+
 
 
 

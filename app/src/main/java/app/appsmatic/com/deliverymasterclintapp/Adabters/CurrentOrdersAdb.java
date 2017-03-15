@@ -10,7 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCurrentOrders;
+import java.util.List;
+
+import app.appsmatic.com.deliverymasterclintapp.API.Models.UserOrder;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
 /**
@@ -19,12 +21,17 @@ import app.appsmatic.com.deliverymasterclintapp.R;
 public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh501> {
 
 
-    private ResCurrentOrders resCurrentOrders;
+    private List<UserOrder> userOrders;
     private Context context;
+    private String flag;
 
-    public CurrentOrdersAdb(Context context, ResCurrentOrders resCurrentOrders) {
+
+
+
+    public CurrentOrdersAdb(Context context, List<UserOrder> userOrders,String flag) {
         this.context = context;
-        this.resCurrentOrders = resCurrentOrders;
+        this.userOrders = userOrders;
+        this.flag=flag;
     }
 
     @Override
@@ -36,20 +43,21 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
     public void onBindViewHolder(vh501 holder, int position) {
 
         animate(holder);
-        holder.no.setText("OrderNo . "+resCurrentOrders.getMessage().get(position).getOrderID()+"");
-        if(resCurrentOrders.getMessage().get(position).getPickupBranch()==null) {
-            holder.brunch.setText("Address : " + resCurrentOrders.getMessage().get(position).getDeliveryBranch());
-        }else {
-            holder.brunch.setText("Brunch : "+resCurrentOrders.getMessage().get(position).getPickupBranch());
+        holder.no.setText("OrderNo . " + userOrders.get(position).getOrderID() + "");
+        if (userOrders.get(position).getPickupBranch() == null) {
+            holder.brunch.setText("Address : " + userOrders.get(position).getDeliveryBranch());
+        } else {
+            holder.brunch.setText("Brunch : " + userOrders.get(position).getPickupBranch());
         }
-        holder.status.setText("Status : "+resCurrentOrders.getMessage().get(position).getStatus()+"");
-        holder.type.setText("Type : "+resCurrentOrders.getMessage().get(position).getOrderType());
-        holder.date.setText(resCurrentOrders.getMessage().get(position).getOrderDate()+"");
+        holder.status.setText("Status : " + userOrders.get(position).getStatus() + "");
+        holder.type.setText("Type : " + userOrders.get(position).getOrderType());
+        holder.date.setText(userOrders.get(position).getOrderDate() + "");
+
     }
 
     @Override
     public int getItemCount() {
-        return resCurrentOrders.getMessage().size();
+        return userOrders.size();
     }
 
     public void animate(RecyclerView.ViewHolder viewHolder) {

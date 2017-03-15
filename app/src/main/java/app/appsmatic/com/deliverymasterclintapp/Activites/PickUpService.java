@@ -2,6 +2,7 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
@@ -51,6 +52,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activitypickupserv);
         //Invoke Send order to server method
         Home.sendOrderToServer(PickUpService.this);

@@ -12,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCurrentOrders;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.UserOrder;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResUserOrders;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.CurrentOrdersAdb;
@@ -28,7 +31,7 @@ public class CurrentOrder extends Fragment {
 
     private RecyclerView currentlist;
     private TextView emptyFlag;
-
+    private List<UserOrder> currentOrders=new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,21 +68,33 @@ public class CurrentOrder extends Fragment {
         HashMap data=new HashMap();
         data.put("owner",SaveSharedPreference.getOwnerId(getContext()));
 
-        Genrator.createService(ClintAppApi.class).getCurrentOrders(data).enqueue(new Callback<ResCurrentOrders>() {
+        Genrator.createService(ClintAppApi.class).getCurrentOrders(data).enqueue(new Callback<ResUserOrders>() {
             @Override
-            public void onResponse(Call<ResCurrentOrders> call, Response<ResCurrentOrders> response) {
+            public void onResponse(Call<ResUserOrders> call, Response<ResUserOrders> response) {
 
                 if (response.isSuccessful()) {
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
                     if (response.body().getCode() != 0) {
 
-                        if (response.body().getMessage().isEmpty()) {
+                        //filter user orders list select active or current orders
+                        for (int i = 0; i < response.body().getMessage().size(); i++) {
+                            if (
+                                    !response.body().getMessage().get(i).getStatus().toString().equals("تم التسليم")&&
+                                            !response.body().getMessage().get(i).getStatus().toString().equals("لم يتم التسليم")) {
+                                currentOrders.add(response.body().getMessage().get(i));
+                            }
+                        }
+
+                        if (currentOrders.isEmpty()) {
                             emptyFlag.setVisibility(View.VISIBLE);
                         } else {
+
                             emptyFlag.setVisibility(View.INVISIBLE);
+
+                            //setup List
                             currentlist = (RecyclerView) getView().findViewById(R.id.fragment_cerunt_orders_list);
-                            currentlist.setAdapter(new CurrentOrdersAdb(getContext(), response.body()));
+                            currentlist.setAdapter(new CurrentOrdersAdb(getContext(), currentOrders, "c"));
                             currentlist.setLayoutManager(new LinearLayoutManager(getContext()));
                         }
 
@@ -97,7 +112,7 @@ public class CurrentOrder extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResCurrentOrders> call, Throwable t) {
+            public void onFailure(Call<ResUserOrders> call, Throwable t) {
                 if (mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
                 Toast.makeText(getContext(), " user orders : " + t.getMessage(), Toast.LENGTH_LONG).show();

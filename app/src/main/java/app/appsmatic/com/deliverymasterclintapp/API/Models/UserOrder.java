@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by Mido PC on 3/14/2017.
  */
-public class CurrentOrder {
+public class UserOrder {
     @SerializedName("PickupBranchCode")
     @Expose
     private String pickupBranchCode;

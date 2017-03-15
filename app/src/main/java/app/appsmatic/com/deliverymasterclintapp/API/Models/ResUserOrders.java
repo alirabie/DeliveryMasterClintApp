@@ -8,13 +8,13 @@ import java.util.List;
 /**
  * Created by Mido PC on 3/14/2017.
  */
-public class ResCurrentOrders {
+public class ResUserOrders {
     @SerializedName("code")
     @Expose
     private Integer code;
     @SerializedName("message")
     @Expose
-    private List<CurrentOrder> message = null;
+    private List<UserOrder> message = null;
 
     public Integer getCode() {
         return code;
@@ -24,11 +24,11 @@ public class ResCurrentOrders {
         this.code = code;
     }
 
-    public List<CurrentOrder> getMessage() {
+    public List<UserOrder> getMessage() {
         return message;
     }
 
-    public void setMessage(List<CurrentOrder> message) {
+    public void setMessage(List<UserOrder> message) {
         this.message = message;
     }
 }

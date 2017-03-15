@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
@@ -59,6 +60,7 @@ public class Confirmation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_confirmation);
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -125,20 +127,18 @@ public class Confirmation extends AppCompatActivity {
         total.setText(confirmOrdersAdb.getTotalAll() + " SR");
 
 
-
-
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Loading Dialog
-                final ProgressDialog mProgressDialog = new ProgressDialog(Confirmation.this,R.style.AppCompatAlertDialogStyle);
+                final ProgressDialog mProgressDialog = new ProgressDialog(Confirmation.this, R.style.AppCompatAlertDialogStyle);
                 mProgressDialog.setIndeterminate(true);
                 mProgressDialog.setIcon(R.drawable.loadicon);
                 mProgressDialog.setTitle(R.string.loadingdialog);
                 mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
                 mProgressDialog.show();
 
-                if(timetxt.getText().toString().equals("00:00:00")){
+                if (timetxt.getText().toString().equals("00:00:00")) {
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
@@ -154,11 +154,11 @@ public class Confirmation extends AppCompatActivity {
                     AlertDialog alert = builder.create();
                     alert.show();
 
-                }else {
+                } else {
 
-                    HashMap data=new HashMap();
+                    HashMap data = new HashMap();
                     data.put("restaurantid", ResturantId.resId);
-                    data.put("owner",SaveSharedPreference.getOwnerId(getApplicationContext()));
+                    data.put("owner", SaveSharedPreference.getOwnerId(getApplicationContext()));
                     data.put("cartid", SaveSharedPreference.getCartId(getApplicationContext()));
                     data.put("servicetype", serviceType);
                     data.put("comment", comments.getText() + "");
@@ -170,24 +170,24 @@ public class Confirmation extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<ResOrderConfirmation> call, Response<ResOrderConfirmation> response) {
 
-                            if(response.isSuccessful()){
+                            if (response.isSuccessful()) {
                                 if (mProgressDialog.isShowing())
                                     mProgressDialog.dismiss();
-                                if(response.body().getCode()!=0){
-                                    Toast.makeText(getApplicationContext(),response.body().getMessage()+getApplicationContext().getResources().getString(R.string.confirmdone),Toast.LENGTH_LONG).show();
+                                if (response.body().getCode() != 0) {
+                                    Toast.makeText(getApplicationContext(), response.body().getMessage() + getApplicationContext().getResources().getString(R.string.confirmdone), Toast.LENGTH_LONG).show();
                                     Home.cartMeals.clear();
-                                    Home.icon = (LayerDrawable)Home.itemCart.getIcon();
+                                    Home.icon = (LayerDrawable) Home.itemCart.getIcon();
                                     Home.setBadgeCount(getBaseContext(), Home.icon, "");
                                     Home.setBadgeCount(getBaseContext(), Home.icon, Home.cartMeals.size() + "");
                                     SaveSharedPreference.setCartId(getApplicationContext(), "");
                                     Confirmation.this.finish();
 
 
-                                }else {
+                                } else {
                                     if (mProgressDialog.isShowing())
                                         mProgressDialog.dismiss();
                                     final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
-                                    builder.setMessage(response.body().getMessage()+"")
+                                    builder.setMessage(response.body().getMessage() + "")
                                             .setCancelable(false)
                                             .setIcon(R.drawable.erroricon)
                                             .setTitle(R.string.sysMsg)
@@ -201,7 +201,7 @@ public class Confirmation extends AppCompatActivity {
                                 }
 
 
-                            }else {
+                            } else {
 
                                 if (mProgressDialog.isShowing())
                                     mProgressDialog.dismiss();
@@ -227,7 +227,7 @@ public class Confirmation extends AppCompatActivity {
                             if (mProgressDialog.isShowing())
                                 mProgressDialog.dismiss();
                             final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
-                            builder.setMessage(t.getMessage().toString()+"")
+                            builder.setMessage(t.getMessage().toString() + "")
                                     .setCancelable(false)
                                     .setIcon(R.drawable.erroricon)
                                     .setTitle(R.string.connectionerorr)
@@ -245,9 +245,6 @@ public class Confirmation extends AppCompatActivity {
                 }
             }
         });
-
-
-
 
 
         //Set image language for confirm button

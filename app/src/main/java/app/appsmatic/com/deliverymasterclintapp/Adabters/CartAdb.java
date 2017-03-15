@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -154,6 +155,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                                 if(Home.cartMeals.isEmpty()){
                                     Home.icon = (LayerDrawable)Home.itemCart.getIcon();
                                     Home.setBadgeCount(context, Home.icon, 0 + "");
+                                    //close
+                                    ((Activity)context).finish();
                                 }else {
                                     Home.icon = (LayerDrawable)Home.itemCart.getIcon();
                                     Home.setBadgeCount(context, Home.icon, Home.cartMeals.size() + "");

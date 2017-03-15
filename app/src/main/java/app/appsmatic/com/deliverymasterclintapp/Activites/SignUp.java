@@ -3,6 +3,7 @@ package app.appsmatic.com.deliverymasterclintapp.Activites;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_sign_up);
         setLang(R.layout.activity_sign_up);
 
@@ -122,46 +124,83 @@ public class SignUp extends AppCompatActivity {
 
                 }else {
                     //Loading Dialog
-                    final ProgressDialog mProgressDialog = new ProgressDialog(SignUp.this,R.style.AppCompatAlertDialogStyle);
+                    final ProgressDialog mProgressDialog = new ProgressDialog(SignUp.this, R.style.AppCompatAlertDialogStyle);
                     mProgressDialog.setIndeterminate(true);
                     mProgressDialog.setIcon(R.drawable.loadicon);
                     mProgressDialog.setTitle(R.string.loadingdialog);
                     mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
                     mProgressDialog.show();
 
-                    //Post Data To Server
 
-                    registrationData.setFirstName(fname.getText().toString() + "");
-                    registrationData.setLastName(lname.getText().toString() + "");
-                    registrationData.setMobileNo(phonenum.getText().toString() + "");
-                    registrationData.setNewPassword(password.getText().toString()+"");
-                    registrationData.setAccountType("2");
-                    registrationData.setRestaurantID(ResturantId.resId);
+                    if (password.getText().length() < 6) {
+                        if (mProgressDialog.isShowing())
+                            mProgressDialog.dismiss();
+                        //Alert Dialog for indicate that there is Empty Filed
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                        builder.setMessage(R.string.passworderorr)
+                                .setCancelable(false)
+                                .setIcon(R.drawable.erroricon)
+                                .setTitle(R.string.ErrorDialog)
+                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    } else {
+
+                        //Post Data To Server
+
+                        registrationData.setFirstName(fname.getText().toString() + "");
+                        registrationData.setLastName(lname.getText().toString() + "");
+                        registrationData.setMobileNo(phonenum.getText().toString() + "");
+                        registrationData.setNewPassword(password.getText().toString() + "");
+                        registrationData.setAccountType("2");
+                        registrationData.setRestaurantID(ResturantId.resId);
 
 
-                    Genrator.createService(ClintAppApi.class).SignUp(registrationData).enqueue(new Callback<Msg>() {
-                        @Override
-                        public void onResponse(Call<Msg> call, Response<Msg> response) {
+                        Genrator.createService(ClintAppApi.class).SignUp(registrationData).enqueue(new Callback<Msg>() {
+                            @Override
+                            public void onResponse(Call<Msg> call, Response<Msg> response) {
 
 
-                            if (response.isSuccessful()) {
+                                if (response.isSuccessful()) {
 
-                                if (mProgressDialog.isShowing())
-                                    mProgressDialog.dismiss();
+                                    if (mProgressDialog.isShowing())
+                                        mProgressDialog.dismiss();
 
-                                String code=response.body().getCode()+"";
+                                    String code = response.body().getCode() + "";
 
 
-                                //Check If Post Success Or Not
-                                if (!code.equals("0")) {
-                                    SignUp.this.finish();
-                                    Toast.makeText(getApplicationContext(), R.string.RegSucusess, Toast.LENGTH_LONG).show();
+                                    //Check If Post Success Or Not
+                                    if (!code.equals("0")) {
+                                        SignUp.this.finish();
+                                        Toast.makeText(getApplicationContext(), R.string.RegSucusess, Toast.LENGTH_LONG).show();
+                                    } else {
+                                        final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                                        builder.setMessage(response.body().getMessage() + "")
+                                                .setIcon(R.drawable.erroricon)
+                                                .setCancelable(false)
+                                                .setTitle(R.string.sysMsg)
+                                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                        AlertDialog alert = builder.create();
+                                        alert.show();
+                                    }
+
                                 } else {
+
+                                    if (mProgressDialog.isShowing())
+                                        mProgressDialog.dismiss();
                                     final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
-                                    builder.setMessage(response.body().getMessage() + "")
-                                            .setIcon(R.drawable.erroricon)
+                                    builder.setMessage(R.string.Responsenotsucusess)
                                             .setCancelable(false)
-                                            .setTitle(R.string.sysMsg)
+                                            .setIcon(R.drawable.erroricon)
+                                            .setTitle(R.string.communicationerorr)
                                             .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     dialog.dismiss();
@@ -169,17 +208,21 @@ public class SignUp extends AppCompatActivity {
                                             });
                                     AlertDialog alert = builder.create();
                                     alert.show();
+
                                 }
 
-                            } else {
+                            }
 
+                            @Override
+                            public void onFailure(Call<Msg> call, Throwable t) {
                                 if (mProgressDialog.isShowing())
                                     mProgressDialog.dismiss();
+
                                 final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
-                                builder.setMessage(R.string.Responsenotsucusess)
+                                builder.setMessage(t.getMessage().toString() + "")
                                         .setCancelable(false)
                                         .setIcon(R.drawable.erroricon)
-                                        .setTitle(R.string.communicationerorr)
+                                        .setTitle(R.string.connectionerorr)
                                         .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 dialog.dismiss();
@@ -189,34 +232,12 @@ public class SignUp extends AppCompatActivity {
                                 alert.show();
 
                             }
+                        });
 
-                        }
 
-                        @Override
-                        public void onFailure(Call<Msg> call, Throwable t) {
-                            if (mProgressDialog.isShowing())
-                                mProgressDialog.dismiss();
-
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
-                            builder.setMessage(t.getMessage().toString()+"")
-                                    .setCancelable(false)
-                                    .setIcon(R.drawable.erroricon)
-                                    .setTitle(R.string.connectionerorr)
-                                    .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            AlertDialog alert = builder.create();
-                            alert.show();
-
-                        }
-                    });
-
+                    }
 
                 }
-
-
 
             }
         });

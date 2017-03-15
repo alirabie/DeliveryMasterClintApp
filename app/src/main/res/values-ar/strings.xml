@@ -73,7 +73,7 @@
     <string name="dismiss">إخفاء</string>
     <string name="deletemeal">هل تريد حذف هذه الوجبة ؟؟</string>
     <string name="customizations">تخصيصات الوجبه</string>
-    <string name="logindialogallert">لا يمكنك الدخول هنا قبل تسجيل الدخول اولا !! من فضلك قم بتسجيل دخولك</string>
+    <string name="logindialogallert">من فضلك قم بتسجيل دخولك اولا !!</string>
     <string name="emptycartdialog">سلة الشراء فارغه ! من فضلك قم بملئها  </string>
     <string name="shoppingcartempty">السلة فارغة ..</string>
     <string name="pleaseselectbranch">من فضلك قم بإختيار الفرع : </string>
@@ -105,6 +105,8 @@
     <string name="confirmdone">: تم تأكيد الطلب بنجاح</string>
     <string name="selecttime">من فضلك حدد وقت التوصيل !</string>
     <string name="emptycurrent">لا توجد طلبات حالية !</string>
+    <string name="emptyprev">لا توجد طلبات سابقة</string>
+    <string name="passworderorr">لابد ان لاتقل كلمة المرور عن 6 احرف</string>
 
 
 </resources>
