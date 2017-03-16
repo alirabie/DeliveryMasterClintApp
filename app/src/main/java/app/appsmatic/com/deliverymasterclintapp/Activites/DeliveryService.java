@@ -103,29 +103,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
             deliverybtn.setBackgroundResource(R.drawable.ripple);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
         //User Delivery Locations List Setup
@@ -149,11 +127,16 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                             locationsList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             //put locations on map
                             for (int i = 0; i < response.body().getMessage().size(); i++) {
-                                LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
-                                mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
-                                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                                float zoomLevel = (float) 10.0; //This goes up to 21
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                                try {
+                                    LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
+                                    mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                    float zoomLevel = (float) 10.0; //This goes up to 21
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                                }catch (Exception t){
+                                    Toast.makeText(getApplication(),t.getMessage()+"No Google Service",Toast.LENGTH_SHORT);
+                                }
+
                             }
                         }
                     }

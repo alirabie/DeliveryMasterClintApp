@@ -67,31 +67,6 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         }
 
-
-
-        titleTv=(TextView)findViewById(R.id.picup_title);
-        //put title font style
-        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
-        titleTv.setTypeface(face);
-
-
-    }
-
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-
         //get pickup branches :
         HashMap data=new HashMap();
         data.put("restaurantid", ResturantId.resId);
@@ -113,17 +88,22 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
                             brunchesList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             //put locations on map
                             for (int i = 0; i < response.body().getMessage().size(); i++) {
-                                LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
-                                mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
-                                mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                                float zoomLevel = (float) 10.0; //This goes up to 21
-                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                                try {
+                                    LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
+                                    mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                    float zoomLevel = (float) 10.0; //This goes up to 21
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                                }catch (Exception e){
+                                    Toast.makeText(getApplication(),e.getMessage()+"No Google Service",Toast.LENGTH_LONG).show();
+                                }
+
                             }
                         }
 
                     } else {
 
-                        //Code 0 error message
+                        Toast.makeText(PickUpService.this,"Code 0 from PickUpService Locations List",Toast.LENGTH_LONG).show();
 
                     }
 
@@ -174,6 +154,60 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        titleTv=(TextView)findViewById(R.id.picup_title);
+        //put title font style
+        Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
+        titleTv.setTypeface(face);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
 
 
