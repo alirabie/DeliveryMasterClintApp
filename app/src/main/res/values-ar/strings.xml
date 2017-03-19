@@ -107,6 +107,8 @@
     <string name="emptycurrent">لا توجد طلبات حالية !</string>
     <string name="emptyprev">لا توجد طلبات سابقة</string>
     <string name="passworderorr">لابد ان لاتقل كلمة المرور عن 6 احرف</string>
+    <string name="gpson">من فضلك قم بتشغيل خاصية تحديد المواقع</string>
+    <string name="gogps">تشغيل</string>
 
 
 </resources>

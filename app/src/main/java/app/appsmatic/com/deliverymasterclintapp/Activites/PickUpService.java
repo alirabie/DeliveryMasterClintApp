@@ -1,5 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -30,6 +33,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.BuranchesPickupAdb;
+import app.appsmatic.com.deliverymasterclintapp.GPS.GPSTracker;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
@@ -43,6 +47,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     private ImageView pickupbtn;
     private RecyclerView brunchesList;
     private TextView titleTv;
+    private GPSTracker gpsTracker;
 
 
 
@@ -52,8 +57,9 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activitypickupserv);
+        gpsTracker=new GPSTracker(PickUpService.this);
         //Invoke Send order to server method
         Home.sendOrderToServer(PickUpService.this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -91,9 +97,9 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
                                 try {
                                     LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
                                     mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                                    float zoomLevel = (float) 10.0; //This goes up to 21
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                                   // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                   // float zoomLevel = (float) 10.0; //This goes up to 21
+                                  //  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
                                 }catch (Exception e){
                                     Toast.makeText(getApplication(),e.getMessage()+"No Google Service",Toast.LENGTH_LONG).show();
                                 }
@@ -208,7 +214,16 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng currentLocation=new LatLng(gpsTracker.getLatitude(),gpsTracker.getLongitude());
 
+
+        mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location").icon(BitmapDescriptorFactory.fromResource(R.drawable.c_locationicon)));
+
+
+
+        float zoomLevel = (float) 6.0; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, zoomLevel));
+        Toast.makeText(getApplicationContext(), gpsTracker.getLatitude() + " " + gpsTracker.getLongitude() + "", Toast.LENGTH_SHORT).show();
 
 
         // Add a marker in Sydney and move the camera

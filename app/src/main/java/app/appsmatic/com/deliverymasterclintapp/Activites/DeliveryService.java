@@ -1,9 +1,11 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -22,12 +24,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.HashMap;
-
 import app.appsmatic.com.deliverymasterclintapp.API.Models.NewLocaton;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResNewLocation;
@@ -35,6 +36,8 @@ import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppAp
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.BuranchesPickupAdb;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.DeliveryBrunchesAdb;
+import app.appsmatic.com.deliverymasterclintapp.Fragments.Settings;
+import app.appsmatic.com.deliverymasterclintapp.GPS.GPSTracker;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 import retrofit2.Call;
@@ -54,16 +57,19 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
     private EditText commentInput,streetAddressInput;
     private NewLocaton newLocaton;
     private TextView titleTv;
+    private GPSTracker gpsTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_delivery_service);
+
         lat=0.0;
         lang=0.0;
+
+        gpsTracker = new GPSTracker(getApplicationContext());
         //Invoke Send order to server method
         Home.sendOrderToServer(DeliveryService.this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -130,9 +136,9 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                                 try {
                                     LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
                                     mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-                                    float zoomLevel = (float) 10.0; //This goes up to 21
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+                                   // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                                   // float zoomLevel = (float) 10.0; //This goes up to 21
+                                  //  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
                                 }catch (Exception t){
                                     Toast.makeText(getApplication(),t.getMessage()+"No Google Service",Toast.LENGTH_SHORT);
                                 }
@@ -239,9 +245,21 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        lat=gpsTracker.getLatitude();
+        lang=gpsTracker.getLongitude();
+        LatLng currentLocation=new LatLng(lat,lang);
+        mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your Location").icon(BitmapDescriptorFactory.fromResource(R.drawable.c_locationicon)));
+
+        float zoomLevel = (float) 16.0; //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, zoomLevel));
+        Toast.makeText(getApplicationContext(), lat + " " + lang + "", Toast.LENGTH_SHORT).show();
+
+
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
@@ -252,7 +270,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                 marker = mMap.addMarker(new MarkerOptions()
                         .position(
                                 new LatLng(latLng.latitude, latLng.longitude))
-                        .draggable(true).visible(true).title("Your Place"));
+                        .draggable(true).visible(true).title("New Place"));
                 lat = latLng.latitude;
                 lang = latLng.longitude;
                 Toast.makeText(getApplicationContext(), lat + " " + lang + "", Toast.LENGTH_SHORT).show();

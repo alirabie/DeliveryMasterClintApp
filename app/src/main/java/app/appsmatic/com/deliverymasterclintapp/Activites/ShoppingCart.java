@@ -1,9 +1,11 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +56,8 @@ public class ShoppingCart extends AppCompatActivity {
         }
 
 
+
+
         cartEmpty=(TextView)findViewById(R.id.tv_cart_empty);
         cartEmpty.setVisibility(View.INVISIBLE);
         mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
@@ -95,7 +99,23 @@ public class ShoppingCart extends AppCompatActivity {
                 //test create shopping cart and send all orders to server
                 //Create Cart Place
                //check if user logged in or guest
-                if(SaveSharedPreference.getOwnerId(ShoppingCart.this).isEmpty()){
+                //Check GPS status
+                final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                    builder.setMessage(R.string.gpson)
+                            .setCancelable(false)
+                            .setPositiveButton(R.string.gogps, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivity(intent);
+                                }
+                            }).setIcon(android.R.drawable.alert_light_frame);
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                } else if(SaveSharedPreference.getOwnerId(ShoppingCart.this).isEmpty()){
                     startActivity(new Intent(ShoppingCart.this,DialogLogin.class));
                 }else {
 
@@ -183,9 +203,22 @@ public class ShoppingCart extends AppCompatActivity {
             public void onClick(View v) {
                 //test create shopping cart and send all orders to server
                 //Create Cart Place
-
                 //Check if user logged in or guest
-                if (SaveSharedPreference.getOwnerId(ShoppingCart.this).isEmpty()) {
+                //Check GPS status
+                final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingCart.this);
+                    builder.setMessage(R.string.gpson)
+                            .setCancelable(false)
+                            .setPositiveButton(R.string.gogps, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivity(intent);
+                                }
+                            }).setIcon(android.R.drawable.alert_light_frame);
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                } else if (SaveSharedPreference.getOwnerId(ShoppingCart.this).isEmpty()) {
                     startActivity(new Intent(ShoppingCart.this, DialogLogin.class));
                 } else {
 

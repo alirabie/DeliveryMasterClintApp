@@ -91,6 +91,8 @@
     <string name="emptycurrent">No Current Orders</string>
     <string name="emptyprev">No Previous Orders</string>
     <string name="passworderorr">Password should be at least 6 characters !</string>
+    <string name="gpson">Please enable your location service</string>
+    <string name="gogps">Turn On</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

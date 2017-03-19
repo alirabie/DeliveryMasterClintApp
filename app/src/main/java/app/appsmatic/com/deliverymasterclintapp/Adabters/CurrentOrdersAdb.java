@@ -14,6 +14,7 @@ import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.UserOrder;
 import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 /**
  * Created by Mido PC on 3/14/2017.
@@ -43,6 +44,7 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
     public void onBindViewHolder(vh501 holder, int position) {
 
         animate(holder);
+
         holder.no.setText("OrderNo . " + userOrders.get(position).getOrderID() + "");
         if (userOrders.get(position).getPickupBranch() == null) {
             holder.brunch.setText("Address : " + userOrders.get(position).getDeliveryBranch());
@@ -52,6 +54,13 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
         holder.status.setText("Status : " + userOrders.get(position).getStatus() + "");
         holder.type.setText("Type : " + userOrders.get(position).getOrderType());
         holder.date.setText(userOrders.get(position).getOrderDate() + "");
+
+        //Set image language for details button
+        if(SaveSharedPreference.getLangId(context).equals("ar")){
+            holder.detailsBtn.setImageResource(R.drawable.ardetailsbtn);
+        }else{
+            holder.detailsBtn.setImageResource(R.drawable.detailsbtn);
+        }
 
     }
 

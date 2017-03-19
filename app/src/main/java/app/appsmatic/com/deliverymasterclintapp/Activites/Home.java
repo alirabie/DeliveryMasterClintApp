@@ -10,6 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -425,6 +426,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+
     //Send order to server method : if cart id still send updated order
     // to server and when user confirm order clear cart id and cart items
     public static void sendOrderToServer(final Context context){
@@ -439,7 +441,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     //if Orders failed to added
                     if (response.body().getCode() == 0) {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setMessage(response.body().getMessage() + "")
+                        builder.setMessage(response.body().getMessage() +"")
                                 .setCancelable(false)
                                 .setIcon(R.drawable.erroricon)
                                 .setTitle(R.string.communicationerorr)
@@ -470,6 +472,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         String dataJson=gson.toJson(Home.serverCart);
         Log.e("dataJson : ", dataJson);
     }
+
+
+
 
 
 
