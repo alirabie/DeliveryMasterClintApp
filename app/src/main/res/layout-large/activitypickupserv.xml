@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/LocationOnMap"
+            android:text="@string/brunchesmap"
             android:id="@+id/textView12"
             android:padding="10dp"
             android:textColor="#000000"

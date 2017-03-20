@@ -90,9 +90,9 @@
             android:label="@string/title_activity_location_details"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
-            android:name=".Activites.CurrentOrderDetails"
+            android:name=".Activites.OrderDetails"
             android:label="@string/title_activity_current_order_details"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.MinWidth" />
         <activity
             android:name=".Activites.PreviuosOrderDetails"
             android:label="@string/title_activity_previuos_order_details"

@@ -109,6 +109,7 @@
     <string name="passworderorr">لابد ان لاتقل كلمة المرور عن 6 احرف</string>
     <string name="gpson">من فضلك قم بتشغيل خاصية تحديد المواقع</string>
     <string name="gogps">تشغيل</string>
+    <string name="brunchesmap">مواقع الفروع على الخريطة : </string>
 
 
 </resources>

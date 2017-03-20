@@ -93,6 +93,7 @@
     <string name="passworderorr">Password should be at least 6 characters !</string>
     <string name="gpson">Please enable your location service</string>
     <string name="gogps">Turn On</string>
+    <string name="brunchesmap">Brunches Locations On Map :</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

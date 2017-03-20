@@ -1,6 +1,7 @@
 package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.UserOrder;
+import app.appsmatic.com.deliverymasterclintapp.Activites.OrderDetails;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
@@ -41,7 +43,7 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
     }
 
     @Override
-    public void onBindViewHolder(vh501 holder, int position) {
+    public void onBindViewHolder(vh501 holder, final int position) {
 
         animate(holder);
 
@@ -61,6 +63,19 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
         }else{
             holder.detailsBtn.setImageResource(R.drawable.detailsbtn);
         }
+
+
+        //Action details button
+        holder.detailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, OrderDetails.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        .putExtra("id", userOrders.get(position).getOrderID())
+                        .putExtra("date",userOrders.get(position).getOrderDate())
+                        .putExtra("flag",flag));
+
+            }
+        });
 
     }
 

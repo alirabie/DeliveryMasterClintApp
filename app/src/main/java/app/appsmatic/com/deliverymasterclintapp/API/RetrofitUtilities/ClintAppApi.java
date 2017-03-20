@@ -3,6 +3,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.Msg;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResOrderDetails;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResUserOrders;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCustomizations;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResLocations;
@@ -69,8 +70,12 @@ public interface ClintAppApi {
     Call<ResOrderConfirmation>confirmOrder(@Body Object data);
 
     //get Current orders
-    @POST("ShoppingCart/UserOrders")
+    @POST("Order/User")
     Call<ResUserOrders>getCurrentOrders(@Body Object data);
+
+    //Get order Details
+    @POST("Order/Details")
+    Call<ResOrderDetails>getOrderDetails(@Body Object owner);
 
 
 

@@ -15,16 +15,40 @@
         android:gravity="center"
         android:padding="8dp">
 
+
+
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignBottom="@+id/linearLayout"
+            android:layout_toRightOf="@+id/linearLayout3"
+            android:layout_toEndOf="@+id/linearLayout3"
+            android:padding="2dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="No . 1234"
+                android:id="@+id/order_details_id"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:padding="3dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/linearLayout"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:gravity="center"
             android:id="@+id/linearLayout5"
-            android:padding="2dp" >
+            android:padding="2dp"
+            android:layout_weight="1">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -37,42 +61,110 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="60 Mintes"
-                android:id="@+id/current_order_date_tv"
-                android:textSize="25dp"
-                android:textColor="#000000"
-                android:padding="3dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_alignBottom="@+id/linearLayout"
-            android:layout_toRightOf="@+id/linearLayout3"
-            android:layout_toEndOf="@+id/linearLayout3"
-            android:padding="2dp" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="No . 1234"
-                android:id="@+id/current_order_no_tv"
-                android:textSize="25dp"
+                android:id="@+id/order_details_date"
+                android:textSize="18dp"
                 android:textColor="#000000"
                 android:padding="3dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:id="@+id/current_order_list"
-        android:padding="5dp">
+        android:layout_below="@+id/linearLayout7"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayout9"
+        android:layout_weight="1" >
 
-    </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fdbd24" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView13f"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="@string/mealtotlaprice" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/mealcount"
+                android:id="@+id/textView21d"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textIsSelectable="false"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/mealname"
+                android:id="@+id/textView24d"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:id="@+id/order_details_orders_list"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fdbd24" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="0.0 SR"
+                android:id="@+id/order_details_tottal_all"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/mealtotlaprice"
+                android:id="@+id/textView27"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="5dp"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -83,15 +175,22 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/current_order_details_meal_sms_btn"
+            android:id="@+id/order_details_meal_sms_btn"
             android:src="@drawable/smsicon"
+            android:padding="5dp"
+            android:layout_weight="1" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/order_details_meal_reorderbtn"
+            android:src="@drawable/reorderbtn"
             android:padding="5dp"
             android:layout_weight="1" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/current_order_details_meal_call_btn"
+            android:id="@+id/order_details_meal_call_btn"
             android:src="@drawable/callicon"
             android:padding="5dp"
             android:layout_weight="1" />
