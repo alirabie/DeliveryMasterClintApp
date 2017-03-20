@@ -42,10 +42,13 @@ import com.readystatesoftware.viewbadger.BadgeView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResProfileInfo;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ServerCartModel.ServerCart;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.UserProfile;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Tools.BadgeDrawable;
@@ -69,12 +72,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     public static ImageView logoutbtn;
     private TextView toolbartitle;
     private CircleImageView userPhoto;
-    private TextView userNameTv;
+    public static TextView userNameTv;
     public static List<CartMeal>cartMeals=new ArrayList<>();
     public static ServerCart serverCart=new ServerCart();
     public static LayerDrawable icon;
     public static MenuItem itemCart;
     public static  Context context;
+    public static UserProfile userProfile;
+
 
 
     //Fragments
@@ -98,6 +103,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        userProfile=new UserProfile();
+        setUserProfileInfo(Home.this);
         //Check Os Ver For Set Status Bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -183,9 +190,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         userPhoto = (CircleImageView) hView.findViewById(R.id.sidemenuicon);
         userNameTv = (TextView) hView.findViewById(R.id.user_name_tv);
         Picasso.with(getApplicationContext()).load(R.drawable.guesticon).fit().placeholder(R.drawable.guesticon).into(userPhoto);
-        userNameTv.setText("Gust");
 
 
+       if(SaveSharedPreference.getOwnerId(Home.this).equals("")){
+           userNameTv.setText(R.string.gust);
+       }
 
         Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
         toolbartitle.setTypeface(face);
@@ -402,6 +411,38 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+    // Set User Profile
+    public static void setUserProfileInfo(final Context context) {
+        HashMap data = new HashMap();
+        if (SaveSharedPreference.getOwnerId(context).equals("")) {
+            //Don't do any thing
+        } else {
+            data.put("owner", SaveSharedPreference.getOwnerId(context));
+            Genrator.createService(ClintAppApi.class).getProfileInfo(data).enqueue(new Callback<ResProfileInfo>() {
+                @Override
+                public void onResponse(Call<ResProfileInfo> call, Response<ResProfileInfo> response) {
+
+                    if (response.isSuccessful()) {
+                        if (response.body().getCode() != 0) {
+                            userProfile.setFirstName(response.body().getMessage().getFirstName());
+                            userProfile.setLastName(response.body().getMessage().getLastName());
+                            userProfile.setMobileNo(response.body().getMessage().getMobileNo());
+                            userNameTv.setText(userProfile.getFirstName() + " " + userProfile.getLastName());
+                        } else {
+                            Toast.makeText(context, "Code 0 from Profile", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(context, "Response not success from Profile", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResProfileInfo> call, Throwable t) {
+                    Toast.makeText(context, "Connection Error from profile !", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
 
 
 

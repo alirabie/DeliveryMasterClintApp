@@ -109,5 +109,6 @@
     <string name="gpson">Please enable your location service</string>
     <string name="gogps">Turn On</string>
     <string name="brunchesmap">Brunches Locations On Map :</string>
+    <string name="gust">Guest</string>
 
 </resources>

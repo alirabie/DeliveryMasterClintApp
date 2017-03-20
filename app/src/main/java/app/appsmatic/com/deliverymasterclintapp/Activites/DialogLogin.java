@@ -133,6 +133,7 @@ public class DialogLogin extends AppCompatActivity {
                                     SaveSharedPreference.setOwnerId(DialogLogin.this,fulltext.substring(fulltext.indexOf(",")+1, fulltext.length()));
                                     Toast.makeText(DialogLogin.this,"OwnerId : "+SaveSharedPreference.getOwnerId(DialogLogin.this)+"",Toast.LENGTH_LONG).show();
                                     Home.logoutbtn.setVisibility(View.VISIBLE);
+                                    Home.setUserProfileInfo(DialogLogin.this);
                                     DialogLogin.this.finish();
 
                                 }else{
