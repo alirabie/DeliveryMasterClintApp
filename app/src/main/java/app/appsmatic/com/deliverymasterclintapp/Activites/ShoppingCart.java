@@ -12,15 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.CartData;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
@@ -108,8 +105,7 @@ public class ShoppingCart extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton(R.string.gogps, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                    startActivity(intent);
+                                    Home.turnLocationOn(ShoppingCart.this);
                                 }
                             }).setIcon(android.R.drawable.alert_light_frame);
                     AlertDialog alert = builder.create();
@@ -212,8 +208,7 @@ public class ShoppingCart extends AppCompatActivity {
                             .setCancelable(false)
                             .setPositiveButton(R.string.gogps, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Intent intent = new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                    startActivity(intent);
+                                    Home.turnLocationOn(ShoppingCart.this);
                                 }
                             }).setIcon(android.R.drawable.alert_light_frame);
                     AlertDialog alert = builder.create();
@@ -296,4 +291,6 @@ public class ShoppingCart extends AppCompatActivity {
 
 
     }
+
+
 }
