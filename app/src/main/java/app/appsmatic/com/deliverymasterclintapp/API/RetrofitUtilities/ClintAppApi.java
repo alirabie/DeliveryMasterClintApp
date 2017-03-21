@@ -80,7 +80,7 @@ public interface ClintAppApi {
 
     //Get Customer Profile
     @POST("Account/Profile")
-    Call<ResProfileInfo>getProfileInfo(@Body Object owner);
+    Call<ResProfileInfo>getProfileInfo(@Body Object owner2);
 
 
 

@@ -3,6 +3,8 @@ package app.appsmatic.com.deliverymasterclintapp.API.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by Mido PC on 3/20/2017.
  */
@@ -13,7 +15,7 @@ public class ResProfileInfo {
     private Integer code;
     @SerializedName("message")
     @Expose
-    private UserProfile message;
+    private List<UserProfile> message = null;
 
     public Integer getCode() {
         return code;
@@ -23,12 +25,11 @@ public class ResProfileInfo {
         this.code = code;
     }
 
-    public UserProfile getMessage() {
+    public List<UserProfile> getMessage() {
         return message;
     }
 
-    public void setMessage(UserProfile message) {
+    public void setMessage(List<UserProfile> message) {
         this.message = message;
     }
-
 }

@@ -111,7 +111,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     protected void onCreate(final Bundle savedInstanceState) {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_home);
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -227,15 +227,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         */
 
 
-
-
-
-
-
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -301,6 +292,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         return true;
     }
+
 
 
 
@@ -424,41 +416,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
-    // Set User Profile
-    public static void setUserProfileInfo(final Context context) {
-        HashMap data = new HashMap();
-        if (SaveSharedPreference.getOwnerId(context).equals("")) {
-            //Don't do any thing
-        } else {
-            data.put("owner", SaveSharedPreference.getOwnerId(context));
-            Genrator.createService(ClintAppApi.class).getProfileInfo(data).enqueue(new Callback<ResProfileInfo>() {
-                @Override
-                public void onResponse(Call<ResProfileInfo> call, Response<ResProfileInfo> response) {
-
-                    if (response.isSuccessful()) {
-                        if (response.body().getCode() != 0) {
-                            userProfile.setFirstName(response.body().getMessage().getFirstName());
-                            userProfile.setLastName(response.body().getMessage().getLastName());
-                            userProfile.setMobileNo(response.body().getMessage().getMobileNo());
-                            userNameTv.setText(userProfile.getFirstName() + " " + userProfile.getLastName());
-                        } else {
-                            Toast.makeText(context, "Code 0 from Profile", Toast.LENGTH_LONG).show();
-                        }
-                    } else {
-                        Toast.makeText(context, "Response not success from Profile", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResProfileInfo> call, Throwable t) {
-                    Toast.makeText(context, "Connection Error from profile !", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-    }
 
 
 
+
+    //Set Cart Badge count
     public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
 
         BadgeDrawable badge;
@@ -589,9 +551,42 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+    // Set User Profile
+    public static void setUserProfileInfo(final Context context) {
+        if (SaveSharedPreference.getOwnerId(context).equals("")) {
+            //Don't do any thing
+        } else {
+            HashMap data = new HashMap();
+            data.put("owner", SaveSharedPreference.getOwnerId(context).toString());
+            Genrator.createService(ClintAppApi.class).getProfileInfo(data).enqueue(new Callback<ResProfileInfo>() {
+                @Override
+                public void onResponse(Call<ResProfileInfo> call, Response<ResProfileInfo> response) {
 
+                    if (response.isSuccessful()) {
+                        if (response.body().getCode() != 0) {
+                            userProfile.setFirstName(response.body().getMessage().get(0).getFirstName());
+                            userProfile.setLastName(response.body().getMessage().get(0).getLastName());
+                            userProfile.setMobileNo(response.body().getMessage().get(0).getMobileNo());
+                            userNameTv.setText(userProfile.getFirstName() + " " + userProfile.getLastName());
+                        } else {
+                            Toast.makeText(context, "Code 0 from Profile", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(context, "Response not success from Profile", Toast.LENGTH_LONG).show();
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<ResProfileInfo> call, Throwable t) {
+                    Toast.makeText(context,t.getMessage()+ "  : Connection Error from profile !", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
+
+
+
+}
 
 
 
