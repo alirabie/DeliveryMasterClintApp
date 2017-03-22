@@ -64,9 +64,7 @@ public class MealsFrag extends android.app.Fragment {
             //Loading Dialog
             final ProgressDialog mProgressDialog = new ProgressDialog(getActivity(),R.style.AppCompatAlertDialogStyle);
             mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setIcon(R.drawable.loadicon);
-            mProgressDialog.setTitle(R.string.loadingdialog);
-            mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
+            mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>"+getResources().getString(R.string.mealloding)+"</big></font>"));
             mProgressDialog.show();
 
 

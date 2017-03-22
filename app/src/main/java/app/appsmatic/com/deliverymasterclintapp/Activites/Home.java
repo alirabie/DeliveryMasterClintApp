@@ -530,7 +530,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         alert.show();
                     } else {
                         //if Orders added successfully
-                        Toast.makeText(context, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, response.body().getMessage() + " : "+context.getResources().getString(R.string.sendordersucese), Toast.LENGTH_SHORT).show();
                         //Clear Cart Id
                         // SaveSharedPreference.setCartId(context, "");
                         //put sending flag 1 to not repeat sending again

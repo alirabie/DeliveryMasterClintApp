@@ -111,5 +111,11 @@
     <string name="brunchesmap">Brunches Locations On Map :</string>
     <string name="gust">Guest</string>
     <string name="conf">Please Wait While Sending and Confirming your Order ...</string>
+    <string name="login">Signing in please Wait ..</string>
+    <string name="sinup">Creating Your New Account Please Wait ..</string>
+    <string name="mealloding">Loading Meals ..</string>
+    <string name="cordersload">Loading your Current Orders ..</string>
+    <string name="pordersload">Loading your Previous Orders ..</string>
+    <string name="sendordersucese">Your order has been sent successfully</string>
 
 </resources>

@@ -125,9 +125,7 @@ public class SignIn extends AppCompatActivity {
                     //Loading Dialog
                     final ProgressDialog mProgressDialog = new ProgressDialog(SignIn.this,R.style.AppCompatAlertDialogStyle);
                     mProgressDialog.setIndeterminate(true);
-                    mProgressDialog.setIcon(R.drawable.loadicon);
-                    mProgressDialog.setTitle(R.string.loadingdialog);
-                    mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
+                    mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>"+getApplicationContext().getResources().getString(R.string.login)+"</big></font>"));
                     mProgressDialog.show();
 
                     //Post Data Object Json to server
