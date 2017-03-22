@@ -60,8 +60,6 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activitypickupserv);
         gpsTracker=new GPSTracker(PickUpService.this);
-        //Invoke Send order to server method
-        Home.sendOrderToServer(PickUpService.this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

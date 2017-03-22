@@ -28,12 +28,13 @@ import retrofit2.Response;
 
 public class OrderDetails extends AppCompatActivity {
 
-    private TextView orderNo,orderDate;
+    private TextView orderNo,orderDate,totalAll;
     private RecyclerView currentordersList;
     private ImageView call,sms,reorder;
     private int orderNum=0;
     private String orderDateTv="";
     private String orderType="";
+    private OrderDetailsAdb orderDetailsAdb;
 
 
 
@@ -51,6 +52,7 @@ public class OrderDetails extends AppCompatActivity {
         call=(ImageView)findViewById(R.id.order_details_meal_call_btn);
         sms=(ImageView)findViewById(R.id.order_details_meal_sms_btn);
         reorder=(ImageView)findViewById(R.id.order_details_meal_reorderbtn);
+        totalAll=(TextView)findViewById(R.id.order_details_tottal_all);
 
         //set buttons language
         if(SaveSharedPreference.getLangId(this).equals("ar")){
@@ -110,9 +112,12 @@ public class OrderDetails extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     if (response.body().getCode() != 0) {
+                        orderDetailsAdb=new OrderDetailsAdb(response.body().getMessage(), OrderDetails.this);
                         currentordersList = (RecyclerView) findViewById(R.id.order_details_orders_list);
-                        currentordersList.setAdapter(new OrderDetailsAdb(response.body().getMessage(), OrderDetails.this));
+                        currentordersList.setAdapter(orderDetailsAdb);
                         currentordersList.setLayoutManager(new LinearLayoutManager(OrderDetails.this));
+                        //Putting total order price
+                        totalAll.setText(orderDetailsAdb.sumTotall()+" SR");
 
                     } else {
                         Toast.makeText(OrderDetails.this, "Code 0 from Order Details", Toast.LENGTH_LONG).show();

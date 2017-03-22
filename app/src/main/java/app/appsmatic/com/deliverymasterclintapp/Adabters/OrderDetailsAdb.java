@@ -54,7 +54,14 @@ public class OrderDetailsAdb extends RecyclerView.Adapter<OrderDetailsAdb.Vh309>
 
 
 
-
+// Calc total price
+    public double sumTotall(){
+        double x=0.0;
+        for(int i=0;i<orderDetailsItems.size();i++){
+            x=x+orderDetailsItems.get(i).getTotalPrice();
+        }
+        return x;
+    }
 
 
 

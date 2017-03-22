@@ -31,6 +31,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResOrderConfirmation;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
@@ -130,13 +133,16 @@ public class Confirmation extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 //Loading Dialog
-                final ProgressDialog mProgressDialog = new ProgressDialog(Confirmation.this, R.style.AppCompatAlertDialogStyle);
+                final ProgressDialog mProgressDialog = new ProgressDialog(Confirmation.this);
                 mProgressDialog.setIndeterminate(true);
-                mProgressDialog.setIcon(R.drawable.loadicon);
-                mProgressDialog.setTitle(R.string.loadingdialog);
-                mProgressDialog.setMessage(Html.fromHtml("<font color=#FFFFFF><big>Loading ...</big></font>"));
+                mProgressDialog.setCanceledOnTouchOutside(false);
+                mProgressDialog.setMessage(Html.fromHtml("<font color=#00000><big>"+getApplicationContext().getResources().getString(R.string.conf)+"</big></font>"));
                 mProgressDialog.show();
+
+
 
                 if (timetxt.getText().toString().equals("00:00:00")) {
                     if (mProgressDialog.isShowing())
@@ -156,41 +162,89 @@ public class Confirmation extends AppCompatActivity {
 
                 } else {
 
-                    HashMap data = new HashMap();
-                    data.put("restaurantid", ResturantId.resId);
-                    data.put("owner", SaveSharedPreference.getOwnerId(getApplicationContext()));
-                    data.put("cartid", SaveSharedPreference.getCartId(getApplicationContext()));
-                    data.put("servicetype", serviceType);
-                    data.put("comment", comments.getText() + "");
-                    data.put("locationid", locationId);
-                    data.put("timetorecieve", timetxt.getText() + "");
+                    //Invoke Send order to server method
+                    Home.sendOrderToServer(Confirmation.this);
 
-
-                    Genrator.createService(ClintAppApi.class).confirmOrder(data).enqueue(new Callback<ResOrderConfirmation>() {
+                    //wait 2 seconds while order sending to server
+                    new Timer().schedule(new TimerTask() {
                         @Override
-                        public void onResponse(Call<ResOrderConfirmation> call, Response<ResOrderConfirmation> response) {
+                        public void run() {
+                            // this code will be executed after 2 seconds
+                            HashMap data = new HashMap();
+                            data.put("restaurantid", ResturantId.resId);
+                            data.put("owner", SaveSharedPreference.getOwnerId(getApplicationContext()));
+                            data.put("cartid", SaveSharedPreference.getCartId(getApplicationContext()));
+                            data.put("servicetype", serviceType);
+                            data.put("comment", comments.getText() + "");
+                            data.put("locationid", locationId);
+                            data.put("timetorecieve", timetxt.getText() + "");
 
-                            if (response.isSuccessful()) {
-                                if (mProgressDialog.isShowing())
-                                    mProgressDialog.dismiss();
-                                if (response.body().getCode() != 0) {
-                                    Toast.makeText(getApplicationContext(), response.body().getMessage() + getApplicationContext().getResources().getString(R.string.confirmdone), Toast.LENGTH_LONG).show();
-                                    Home.cartMeals.clear();
-                                    Home.icon = (LayerDrawable) Home.itemCart.getIcon();
-                                    Home.setBadgeCount(getBaseContext(), Home.icon, "");
-                                    Home.setBadgeCount(getBaseContext(), Home.icon, Home.cartMeals.size() + "");
-                                    SaveSharedPreference.setCartId(getApplicationContext(), "");
-                                    Confirmation.this.finish();
+                            Log.e("Confrm :",data.toString());
+                            Genrator.createService(ClintAppApi.class).confirmOrder(data).enqueue(new Callback<ResOrderConfirmation>() {
+                                @Override
+                                public void onResponse(Call<ResOrderConfirmation> call, Response<ResOrderConfirmation> response) {
+
+                                    if (response.isSuccessful()) {
+                                        if (mProgressDialog.isShowing())
+                                            mProgressDialog.dismiss();
+                                        if (response.body().getCode() != 0) {
+                                            Toast.makeText(getApplicationContext(), response.body().getMessage() + getApplicationContext().getResources().getString(R.string.confirmdone), Toast.LENGTH_LONG).show();
+                                            Home.cartMeals.clear();
+                                            Home.icon = (LayerDrawable) Home.itemCart.getIcon();
+                                            Home.setBadgeCount(getBaseContext(), Home.icon, "");
+                                            Home.setBadgeCount(getBaseContext(), Home.icon, Home.cartMeals.size() + "");
+                                            SaveSharedPreference.setCartId(getApplicationContext(), "");
+                                            Confirmation.this.finish();
 
 
-                                } else {
+                                        } else {
+                                            if (mProgressDialog.isShowing())
+                                                mProgressDialog.dismiss();
+                                            final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
+                                            builder.setMessage(response.body().getMessage() + "")
+                                                    .setCancelable(false)
+                                                    .setIcon(R.drawable.erroricon)
+                                                    .setTitle(R.string.sysMsg)
+                                                    .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.dismiss();
+                                                        }
+                                                    });
+                                            AlertDialog alert = builder.create();
+                                            alert.show();
+                                        }
+
+
+                                    } else {
+
+                                        if (mProgressDialog.isShowing())
+                                            mProgressDialog.dismiss();
+                                        final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
+                                        builder.setMessage(R.string.Responsenotsucusess)
+                                                .setCancelable(false)
+                                                .setIcon(R.drawable.erroricon)
+                                                .setTitle(R.string.communicationerorr)
+                                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                        AlertDialog alert = builder.create();
+                                        alert.show();
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResOrderConfirmation> call, Throwable t) {
                                     if (mProgressDialog.isShowing())
                                         mProgressDialog.dismiss();
                                     final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
-                                    builder.setMessage(response.body().getMessage() + "")
+                                    builder.setMessage(t.getMessage().toString() + "")
                                             .setCancelable(false)
                                             .setIcon(R.drawable.erroricon)
-                                            .setTitle(R.string.sysMsg)
+                                            .setTitle(R.string.connectionerorr)
                                             .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     dialog.dismiss();
@@ -198,49 +252,11 @@ public class Confirmation extends AppCompatActivity {
                                             });
                                     AlertDialog alert = builder.create();
                                     alert.show();
+
                                 }
-
-
-                            } else {
-
-                                if (mProgressDialog.isShowing())
-                                    mProgressDialog.dismiss();
-                                final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
-                                builder.setMessage(R.string.Responsenotsucusess)
-                                        .setCancelable(false)
-                                        .setIcon(R.drawable.erroricon)
-                                        .setTitle(R.string.communicationerorr)
-                                        .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int id) {
-                                                dialog.dismiss();
-                                            }
-                                        });
-                                AlertDialog alert = builder.create();
-                                alert.show();
-
-                            }
-
+                            });
                         }
-
-                        @Override
-                        public void onFailure(Call<ResOrderConfirmation> call, Throwable t) {
-                            if (mProgressDialog.isShowing())
-                                mProgressDialog.dismiss();
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);
-                            builder.setMessage(t.getMessage().toString() + "")
-                                    .setCancelable(false)
-                                    .setIcon(R.drawable.erroricon)
-                                    .setTitle(R.string.connectionerorr)
-                                    .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                            AlertDialog alert = builder.create();
-                            alert.show();
-
-                        }
-                    });
+                    }, 10000);
 
                 }
             }

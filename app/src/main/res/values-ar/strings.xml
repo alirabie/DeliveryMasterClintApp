@@ -111,6 +111,7 @@
     <string name="gogps">تشغيل</string>
     <string name="brunchesmap">مواقع الفروع على الخريطة : </string>
     <string name="gust">زائر</string>
+    <string name="conf">من فضلك انتظر حتى يتم ارسال و تأكيد طلبك ...</string>
 
 
 </resources>

@@ -70,8 +70,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
         lang=0.0;
 
         gpsTracker = new GPSTracker(getApplicationContext());
-        //Invoke Send order to server method
-        Home.sendOrderToServer(DeliveryService.this);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

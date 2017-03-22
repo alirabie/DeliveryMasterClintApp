@@ -15,7 +15,7 @@ public class ResProfileInfo {
     private Integer code;
     @SerializedName("message")
     @Expose
-    private List<UserProfile> message = null;
+    private UserProfile message;
 
     public Integer getCode() {
         return code;
@@ -25,11 +25,11 @@ public class ResProfileInfo {
         this.code = code;
     }
 
-    public List<UserProfile> getMessage() {
+    public UserProfile getMessage() {
         return message;
     }
 
-    public void setMessage(List<UserProfile> message) {
+    public void setMessage(UserProfile message) {
         this.message = message;
     }
 }

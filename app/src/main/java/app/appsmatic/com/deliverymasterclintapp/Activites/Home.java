@@ -92,6 +92,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     public static MenuItem itemCart;
     public static  Context context;
     public static UserProfile userProfile;
+    public static int sendingFlag=0;
+
 
 
 
@@ -531,6 +533,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         Toast.makeText(context, response.body().getMessage() + "", Toast.LENGTH_SHORT).show();
                         //Clear Cart Id
                         // SaveSharedPreference.setCartId(context, "");
+                        //put sending flag 1 to not repeat sending again
+                        sendingFlag=1;
                     }
                 } else {
                     Toast.makeText(context, "Response not success from sending order to server", Toast.LENGTH_SHORT).show();
@@ -564,9 +568,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                     if (response.isSuccessful()) {
                         if (response.body().getCode() != 0) {
-                            userProfile.setFirstName(response.body().getMessage().get(0).getFirstName());
-                            userProfile.setLastName(response.body().getMessage().get(0).getLastName());
-                            userProfile.setMobileNo(response.body().getMessage().get(0).getMobileNo());
+                            userProfile.setFirstName(response.body().getMessage().getFirstName());
+                            userProfile.setLastName(response.body().getMessage().getLastName());
+                            userProfile.setMobileNo(response.body().getMessage().getMobileNo());
                             userNameTv.setText(userProfile.getFirstName() + " " + userProfile.getLastName());
                         } else {
                             Toast.makeText(context, "Code 0 from Profile", Toast.LENGTH_LONG).show();
