@@ -76,9 +76,7 @@ public class PrevOrders extends Fragment {
 
                         //filter user orders list select prev orders
                         for (int i = 0; i < response.body().getMessage().size(); i++) {
-                            if (
-                                    response.body().getMessage().get(i).getStatus().toString().equals("تم التسليم")||
-                                            response.body().getMessage().get(i).getStatus().toString().equals("لم يتم التسليم")) {
+                            if (response.body().getMessage().get(i).getStatusID()==3||response.body().getMessage().get(i).getStatusID()==4) {
                                 prevOrders.add(response.body().getMessage().get(i));
                             }
                         }

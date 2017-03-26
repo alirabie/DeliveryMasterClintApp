@@ -78,8 +78,8 @@
     <string name="shoppingcartempty">السلة فارغة ..</string>
     <string name="pleaseselectbranch">من فضلك قم بإختيار الفرع : </string>
     <string name="nolocations">لا يوجد اماكن مسجلة لهذا الحساب</string>
-    <string name="yourcoument">اضف تعليق للطباخ</string>
-    <string name="streetaddress">من فضلك ضع اسم الشارع</string>
+    <string name="yourcoument">من فضلك ضع تفاصيل عنوانك هنا !</string>
+    <string name="streetaddress">من فضلك اكتب عنوانك هنا !</string>
     <string name="selectassigenedlocation">من فضلك اختار احد من عنواينك</string>
     <string name="timetv">ادخل وقت الاستلام : </string>
     <string name="confirmtxtcomment">أضف التعليمات الخاصة بك !</string>
@@ -118,6 +118,15 @@
     <string name="cordersload">جارى تحميل طلباتك الحاليه .. </string>
     <string name="pordersload">جارى تحميل طلباتك السابقة .. </string>
     <string name="sendordersucese">تم ارسال طلبك بنجاح</string>
+    <string name="rs">ر.س</string>
+    <string name="totalpricecart">اجمالى السعر : </string>
+    <string name="selectloc">هل تريد تأكيد اختيار هذا الفرع ؟</string>
+    <string name="selectaddres">هل تريد تاكيد اختيار هذا العنوان ؟</string>
+    <string name="addressorderdetails">العنوان : </string>
+    <string name="bruncheorderdetails">الفرع : </string>
+    <string name="ordernoorderdetails">رقم الطلب . </string>
+    <string name="statusorderdetails">الحالة : </string>
+    <string name="typeorderdetails">النوع : </string>
 
 
 </resources>

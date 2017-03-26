@@ -135,7 +135,7 @@ public class Customization extends AppCompatActivity {
         });
 
         //Set Price on Screen
-        priceTv.setText(price + " SR");
+        priceTv.setText(price + " "+Customization.this.getResources().getString(R.string.rs)+" ");
 
 
 

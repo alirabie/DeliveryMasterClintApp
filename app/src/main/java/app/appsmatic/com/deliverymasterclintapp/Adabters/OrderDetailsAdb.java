@@ -40,7 +40,7 @@ public class OrderDetailsAdb extends RecyclerView.Adapter<OrderDetailsAdb.Vh309>
         animate(holder);
         holder.mealName.setText(orderDetailsItems.get(position).getName()+"");
         holder.mealCount.setText(orderDetailsItems.get(position).getQuantity()+"");
-        holder.mealTotalPrice.setText(orderDetailsItems.get(position).getTotalPrice()+" SR");
+        holder.mealTotalPrice.setText(orderDetailsItems.get(position).getTotalPrice()+" "+context.getResources().getString(R.string.rs));
         holder.mealAddCust.setText(getAllAdditionsAndCust(orderDetailsItems.get(position))+"");
     }
 
@@ -76,7 +76,7 @@ public class OrderDetailsAdb extends RecyclerView.Adapter<OrderDetailsAdb.Vh309>
             for (int i = 0; i < orderDetails.getCustomization().size(); i++) {
                 st.append(" # " + orderDetails.getCustomization().get(i).getCustomizationName() + "   "
                         + orderDetails.getCustomization().get(i).getCustomizationQuantity() + "   "
-                        + orderDetails.getCustomization().get(i).getCustomizationPrice() + " SR " + "\n");
+                        + orderDetails.getCustomization().get(i).getCustomizationPrice() + " " +context.getResources().getString(R.string.rs)+ "\n");
             }
 
         }
@@ -86,7 +86,7 @@ public class OrderDetailsAdb extends RecyclerView.Adapter<OrderDetailsAdb.Vh309>
             for (int x = 0; x < orderDetails.getAdditions().size(); x++) {
                 st.append(" # " + orderDetails.getAdditions().get(x).getAdditionName() + "  "
                         + orderDetails.getAdditions().get(x).getAdditionQuantity() + "  "
-                        + orderDetails.getAdditions().get(x).getAdditionPrice() + " SR " + "\n");
+                        + orderDetails.getAdditions().get(x).getAdditionPrice() +" "+context.getResources().getString(R.string.rs)+ "\n");
             }
         }
 

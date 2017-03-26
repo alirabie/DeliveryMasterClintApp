@@ -82,7 +82,7 @@ public class OrderDetails extends AppCompatActivity {
         orderDateTv= getIntent().getStringExtra("date");
         orderNum= getIntent().getIntExtra("id", 0);
         orderType=getIntent().getStringExtra("flag");
-        orderNo.setText("Order No . "+orderNum + "");
+        orderNo.setText(getResources().getString(R.string.ordernoorderdetails)+orderNum + "");
         orderDate.setText(orderDateTv + "");
 
 
@@ -117,7 +117,7 @@ public class OrderDetails extends AppCompatActivity {
                         currentordersList.setAdapter(orderDetailsAdb);
                         currentordersList.setLayoutManager(new LinearLayoutManager(OrderDetails.this));
                         //Putting total order price
-                        totalAll.setText(orderDetailsAdb.sumTotall()+" SR");
+                        totalAll.setText(orderDetailsAdb.sumTotall()+" "+getResources().getString(R.string.rs));
 
                     } else {
                         Toast.makeText(OrderDetails.this, "Code 0 from Order Details", Toast.LENGTH_LONG).show();

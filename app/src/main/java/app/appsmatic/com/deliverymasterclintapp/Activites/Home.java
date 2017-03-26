@@ -554,6 +554,34 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
+    //calc cart items and update price
+    public static double calcCartPrice (){
+        double result=0.0;
+        if(!Home.cartMeals.isEmpty()){
+        for(int i=0;i<Home.cartMeals.size();i++) {
+            result = result + Home.cartMeals.get(i).getMealCount() * Home.cartMeals.get(i).getMealPrice();
+
+            //if there is additions calc its price
+            if (cartMeals.get(i).getMealAdditions() != null) {
+                for (int x = 0; x < cartMeals.get(i).getMealAdditions().size(); x++) {
+                    result = result + cartMeals.get(i).getMealAdditions().get(x).getAddprice() * cartMeals.get(i).getMealAdditions().get(x).getAddCount();
+                }
+            }
+
+            //if there is customizations calc price
+            if (cartMeals.get(i).getCustomization() != null) {
+                for (int z = 0; z < cartMeals.get(i).getCustomization().size(); z++) {
+                    result = result + cartMeals.get(i).getCustomization().get(z).getCustomizationPrice() * cartMeals.get(i).getCustomization().get(z).getCustomizationCount();
+                }
+            }
+
+        }
+
+        }
+        return result;
+    }
+
+
 
     // Set User Profile
     public static void setUserProfileInfo(final Context context) {

@@ -47,7 +47,7 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
 
         animate(holder);
         holder.custName.setText(customizationMs.get(position).getCname());
-        holder.price.setText(customizationMs.get(position).getCprice()+" SR");
+        holder.price.setText(customizationMs.get(position).getCprice()+" "+context.getResources().getString(R.string.rs)+" ");
 
         //set first item in counts list
         counts.add(position, 0);

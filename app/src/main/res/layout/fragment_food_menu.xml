@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.FoodMenu"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#cdcdcd">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/catslist"
-        android:background="#ffffff" />
+        android:background="#cdcdcd" />
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

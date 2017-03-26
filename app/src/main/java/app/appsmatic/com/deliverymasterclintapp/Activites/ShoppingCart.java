@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +38,7 @@ public class ShoppingCart extends AppCompatActivity {
     private RecyclerView mealslist;
     private CartData cartData;
     private TextView cartEmpty;
+    public static TextView cartTotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class ShoppingCart extends AppCompatActivity {
 
 
 
+        cartTotalPrice=(TextView)findViewById(R.id.cart_price_tv);
         cartEmpty=(TextView)findViewById(R.id.tv_cart_empty);
         cartEmpty.setVisibility(View.INVISIBLE);
         mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
@@ -72,6 +75,22 @@ public class ShoppingCart extends AppCompatActivity {
         pickuBtn=(ImageView)findViewById(R.id.cart_pickup_btn);
         deleviryBtn=(ImageView)findViewById(R.id.cart_delvery_btn);
         mealslist=(RecyclerView)findViewById(R.id.cart_meals_list);
+
+
+        // cart total price
+        updateCartPrice(ShoppingCart.this);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         //Set image language for pickup and delivery button
@@ -290,6 +309,11 @@ public class ShoppingCart extends AppCompatActivity {
 
 
 
+    }
+
+    //update cart price
+    public static void updateCartPrice(Context context){
+        ShoppingCart.cartTotalPrice.setText(context.getResources().getString(R.string.totalpricecart)+" "+Home.calcCartPrice()+" "+context.getResources().getString(R.string.rs));
     }
 
 

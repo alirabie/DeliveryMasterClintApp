@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.CustomizationM;
+import app.appsmatic.com.deliverymasterclintapp.Activites.Home;
+import app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealCustomization;
 import app.appsmatic.com.deliverymasterclintapp.R;
 
@@ -61,6 +63,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
                 holder.count.setText(num + "");
                 //update cart with new values
                 customizations.get(position).setCustomizationCount(num);
+                ShoppingCart.updateCartPrice(context);
 
             }
         });
@@ -84,6 +87,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
                     customizations.remove(position);
                     notifyDataSetChanged();
                 }
+                ShoppingCart.updateCartPrice(context);
 
             }
         });
@@ -102,6 +106,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
                             public void onClick(DialogInterface dialog, int id) {
                                 customizations.remove(position);
                                 notifyDataSetChanged();
+                                ShoppingCart.updateCartPrice(context);
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

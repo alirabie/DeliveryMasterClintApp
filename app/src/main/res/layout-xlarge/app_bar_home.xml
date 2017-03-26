@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="30dp"
+                android:textSize="38dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:text="@string/home"

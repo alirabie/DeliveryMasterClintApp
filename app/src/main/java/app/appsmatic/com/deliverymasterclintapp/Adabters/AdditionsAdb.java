@@ -55,7 +55,7 @@ public class AdditionsAdb extends RecyclerView.Adapter<AdditionsAdb.vh00> {
 
         animate(holder);
         holder.addName.setText(additions.getMessage().get(position).getName() + "");
-        holder.price.setText(additions.getMessage().get(position).getPrice() + " SR");
+        holder.price.setText(additions.getMessage().get(position).getPrice() + " "+context.getResources().getString(R.string.rs));
 
         //set first item in counts list
         counts.add(position, 0);

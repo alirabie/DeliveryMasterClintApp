@@ -55,7 +55,7 @@ public class MealsAdb extends RecyclerView.Adapter<MealsAdb.vh2> {
 
 
         holder.details.setText(meals.getMessage().get(position).getDescription()+"");
-        holder.price.setText(meals.getMessage().get(position).getPrice()+" SR");
+        holder.price.setText(meals.getMessage().get(position).getPrice()+" "+context.getResources().getString(R.string.rs));
 
         //Encoding Img URL
         String url = Uri.encode(BaseURL.IMGS+meals.getMessage().get(position).getImagePreview().toString(), ALLOWED_URI_CHARS);

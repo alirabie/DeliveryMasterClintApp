@@ -35,7 +35,7 @@ public class ConfirmOrdersAdb extends RecyclerView.Adapter<ConfirmOrdersAdb.Vio>
     public void onBindViewHolder(Vio holder, int position) {
         holder.mealName.setText(cartMeals.get(position).getMealName()+"");
         holder.mealCount.setText(cartMeals.get(position).getMealCount()+"");
-        holder.mealTotalPrice.setText(getTotalPrice(cartMeals.get(position))+" SR");
+        holder.mealTotalPrice.setText(getTotalPrice(cartMeals.get(position))+" "+context.getResources().getString(R.string.rs));
         holder.mealAddCust.setText(getAllAdditionsAndCust(cartMeals.get(position))+"");
 
     }
@@ -91,7 +91,7 @@ public class ConfirmOrdersAdb extends RecyclerView.Adapter<ConfirmOrdersAdb.Vio>
            for (int i = 0; i < meal2.getCustomization().size(); i++) {
                st.append(" # "+meal2.getCustomization().get(i).getCustomizationName() + "   "
                             + meal2.getCustomization().get(i).getCustomizationCount() + "   "
-                            + meal2.getCustomization().get(i).getCustomizationPrice() + " SR "+"\n");
+                            + meal2.getCustomization().get(i).getCustomizationPrice() + " "+context.getResources().getString(R.string.rs)+" "+"\n");
            }
 
        }
@@ -101,7 +101,7 @@ public class ConfirmOrdersAdb extends RecyclerView.Adapter<ConfirmOrdersAdb.Vio>
             for (int x=0;x<meal2.getMealAdditions().size();x++){
                 st.append(" # "+meal2.getMealAdditions().get(x).getAdditionName()+"  "
                              +meal2.getMealAdditions().get(x).getAddCount()+"  "
-                             +meal2.getMealAdditions().get(x).getAddprice()+" SR "+"\n");
+                             +meal2.getMealAdditions().get(x).getAddprice()+" "+context.getResources().getString(R.string.rs)+" "+"\n");
 
             }
         }

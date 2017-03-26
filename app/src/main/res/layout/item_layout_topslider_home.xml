@@ -20,10 +20,10 @@
         android:id="@+id/top_slider_tv_item_layout_name"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:textSize="10dp"
+        android:textSize="16dp"
         android:background="#a30b0b0b"
         android:textStyle="bold"
         android:textColor="#ffffff"
-        android:padding="10dp"
+        android:padding="3dp"
         />
 </FrameLayout>

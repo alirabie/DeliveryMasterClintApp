@@ -1,7 +1,9 @@
 package app.appsmatic.com.deliverymasterclintapp.Adabters;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -53,11 +55,30 @@ public class DeliveryBrunchesAdb extends RecyclerView.Adapter<DeliveryBrunchesAd
         holder.clckLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               context.startActivity(new Intent(context, Confirmation.class)
-                       .putExtra("locationId", locations.getMessage().get(position).getLocationID() + "")
-                       .putExtra("servicetype", 2).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                ((Activity)context).finish();
-                Toast.makeText(context,"Your Location Id : "+locations.getMessage().get(position).getLocationID()+"",Toast.LENGTH_LONG).show();
+
+
+
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.selectaddres)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                context.startActivity(new Intent(context, Confirmation.class)
+                                        .putExtra("locationId", locations.getMessage().get(position).getLocationID() + "")
+                                        .putExtra("servicetype", 2).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                                ((Activity)context).finish();
+                                Toast.makeText(context,"Your Location Id : "+locations.getMessage().get(position).getLocationID()+"",Toast.LENGTH_LONG).show();
+
+                            }
+                        })
+                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        }).setIcon(android.R.drawable.alert_light_frame);
+                AlertDialog alert = builder.create();
+                alert.show();
 
             }
         });

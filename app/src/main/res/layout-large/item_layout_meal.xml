@@ -2,17 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp">
+    android:padding="3dp">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#cdcdcd">
+        android:background="#ffffff"
+        android:padding="3dp"
+        android:gravity="end">
 
         <ImageView
-            android:layout_width="235dp"
-            android:layout_height="150dp"
+            android:layout_width="140dp"
+            android:layout_height="130dp"
             android:id="@+id/meal_home_mealpic"
             android:src="@drawable/mealpic" />
 
@@ -20,29 +22,46 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Name Of meal"
                 android:id="@+id/tv_meal_home_mealname"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20dp"
+                android:textSize="21dp"
                 android:textColor="#d90d15"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:padding="3dp" />
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="sfnjshf jkkjbg kjdfgjk kzccxv xvxcv xv xcv xv  xcv jbfdkgbkj kjbdfgb "
-                android:id="@+id/tv_meal_home_maildetails"
-                android:layout_gravity="center_horizontal"
-                android:textSize="15dp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="sfnjshf jkkjbg kjdfgjk kzccxv xvxcv xv xcv xv  xcv jbfdkgbkj kjbdfgb "
+                    android:id="@+id/tv_meal_home_maildetails"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="15dp"
+                    android:padding="2dp"
+                    android:layout_weight="1"
+                    android:inputType="textMultiLine" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/addmeal_home_meals_btn"
+                    android:src="@drawable/addmealicon"
+                    android:layout_weight="3"
+                    android:clickable="true" />
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -74,18 +93,11 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:text="155 SR"
                         android:id="@+id/tv_meal_home_price"
-                        android:textSize="12dp"
+                        android:textSize="15dp"
                         android:textColor="#000000"
                         android:padding="3dp" />
                 </LinearLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/addmeal_home_meals_btn"
-                    android:src="@drawable/addmealicon"
-                    android:layout_weight="2"
-                    android:clickable="true"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -76,8 +76,8 @@
     <string name="shoppingcartempty">Cart Empty ..</string>
     <string name="pleaseselectbranch">Please Select Branch : </string>
     <string name="nolocations">No Locations Registered to your Account</string>
-    <string name="yourcoument">Please Add your Comment to Chief</string>
-    <string name="streetaddress">Please Enter Your Full Street Name</string>
+    <string name="yourcoument">Please add your address details here !</string>
+    <string name="streetaddress">Please Put Your Address Here !</string>
     <string name="selectassigenedlocation">Select From your Assigned Locations</string>
     <string name="timetv">Enter Time Of Receipt : </string>
     <string name="confirmtxtcomment">Add Your Instructions !</string>
@@ -102,6 +102,16 @@
     <string name="cordersload">Loading your Current Orders .. </string>
     <string name="pordersload">Loading your Previous Orders .. </string>
     <string name="sendordersucese">Your order has been sent successfully</string>
+    <string name="totalpricecart">Total Price : </string>
+    <string name="rs">R.S</string>
+    <string name="selectloc">Are you sure you wont select this brunch ?</string>
+    <string name="selectaddres">Are you sure you wont select this Address ?</string>
+
+    <string name="addressorderdetails">Address : </string>
+    <string name="ordernoorderdetails">Order No . </string>
+    <string name="typeorderdetails">Type : </string>
+    <string name="statusorderdetails">Status : </string>
+    <string name="bruncheorderdetails">Brunch : </string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

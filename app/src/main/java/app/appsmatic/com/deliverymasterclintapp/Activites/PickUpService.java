@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -76,7 +77,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
         data.put("restaurantid", ResturantId.resId);
         Genrator.createService(ClintAppApi.class).getPicupBranches(data).enqueue(new Callback<ResLocations>() {
             @Override
-            public void onResponse(Call<ResLocations> call, Response<ResLocations> response) {
+            public void onResponse(Call<ResLocations> call, final Response<ResLocations> response) {
                 //if response success
                 if (response.isSuccessful()) {
                     //if code from server not 0
@@ -94,7 +95,44 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
                             for (int i = 0; i < response.body().getMessage().size(); i++) {
                                 try {
                                     LatLng sydney = new LatLng(response.body().getMessage().get(i).getLatitude(), response.body().getMessage().get(i).getLongtitude());
-                                    mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()));
+                                    mMap.addMarker(new MarkerOptions().position(sydney).title(response.body().getMessage().get(i).getBranchName()).snippet(response.body().getMessage().get(i).getLocationID()+""));
+                                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                        @Override
+                                        public boolean onMarkerClick(final Marker marker) {
+
+
+                                            if(marker.getSnippet()==null){
+
+                                            }else {
+
+                                                final AlertDialog.Builder builder = new AlertDialog.Builder(PickUpService.this);
+                                                builder.setMessage(R.string.selectloc)
+                                                        .setCancelable(false)
+                                                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+
+                                                                startActivity(new Intent(PickUpService.this, Confirmation.class)
+                                                                        .putExtra("locationId", marker.getSnippet() + "")
+                                                                        .putExtra("servicetype", 2));
+                                                                finish();
+                                                                Toast.makeText(getApplication(), "Your Location Id : " + marker.getSnippet(), Toast.LENGTH_LONG).show();
+
+
+                                                            }
+                                                        })
+                                                        .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        }).setIcon(android.R.drawable.alert_light_frame);
+                                                AlertDialog alert = builder.create();
+                                                alert.show();
+
+                                            }
+                                            return true;
+                                        }
+
+                                    });
                                    // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
                                    // float zoomLevel = (float) 10.0; //This goes up to 21
                                   //  mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));

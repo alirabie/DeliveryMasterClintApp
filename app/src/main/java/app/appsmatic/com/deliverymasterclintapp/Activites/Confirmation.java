@@ -1,5 +1,6 @@
 package app.appsmatic.com.deliverymasterclintapp.Activites;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
@@ -19,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -86,6 +88,16 @@ public class Confirmation extends AppCompatActivity {
         total=(TextView)findViewById(R.id.totprice);
         toolbartitle=(TextView)findViewById(R.id.toptit);
 
+        //touche hide keyboard
+        comments.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
         Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
         toolbartitle.setTypeface(face);
         toolbartitle.setText(R.string.toptitleconfirom);
@@ -127,7 +139,7 @@ public class Confirmation extends AppCompatActivity {
         confirmOrdersAdb=new ConfirmOrdersAdb(Home.cartMeals, getApplicationContext());
         orderList.setAdapter(confirmOrdersAdb);
         orderList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        total.setText(confirmOrdersAdb.getTotalAll() + " SR");
+        total.setText(confirmOrdersAdb.getTotalAll() + " "+getResources().getString(R.string.rs));
 
 
         confirmBtn.setOnClickListener(new View.OnClickListener() {
@@ -270,6 +282,11 @@ public class Confirmation extends AppCompatActivity {
             confirmBtn.setImageResource(R.drawable.confirmbtnen);
         }
 
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }
 

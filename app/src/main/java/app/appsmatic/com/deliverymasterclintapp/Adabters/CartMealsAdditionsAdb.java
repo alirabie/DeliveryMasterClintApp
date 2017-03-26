@@ -64,6 +64,7 @@ public class CartMealsAdditionsAdb extends RecyclerView.Adapter<CartMealsAdditio
                 holder.count.setText(num+"");
                 //update cart with new values
                 mealAdditions.get(position).setAddCount(num);
+                ShoppingCart.updateCartPrice(context);
 
             }
         });
@@ -87,6 +88,7 @@ public class CartMealsAdditionsAdb extends RecyclerView.Adapter<CartMealsAdditio
                     mealAdditions.remove(position);
                     notifyDataSetChanged();
                 }
+                ShoppingCart.updateCartPrice(context);
 
             }
         });
@@ -109,6 +111,7 @@ public class CartMealsAdditionsAdb extends RecyclerView.Adapter<CartMealsAdditio
                             public void onClick(DialogInterface dialog, int id) {
                                 mealAdditions.remove(position);
                                 notifyDataSetChanged();
+                                ShoppingCart.updateCartPrice(context);
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

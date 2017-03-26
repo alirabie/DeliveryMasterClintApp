@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.Activites.Home;
+import app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.CartMeal;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
@@ -113,6 +114,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                 holder.mealcount.setText(num + "");
                 //update cart with new values
                 cartMeals.get(position).setMealCount(num);
+                //update price
+                ShoppingCart.updateCartPrice(context);
 
             }
         });
@@ -145,7 +148,9 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                         Home.icon = (LayerDrawable)Home.itemCart.getIcon();
                         Home.setBadgeCount(context, Home.icon, Home.cartMeals.size() + "");
                     }
+
                 }
+                ShoppingCart.updateCartPrice(context);
             }
         });
 
@@ -171,6 +176,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                                     Home.icon = (LayerDrawable)Home.itemCart.getIcon();
                                     Home.setBadgeCount(context, Home.icon, Home.cartMeals.size() + "");
                                 }
+                                ShoppingCart.updateCartPrice(context);
 
                             }
                         })
