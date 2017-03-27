@@ -89,7 +89,7 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
         viewHolder.itemView.setAnimation(animAnticipateOvershoot);
     }
     public static class vh501 extends RecyclerView.ViewHolder{
-        private TextView no,brunch,status,type,date,price;
+        private TextView no,brunch,status,type,date;
         private ImageView detailsBtn;
         public vh501(View itemView) {
             super(itemView);
@@ -99,7 +99,6 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
             status=(TextView)itemView.findViewById(R.id.status_tv);
             type=(TextView)itemView.findViewById(R.id.type_tv);
             date=(TextView)itemView.findViewById(R.id.curntorder_itemlayout_date);
-            price=(TextView)itemView.findViewById(R.id.curntorder_itemlayout_price);
             detailsBtn=(ImageView)itemView.findViewById(R.id.current_order_details_btn);
         }
     }

@@ -367,6 +367,7 @@ public class Customization extends AppCompatActivity {
 
 
                         Home.cartMeals.add(cartMeal);
+                        SaveSharedPreference.setCartOrders(Customization.this,Home.cartMeals);
                         adb.mealAdditions.clear();
                         cAdb.catsAdb.mealCustomizations.clear();
                         //Increment Cart tv number

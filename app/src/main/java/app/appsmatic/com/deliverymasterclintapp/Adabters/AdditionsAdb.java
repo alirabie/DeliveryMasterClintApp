@@ -17,8 +17,10 @@ import java.util.List;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.Meal;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
+import app.appsmatic.com.deliverymasterclintapp.Activites.Home;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealAddition;
 import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 /**
  * Created by Mido PC on 12/26/2016.
@@ -91,9 +93,6 @@ public class AdditionsAdb extends RecyclerView.Adapter<AdditionsAdb.vh00> {
                     mealAdditions.set(position,mealAddition);
 
                 }
-
-
-
 
             }
         });

@@ -116,6 +116,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                 cartMeals.get(position).setMealCount(num);
                 //update price
                 ShoppingCart.updateCartPrice(context);
+                //Update prefs
+                SaveSharedPreference.setCartOrders(context, Home.cartMeals);
 
             }
         });
@@ -133,7 +135,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                 //update cart with new values
                 cartMeals.get(position).setMealCount(num);
                 //show count
-                holder.mealcount.setText(num+"");
+                holder.mealcount.setText(num + "");
                 //Check if count 0 delete meal from cart
                 if(num==0){
                     cartMeals.remove(position);
@@ -142,6 +144,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                     if(Home.cartMeals.isEmpty()){
                         Home.icon = (LayerDrawable)Home.itemCart.getIcon();
                         Home.setBadgeCount(context, Home.icon, 0 + "");
+                        //Update prefs
+                        SaveSharedPreference.setCartOrders(context, Home.cartMeals);
                         //close
                         ((Activity)context).finish();
                     }else {
@@ -151,6 +155,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
                 }
                 ShoppingCart.updateCartPrice(context);
+                //Update prefs
+                SaveSharedPreference.setCartOrders(context, Home.cartMeals);
             }
         });
 
@@ -170,6 +176,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                                 if(Home.cartMeals.isEmpty()){
                                     Home.icon = (LayerDrawable)Home.itemCart.getIcon();
                                     Home.setBadgeCount(context, Home.icon, 0 + "");
+                                    //Update prefs
+                                    SaveSharedPreference.setCartOrders(context, Home.cartMeals);
                                     //close
                                     ((Activity)context).finish();
                                 }else {
@@ -177,6 +185,8 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
                                     Home.setBadgeCount(context, Home.icon, Home.cartMeals.size() + "");
                                 }
                                 ShoppingCart.updateCartPrice(context);
+                                //Update prefs
+                                SaveSharedPreference.setCartOrders(context, Home.cartMeals);
 
                             }
                         })

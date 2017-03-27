@@ -206,6 +206,7 @@ public class Confirmation extends AppCompatActivity {
                                             Home.setBadgeCount(getBaseContext(), Home.icon, "");
                                             Home.setBadgeCount(getBaseContext(), Home.icon, Home.cartMeals.size() + "");
                                             SaveSharedPreference.setCartId(getApplicationContext(), "");
+                                            SaveSharedPreference.setCartOrders(Confirmation.this, Home.cartMeals);
                                             Confirmation.this.finish();
 
 

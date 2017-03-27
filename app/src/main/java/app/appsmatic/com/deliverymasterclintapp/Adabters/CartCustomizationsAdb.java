@@ -18,6 +18,7 @@ import app.appsmatic.com.deliverymasterclintapp.Activites.Home;
 import app.appsmatic.com.deliverymasterclintapp.Activites.ShoppingCart;
 import app.appsmatic.com.deliverymasterclintapp.CartStructure.MealCustomization;
 import app.appsmatic.com.deliverymasterclintapp.R;
+import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
 
 /**
  * Created by Mido PC on 2/8/2017.
@@ -64,6 +65,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
                 //update cart with new values
                 customizations.get(position).setCustomizationCount(num);
                 ShoppingCart.updateCartPrice(context);
+                SaveSharedPreference.setCartOrders(context, Home.cartMeals);
 
             }
         });
@@ -88,7 +90,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
                     notifyDataSetChanged();
                 }
                 ShoppingCart.updateCartPrice(context);
-
+                SaveSharedPreference.setCartOrders(context, Home.cartMeals);
             }
         });
 
@@ -107,6 +109,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
                                 customizations.remove(position);
                                 notifyDataSetChanged();
                                 ShoppingCart.updateCartPrice(context);
+                                SaveSharedPreference.setCartOrders(context, Home.cartMeals);
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

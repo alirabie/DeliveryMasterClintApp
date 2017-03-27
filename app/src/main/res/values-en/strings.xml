@@ -117,7 +117,7 @@
     <string name="cordersload">Loading your Current Orders ..</string>
     <string name="pordersload">Loading your Previous Orders ..</string>
     <string name="sendordersucese">Your order has been sent successfully</string>
-    <string name="rs">R.S</string>
+    <string name="rs">SR</string>
     <string name="totalpricecart">Total Price :</string>
     <string name="selectloc">Are you sure you wont select this brunch ?</string>
     <string name="selectaddres">Are you sure you wont select this Address ?</string>

@@ -25,6 +25,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.Toolbar;
+import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,6 +52,7 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.readystatesoftware.viewbadger.BadgeView;
 import com.squareup.picasso.Picasso;
 
@@ -120,6 +122,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         userProfile=new UserProfile();
         setUserProfileInfo(Home.this);
+
+
+            cartMeals = SaveSharedPreference.getCartOrders(Home.this);
+
         //Check Os Ver For Set Status Bar
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
@@ -439,6 +445,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }
+
+
+
+
+
 
 
 
