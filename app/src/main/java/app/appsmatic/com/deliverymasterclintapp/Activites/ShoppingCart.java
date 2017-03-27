@@ -83,16 +83,6 @@ public class ShoppingCart extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
         //Set image language for pickup and delivery button
         if(SaveSharedPreference.getLangId(this).equals("ar")){
            pickuBtn.setImageResource(R.drawable.cart_pickup_btn_arabic);

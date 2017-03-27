@@ -48,10 +48,10 @@ public class CurrentOrdersAdb extends RecyclerView.Adapter<CurrentOrdersAdb.vh50
         animate(holder);
 
         holder.no.setText(context.getResources().getString(R.string.ordernoorderdetails) + userOrders.get(position).getOrderID() + "");
-        if (userOrders.get(position).getPickupBranch() == null) {
-            holder.brunch.setText(context.getResources().getString(R.string.addressorderdetails) + userOrders.get(position).getDeliveryBranch());
+        if (userOrders.get(position).getOrderType().equals("توصيل")) {
+            holder.brunch.setText(context.getResources().getString(R.string.addressorderdetails) + userOrders.get(position).getAddress());
         } else {
-            holder.brunch.setText(context.getResources().getString(R.string.bruncheorderdetails) + userOrders.get(position).getPickupBranch());
+            holder.brunch.setText(context.getResources().getString(R.string.bruncheorderdetails) + userOrders.get(position).getBranchName());
         }
         holder.status.setText(context.getResources().getString(R.string.statusorderdetails) + userOrders.get(position).getStatus() + "");
         holder.type.setText(context.getResources().getString(R.string.typeorderdetails) + userOrders.get(position).getOrderType());
