@@ -9,29 +9,31 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:padding="5dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:gravity="center">
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:gravity="end">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Meal Name"
-                    android:id="@+id/prev_order_details_meal_name"
+                    android:id="@+id/order_details_meal_name"
                     android:textColor="#490000"
                     android:padding="3dp"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -70,7 +72,7 @@
                         android:padding="5dp"
                         android:textSize="15dp"
                         android:textColor="#000000"
-                        android:id="@+id/prev_order_details_meal_count" />
+                        android:id="@+id/order_details_meal_count" />
 
                 </LinearLayout>
 
@@ -93,7 +95,7 @@
                         android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="50 SR"
-                        android:id="@+id/prev_order_details_meal_price"
+                        android:id="@+id/order_details_meal_price"
                         android:gravity="center"
                         android:textSize="15dp"
                         android:padding="4dp"
@@ -103,9 +105,9 @@
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="150dp"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:id="@+id/prev_order_details_meal_pic"
+            android:id="@+id/order_details_meal_pic"
             android:src="@drawable/mealpic"
             android:layout_weight="1"
             android:orientation="horizontal" />
@@ -123,20 +125,21 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/Additions"
-            android:id="@+id/prev_order_details_add_tv"
+            android:id="@+id/order_details_add_tv"
             android:gravity="center"
             android:textSize="15dp"
             android:padding="5dp"
             android:textColor="#110057"
             android:background="#bebebe" />
 
-        <android.support.v7.widget.RecyclerView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/prev_order_details_meal_add_list"
-            android:padding="5dp">
+            android:id="@+id/order_details_meal_add_list"
+            android:padding="5dp"
+            android:textSize="14dp">
 
-        </android.support.v7.widget.RecyclerView>
+        </TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -151,18 +154,19 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/customizations"
-            android:id="@+id/prev_order_details_meal_cust_tv"
+            android:id="@+id/order_details_meal_cust_tv"
             android:gravity="center"
             android:textSize="15dp"
             android:padding="5dp"
             android:textColor="#110057"
             android:background="#bebebe" />
 
-        <android.support.v7.widget.RecyclerView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/prev_order_details_meal_cust_list"
-            android:padding="5dp" />
+            android:id="@+id/order_details_meal_cust_list"
+            android:padding="5dp"
+            android:textSize="14dp" />
     </LinearLayout>
 
     <LinearLayout

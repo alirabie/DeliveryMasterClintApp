@@ -98,6 +98,14 @@ public class Confirmation extends AppCompatActivity {
             }
         });
 
+
+
+
+
+
+
+
+
         Typeface face=Typeface.createFromAsset(getAssets(), "arabicfont.ttf");
         toolbartitle.setTypeface(face);
         toolbartitle.setText(R.string.toptitleconfirom);

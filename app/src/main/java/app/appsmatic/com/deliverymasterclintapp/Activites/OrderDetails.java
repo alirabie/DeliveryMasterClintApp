@@ -22,6 +22,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.OrderDetailsAdb;
 import app.appsmatic.com.deliverymasterclintapp.R;
 import app.appsmatic.com.deliverymasterclintapp.SharedPrefs.SaveSharedPreference;
+import app.appsmatic.com.deliverymasterclintapp.Tools.ResturantId;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,7 +88,7 @@ public class OrderDetails extends AppCompatActivity {
 
 
 
-
+/*
         //Switch current order and previous orders buttons
         if(orderType.equals("c"))
         {
@@ -101,11 +102,12 @@ public class OrderDetails extends AppCompatActivity {
             reorder.setVisibility(View.VISIBLE);
         }
 
-
+*/
 
 
         HashMap data=new HashMap();
         data.put("orderid", orderNum);
+        data.put("restaurantid", ResturantId.resId);
         Genrator.createService(ClintAppApi.class).getOrderDetails(data).enqueue(new Callback<ResOrderDetails>() {
             @Override
             public void onResponse(Call<ResOrderDetails> call, Response<ResOrderDetails> response) {

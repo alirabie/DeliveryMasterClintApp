@@ -22,6 +22,9 @@ public class OrderDetailsItem {
     @SerializedName("Quantity")
     @Expose
     private Integer quantity;
+    @SerializedName("Image")
+    @Expose
+    private String image;
     @SerializedName("additions")
     @Expose
     private List<OrderDetailsAddition> additions = null;
@@ -78,6 +81,13 @@ public class OrderDetailsItem {
 
     public void setCustomization(List<OrderDetailsCustomization> customization) {
         this.customization = customization;
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Double getTotalPrice() {

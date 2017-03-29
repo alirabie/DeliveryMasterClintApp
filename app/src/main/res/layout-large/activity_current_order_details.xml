@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp"
     android:background="#ffffff">
 
     <LinearLayout
@@ -13,7 +12,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:gravity="center"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="#fdbd24">
 
 
 
@@ -77,53 +77,6 @@
         android:layout_alignParentEnd="true"
         android:id="@+id/linearLayout9"
         android:layout_weight="1" >
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fdbd24" >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/textView13f"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="5dp"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:textStyle="bold"
-                android:text="@string/mealtotlaprice" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/mealcount"
-                android:id="@+id/textView21d"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="5dp"
-                android:gravity="center"
-                android:textIsSelectable="false"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/mealname"
-                android:id="@+id/textView24d"
-                android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="5dp"
-                android:gravity="center"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
