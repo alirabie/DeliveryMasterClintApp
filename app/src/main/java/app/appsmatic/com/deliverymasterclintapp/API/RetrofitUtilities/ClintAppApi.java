@@ -4,6 +4,7 @@ import app.appsmatic.com.deliverymasterclintapp.API.Models.ResAdditions;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCats;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCreateCart;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResOrderDetails;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResPickupTime;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResProfileInfo;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResUserOrders;
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResCustomizations;
@@ -81,6 +82,10 @@ public interface ClintAppApi {
     //Get Customer Profile
     @POST("Account/Profile")
     Call<ResProfileInfo>getProfileInfo(@Body Object owner2);
+
+    //Get PickUp Time
+    @POST("ShoppingCart/PickupTime")
+    Call<ResPickupTime>getPickUpTime(@Body Object owner2);
 
 
 

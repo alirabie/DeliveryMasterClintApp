@@ -30,14 +30,17 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Handler;
 
 import app.appsmatic.com.deliverymasterclintapp.API.Models.ResOrderConfirmation;
+import app.appsmatic.com.deliverymasterclintapp.API.Models.ResPickupTime;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.ClintAppApi;
 import app.appsmatic.com.deliverymasterclintapp.API.RetrofitUtilities.Genrator;
 import app.appsmatic.com.deliverymasterclintapp.Adabters.ConfirmOrdersAdb;
@@ -61,6 +64,7 @@ public class Confirmation extends AppCompatActivity {
     private TextView total;
     private ConfirmOrdersAdb confirmOrdersAdb;
     private TextView toolbartitle;
+    private Date d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +103,61 @@ public class Confirmation extends AppCompatActivity {
         });
 
 
+        //Get pickUp Time
+        if(serviceType==1) {
+            HashMap data = new HashMap();
+            data.put("restaurantid", ResturantId.resId);
+            data.put("cartid", SaveSharedPreference.getCartId(Confirmation.this));
+            data.put("servicetype", serviceType);
+            data.put("locationid", locationId);
+            Genrator.createService(ClintAppApi.class).getPickUpTime(data).enqueue(new Callback<ResPickupTime>() {
+                @Override
+                public void onResponse(Call<ResPickupTime> call, Response<ResPickupTime> response) {
+                    if (response.isSuccessful()) {
+                        if (response.body().getCode() != 0) {
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                            try {
+                                d = sdf.parse(response.body().getMessage()+"");
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            Calendar serverdate = Calendar.getInstance();
+                            serverdate.setTime(d);
+                            String am_pm2 = "";
+                            if (serverdate.get(Calendar.AM_PM) == Calendar.AM)
+                                am_pm2 = "AM";
+                            else if (serverdate.get(Calendar.AM_PM) == Calendar.PM)
+                                am_pm2 = "PM";
+                            String strHrsToShow2 = (serverdate.get(Calendar.HOUR) == 0) ? "12" : serverdate.get(Calendar.HOUR) + "";
+                            timetxt.setText(strHrsToShow2 + ":" + serverdate.get(Calendar.MINUTE) + " " + am_pm2);
+
+                        } else {
+                            timetxt.setText("Error 0 from Time");
+                        }
+                    } else {
+                        timetxt.setText("Time No response");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResPickupTime> call, Throwable t) {
+                    timetxt.setText("Connection Error Time");
+                }
+            });
+
+            //Delivery service Time
+        }else if(serviceType==2){
+
+
+
+
+        }
+
+
+
+
+
 
 
 
@@ -115,9 +174,12 @@ public class Confirmation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar c = Calendar.getInstance();
+                if(serviceType==1) {
+                    c.setTime(d);
+                }
+
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
-
                 // Launch Time Picker Dialog
                 TimePickerDialog timePickerDialog = new TimePickerDialog(Confirmation.this,
                         new TimePickerDialog.OnTimeSetListener() {
@@ -127,13 +189,19 @@ public class Confirmation extends AppCompatActivity {
                                 Calendar datetime = Calendar.getInstance();
                                 datetime.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                 datetime.set(Calendar.MINUTE, minute);
-                                if (datetime.get(Calendar.AM_PM) == Calendar.AM)
-                                    am_pm = "AM";
-                                else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
-                                    am_pm = "PM";
-                                String strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
-                                timetxt.setText(strHrsToShow + ":" + datetime.get(Calendar.MINUTE) + " " + am_pm);
-                                Log.e("t/est ", timetxt.getText() + " " + locationId + " " + SaveSharedPreference.getOwnerId(getApplicationContext()) + "  " + SaveSharedPreference.getCartId(getApplicationContext()));
+
+
+                                if(datetime.before(c)){
+                                   timetxt.setText(getResources().getString(R.string.timeerorr));
+                                }else {
+                                    if (datetime.get(Calendar.AM_PM) == Calendar.AM)
+                                        am_pm = "AM";
+                                    else if (datetime.get(Calendar.AM_PM) == Calendar.PM)
+                                        am_pm = "PM";
+                                    String strHrsToShow = (datetime.get(Calendar.HOUR) == 0) ? "12" : datetime.get(Calendar.HOUR) + "";
+                                    timetxt.setText(strHrsToShow + ":" + datetime.get(Calendar.MINUTE) + " " + am_pm);
+                                    Log.e("t/est ", timetxt.getText() + " " + locationId + " " + SaveSharedPreference.getOwnerId(getApplicationContext()) + "  " + SaveSharedPreference.getCartId(getApplicationContext()));
+                                }
                             }
                         }, mHour, mMinute, false);
                 timePickerDialog.show();
@@ -164,7 +232,7 @@ public class Confirmation extends AppCompatActivity {
 
 
 
-                if (timetxt.getText().toString().equals("00:00:00")) {
+                if (timetxt.getText().toString().equals(getResources().getString(R.string.timeerorr))) {
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation.this);

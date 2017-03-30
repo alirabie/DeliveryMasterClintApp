@@ -79,7 +79,7 @@
     <string name="yourcoument">Please add your address details here !</string>
     <string name="streetaddress">Please Put Your Address Here !</string>
     <string name="selectassigenedlocation">Select From your Assigned Locations</string>
-    <string name="timetv">Enter Time Of Receipt : </string>
+    <string name="timetv">Modefy PickUp Time : </string>
     <string name="confirmtxtcomment">Add Your Instructions !</string>
     <string name="confirmorder">The Order</string>
     <string name="mealname">Meal</string>
@@ -126,6 +126,7 @@
     <string name="title_activity_add_location">AddLocation</string>
     <string name="title_activity_current_order_details">CurrentOrderDetails</string>
     <string name="title_activity_previuos_order_details">PreviuosOrderDetails</string>
+    <string name="timeerorr">Please select later Date !!</string>
 
 
 </resources>

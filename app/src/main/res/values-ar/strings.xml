@@ -81,7 +81,7 @@
     <string name="yourcoument">من فضلك ضع تفاصيل عنوانك هنا !</string>
     <string name="streetaddress">من فضلك اكتب عنوانك هنا !</string>
     <string name="selectassigenedlocation">من فضلك اختار احد من عنواينك</string>
-    <string name="timetv">ادخل وقت الاستلام : </string>
+    <string name="timetv">تعديل وقت الاستلام : </string>
     <string name="confirmtxtcomment">أضف التعليمات الخاصة بك !</string>
     <string name="confirmorder">طلبك</string>
     <string name="mealname">الوجبة</string>
@@ -127,6 +127,7 @@
     <string name="ordernoorderdetails">رقم الطلب . </string>
     <string name="statusorderdetails">الحالة : </string>
     <string name="typeorderdetails">النوع : </string>
+    <string name="timeerorr">من فضلك قم بتحديد وقت لاحق !!</string>
 
 
 </resources>
