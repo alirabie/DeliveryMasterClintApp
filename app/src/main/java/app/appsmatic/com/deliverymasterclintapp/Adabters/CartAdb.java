@@ -51,8 +51,6 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
 
     @Override
     public void onBindViewHolder(final VH1001 holder, final int position) {
-        animate(holder);
-
         holder.name.setText(cartMeals.get(position).getMealName()+"");
         //put title font style
         Typeface face=Typeface.createFromAsset(context.getAssets(), "bbcfont.ttf");
@@ -211,10 +209,7 @@ public class CartAdb extends RecyclerView.Adapter<CartAdb.VH1001> {
         return cartMeals.size();
     }
 
-    public void animate(RecyclerView.ViewHolder viewHolder) {
-        final Animation animAnticipateOvershoot = AnimationUtils.loadAnimation(context, R.anim.bounce_interpolator);
-        viewHolder.itemView.setAnimation(animAnticipateOvershoot);
-    }
+
 
     public static class VH1001 extends RecyclerView.ViewHolder{
 
