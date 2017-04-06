@@ -128,6 +128,8 @@
     <string name="statusorderdetails">الحالة : </string>
     <string name="typeorderdetails">النوع : </string>
     <string name="timeerorr">من فضلك قم بتحديد وقت لاحق !!</string>
+    <string name="soon">قريبا</string>
+    <string name="addressempty">من فضلك لا تترك العنوان فارغ !</string>
 
 
 </resources>

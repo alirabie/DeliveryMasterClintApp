@@ -120,9 +120,8 @@ public class OrderDetails extends AppCompatActivity {
                         currentordersList.setLayoutManager(new LinearLayoutManager(OrderDetails.this));
                         //Putting total order price
                         totalAll.setText(orderDetailsAdb.sumTotall()+" "+getResources().getString(R.string.rs));
-
                     } else {
-                        Toast.makeText(OrderDetails.this, "Code 0 from Order Details", Toast.LENGTH_LONG).show();
+                        Toast.makeText(OrderDetails.this,"Code 0 from order details !", Toast.LENGTH_LONG).show();
                     }
 
                 } else {

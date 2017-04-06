@@ -78,48 +78,49 @@ public class MealsFrag extends android.app.Fragment {
                 if (response.isSuccessful()) {
                     if (mProgressDialog.isShowing())
                         mProgressDialog.dismiss();
+                    try {
+                        //un freeze screen
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 
-                    //un freeze screen
-                    getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        //get message code
+                        codeid = response.body().getCode() + "";
 
-                    //get message code
-                    codeid = response.body().getCode()+"";
+                        //Check If message Success Or Not
+                        if (!codeid.equals("0")) {
+                            mealsAdb = new MealsAdb(getActivity(), response.body());
+                            mealsList = (RecyclerView) getActivity().findViewById(R.id.mealsList);
+                            mealsList.setLayoutManager(new LinearLayoutManager(getActivity()));
+                            mealsList.setAdapter(mealsAdb);
+                            mealsAdb.notifyDataSetChanged();
 
-                    //Check If message Success Or Not
-                    if (!codeid.equals("0")) {
-                        mealsAdb = new MealsAdb(getActivity(),response.body());
-                        mealsList = (RecyclerView) getActivity().findViewById(R.id.mealsList);
-                        mealsList.setLayoutManager(new LinearLayoutManager(getActivity()));
-                        mealsList.setAdapter(mealsAdb);
-                        mealsAdb.notifyDataSetChanged();
-
-                    } else {
-
-
-                        //message code  0 failed
-                    }
+                        } else {
 
 
-                } else {
+                            //message code  0 failed
+                        }
+
+                    }catch (Exception e){}
+                } else{
 
 
-                    if (mProgressDialog.isShowing())
-                        mProgressDialog.dismiss();
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(R.string.Responsenotsucusess)
-                            .setCancelable(false)
-                            .setIcon(R.drawable.erroricon)
-                            .setTitle(R.string.communicationerorr)
-                            .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    AlertDialog alert = builder.create();
-                    alert.show();
+                        if (mProgressDialog.isShowing())
+                            mProgressDialog.dismiss();
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setMessage(R.string.Responsenotsucusess)
+                                .setCancelable(false)
+                                .setIcon(R.drawable.erroricon)
+                                .setTitle(R.string.communicationerorr)
+                                .setPositiveButton(R.string.Dissmiss, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alert = builder.create();
+                        alert.show();
 
 
                 }
+
             }
 
             @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.os.Build;
@@ -167,7 +168,6 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
             public void onClick(View v) {
 
                 if (lat == 0.0 & lang == 0.0) {
-
                     final AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryService.this);
                     builder.setMessage("Please Pick Your Location From Map ! ")
                             .setCancelable(false)
@@ -183,42 +183,49 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
 
                 } else {
 
-                    //Select new Location from map
-                    HashMap data = new HashMap();
-                    newLocaton = new NewLocaton();
-                    newLocaton.setStreetAddress(addressInput.getText() + "");
-                    newLocaton.setComment(commentInput.getText() + "");
-                    newLocaton.setLongtitude(lang);
-                    newLocaton.setLatitude(lat);
-                    data.put("userid", SaveSharedPreference.getOwnerId(getApplicationContext()));
-                    data.put("location", newLocaton);
+                    if (addressInput.getText().toString().isEmpty()) {
 
-                    Genrator.createService(ClintAppApi.class).addNewLocation(data).enqueue(new Callback<ResNewLocation>() {
-                        @Override
-                        public void onResponse(Call<ResNewLocation> call, Response<ResNewLocation> response) {
-                            if (response.isSuccessful()) {
-                                if (response.body().getCode() == 0) {
-                                    Toast.makeText(getApplicationContext(), "code 0 from delivery locations addition", Toast.LENGTH_LONG).show();
+                        addressInput.setHintTextColor(Color.RED);
+                        addressInput.setHint(getResources().getString(R.string.addressempty));
 
+                    } else {
+
+                        //Select new Location from map
+                        HashMap data = new HashMap();
+                        newLocaton = new NewLocaton();
+                        newLocaton.setStreetAddress(addressInput.getText() + "");
+                        newLocaton.setComment(commentInput.getText() + "");
+                        newLocaton.setLongtitude(lang);
+                        newLocaton.setLatitude(lat);
+                        data.put("userid", SaveSharedPreference.getOwnerId(getApplicationContext()));
+                        data.put("location", newLocaton);
+
+                        Genrator.createService(ClintAppApi.class).addNewLocation(data).enqueue(new Callback<ResNewLocation>() {
+                            @Override
+                            public void onResponse(Call<ResNewLocation> call, Response<ResNewLocation> response) {
+                                if (response.isSuccessful()) {
+                                    if (response.body().getCode() == 0) {
+                                        Toast.makeText(getApplicationContext(), "code 0 from delivery locations addition", Toast.LENGTH_LONG).show();
+
+                                    } else {
+
+                                        startActivity(new Intent(DeliveryService.this, Confirmation.class)
+                                                .putExtra("locationId", response.body().getMessage().getLocationID() + "")
+                                                .putExtra("servicetype", 2));
+                                        Toast.makeText(getApplicationContext(), "Your Location Id : " + response.body().getMessage().getLocationID() + "", Toast.LENGTH_LONG).show();
+                                        finish();
+                                    }
                                 } else {
+                                    Toast.makeText(getApplicationContext(), "no response from locations addition", Toast.LENGTH_LONG).show();
 
-                                    startActivity(new Intent(DeliveryService.this, Confirmation.class)
-                                            .putExtra("locationId", response.body().getMessage().getLocationID() + "")
-                                            .putExtra("servicetype", 2));
-                                    Toast.makeText(getApplicationContext(), "Your Location Id : " + response.body().getMessage().getLocationID() + "", Toast.LENGTH_LONG).show();
-                                    finish();
                                 }
-                            } else {
-                                Toast.makeText(getApplicationContext(), "no response from locations addition", Toast.LENGTH_LONG).show();
-
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call<ResNewLocation> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<ResNewLocation> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
 
 
                 /*
@@ -228,11 +235,11 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                 */
 
 
+                    }
+
+
                 }
-
-
             }
-
 
 
         });

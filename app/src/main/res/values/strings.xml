@@ -106,6 +106,8 @@
     <string name="rs">SR</string>
     <string name="selectloc">Are you sure you wont select this brunch ?</string>
     <string name="selectaddres">Are you sure you wont select this Address ?</string>
+    <string name="soon">Soon !</string>
+    <string name="addressempty">Please do not let your address Empty !</string>
 
     <string name="addressorderdetails">Address : </string>
     <string name="ordernoorderdetails">Order No . </string>

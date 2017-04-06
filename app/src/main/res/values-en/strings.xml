@@ -127,5 +127,7 @@
     <string name="statusorderdetails">Status :</string>
     <string name="typeorderdetails">Type :</string>
     <string name="timeerorr">Please select later Date !!</string>
+    <string name="soon">Soon !</string>
+    <string name="addressempty">Please don\'t let your addres Empty !</string>
 
 </resources>

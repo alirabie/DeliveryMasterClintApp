@@ -241,15 +241,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         inflater.inflate(R.menu.home, menu);
 
 
-           itemCart = menu.findItem(R.id.action_carticon);
-           icon = (LayerDrawable) itemCart.getIcon();
-        if(cartMeals.isEmpty()){
+        itemCart = menu.findItem(R.id.action_carticon);
+        icon = (LayerDrawable) itemCart.getIcon();
+        if (cartMeals.isEmpty()) {
             //don't show any numbers on cart icon
-        }else {
+        } else {
             setBadgeCount(getBaseContext(), icon, cartMeals.size() + "");
         }
-
-
 
 
         //Setup Search view listener >>>
@@ -260,8 +258,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.length() > 0) {
-
+              //  if (query.length() > 0) {
+/*
                     search = new Search();
                     Bundle args = new Bundle();
                     args.putString("query_string",query);
@@ -271,16 +269,17 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragmentcontener,search);
                     fragmentTransaction.commit();
-
-
-
-                }
+*/
+                //Soon Message
+                Toast.makeText(Home.this, getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
+               // }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.length() > 0) {
+               /* if (newText.length() > 0) {
+
                     search = new Search();
                     Bundle args = new Bundle();
                     args.putString("query_string",newText);
@@ -290,13 +289,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragmentcontener,search);
                     fragmentTransaction.commit();
+
                 }
+                */
+                //Soon Message
+                    Toast.makeText(Home.this, getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
                 return false;
             }
         });
-
-
-
 
         return true;
     }
@@ -341,6 +341,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 super.onBackPressed();
 
             }
+
+
 
     }
 
@@ -408,12 +410,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 fragmentTransaction.commit();
 
         } else if (id == R.id.nav_info) {
+            /*
             info=new Info();
             toolbartitle.setText(R.string.item6info);
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragmentcontener, info);
             fragmentTransaction.commit();
+            */
+            Toast.makeText(Home.this, getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
 
         }
 

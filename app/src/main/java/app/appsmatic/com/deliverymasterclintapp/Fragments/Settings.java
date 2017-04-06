@@ -77,8 +77,7 @@ public class Settings extends Fragment {
 
 
 
-        //Services Prefs dropdwon list
-        serprefs=(Spinner)getActivity().findViewById(R.id.prefs);
+
 
 
 
