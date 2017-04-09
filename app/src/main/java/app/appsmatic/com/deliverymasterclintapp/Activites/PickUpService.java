@@ -115,7 +115,7 @@ public class PickUpService extends FragmentActivity implements OnMapReadyCallbac
                                                                         .putExtra("locationId", marker.getSnippet() + "")
                                                                         .putExtra("servicetype", 2));
                                                                 finish();
-                                                                Toast.makeText(getApplication(), "Your Location Id : " + marker.getSnippet(), Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(getApplication(),getResources().getString(R.string.addresssent) +" Id : "+ marker.getSnippet(), Toast.LENGTH_LONG).show();
 
 
                                                             }

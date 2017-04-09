@@ -129,5 +129,8 @@
     <string name="timeerorr">Please select later Date !!</string>
     <string name="soon">Soon !</string>
     <string name="addressempty">Please don\'t let your addres Empty !</string>
+    <string name="loginsucess">Login has been Successfully</string>
+    <string name="addresssent">Your Address has been sent</string>
+    <string name="cartcreation">Your Shopping cart has been created</string>
 
 </resources>

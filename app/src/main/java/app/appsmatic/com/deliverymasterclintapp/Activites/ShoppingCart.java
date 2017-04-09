@@ -154,9 +154,9 @@ public class ShoppingCart extends AppCompatActivity {
                                     } else {
                                         if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
                                             SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
-                                            Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.cartcreation), Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(getApplicationContext(),SaveSharedPreference.getCartId(getApplicationContext())+" :  Cart Id still", Toast.LENGTH_SHORT).show();
+                                           // Toast.makeText(getApplicationContext(),SaveSharedPreference.getCartId(getApplicationContext())+" :  Cart Id still", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 
@@ -258,9 +258,9 @@ public class ShoppingCart extends AppCompatActivity {
                                         //Check if cart Id empty if that add new cart id if not empty inform user
                                         if (SaveSharedPreference.getCartId(getApplicationContext()).equals("")) {
                                             SaveSharedPreference.setCartId(getApplicationContext(), response.body().getMessage() + "");
-                                            Toast.makeText(getApplicationContext(), "New Cart Created", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.cartcreation), Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(getApplicationContext(),SaveSharedPreference.getCartId(getApplicationContext())+" :  Cart Id still", Toast.LENGTH_SHORT).show();
+                                           // Toast.makeText(getApplicationContext(),SaveSharedPreference.getCartId(getApplicationContext())+" :  Cart Id still", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 

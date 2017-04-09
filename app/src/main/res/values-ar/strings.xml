@@ -3,7 +3,7 @@
 
 
 
-    <string name="title_activity_splash">تطبيق العميل</string>
+    <string name="title_activity_splash">DM تطبيق العميل</string>
     <string name="title_activity_sign_in">تسجيل الدخول</string>
     <string name="title_activity_sign_up">انشاء حساب جديد</string>PHONE NUMBER
     <string name="title_activity_new_password">باسورد جديد</string>
@@ -130,6 +130,9 @@
     <string name="timeerorr">من فضلك قم بتحديد وقت لاحق !!</string>
     <string name="soon">قريبا</string>
     <string name="addressempty">من فضلك لا تترك العنوان فارغ !</string>
+    <string name="loginsucess">تم تسجيل دخولك بنجاح</string>
+    <string name="addresssent">تم ارسال عنوانك</string>
+    <string name="cartcreation">تم انشاء سلة مشترياتك</string>
 
 
 </resources>

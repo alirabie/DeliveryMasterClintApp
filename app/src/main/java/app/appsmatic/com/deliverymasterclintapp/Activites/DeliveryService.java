@@ -212,7 +212,7 @@ public class DeliveryService extends FragmentActivity implements OnMapReadyCallb
                                         startActivity(new Intent(DeliveryService.this, Confirmation.class)
                                                 .putExtra("locationId", response.body().getMessage().getLocationID() + "")
                                                 .putExtra("servicetype", 2));
-                                        Toast.makeText(getApplicationContext(), "Your Location Id : " + response.body().getMessage().getLocationID() + "", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.addresssent)+" Id: " + response.body().getMessage().getLocationID() + "", Toast.LENGTH_LONG).show();
                                         finish();
                                     }
                                 } else {

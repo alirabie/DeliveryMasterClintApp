@@ -67,7 +67,7 @@ public class BuranchesPickupAdb extends RecyclerView.Adapter<BuranchesPickupAdb.
                                         .putExtra("locationId", locations.getMessage().get(position).getLocationID() + "")
                                         .putExtra("servicetype", 1).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                                 ((Activity)context).finish();
-                                Toast.makeText(context, "Your Location Id : " + locations.getMessage().get(position).getLocationID() + "", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, context.getResources().getString(R.string.addresssent) +" Id : "+ locations.getMessage().get(position).getLocationID() + "", Toast.LENGTH_LONG).show();
                             }
                         })
                         .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

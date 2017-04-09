@@ -114,6 +114,9 @@
     <string name="typeorderdetails">Type : </string>
     <string name="statusorderdetails">Status : </string>
     <string name="bruncheorderdetails">Brunch : </string>
+    <string name="loginsucess">Login has been Successfully</string>
+    <string name="addresssent">Your Address has been sent </string>
+    <string name="cartcreation">Your Shopping cart has been created</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

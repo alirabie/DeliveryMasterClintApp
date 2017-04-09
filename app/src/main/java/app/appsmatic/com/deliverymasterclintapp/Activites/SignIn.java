@@ -148,7 +148,7 @@ public class SignIn extends AppCompatActivity {
 
                                     String fulltext=response.body().getUserid()+"";
                                     SaveSharedPreference.setOwnerId(SignIn.this,fulltext.substring(fulltext.indexOf(",")+1, fulltext.length()));
-                                    Toast.makeText(SignIn.this,"OwnerId : "+SaveSharedPreference.getOwnerId(SignIn.this)+"",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SignIn.this,getResources().getString(R.string.loginsucess),Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(SignIn.this, Home.class));
                                     Home.setUserProfileInfo(SignIn.this);
                                     SignIn.this.finish();
@@ -252,7 +252,10 @@ public class SignIn extends AppCompatActivity {
         forgetpass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(),ForgetpasswordS1.class));
+                //Soon Message
+                Toast.makeText(SignIn.this, getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
+
+                //startActivity(new Intent(getApplication(),ForgetpasswordS1.class));
             }
         });
 

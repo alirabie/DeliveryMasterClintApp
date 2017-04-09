@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import retrofit2.Response;
 public class MyAccount extends Fragment {
 
     private TextView customerNameTv,phoneNumber;
+    private ImageView editphone,editname,editpassword;
 
 
     @Override
@@ -45,8 +47,42 @@ public class MyAccount extends Fragment {
         Home.setUserProfileInfo(getContext());
         customerNameTv=(TextView)view.findViewById(R.id.cuustomer_tv_name);
         phoneNumber=(TextView)view.findViewById(R.id.account_tv_phone);
+        editname=(ImageView)view.findViewById(R.id.edit_name_btn);
+        editphone=(ImageView)view.findViewById(R.id.edit_num_btn);
+        editpassword=(ImageView)view.findViewById(R.id.edit_pass_btn);
         customerNameTv.setText(Home.userProfile.getFirstName()+" "+Home.userProfile.getLastName());
         phoneNumber.setText(Home.userProfile.getMobileNo()+"");
+
+
+        editname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Soon Message
+                Toast.makeText(getContext(), getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        editpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Soon Message
+                Toast.makeText(getContext(), getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        editphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Soon Message
+                Toast.makeText(getContext(), getResources().getString(R.string.soon), Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
+
 
 
     }
