@@ -154,12 +154,12 @@
             android:textSize="20dp"
             android:textColor="#110057"
             android:background="#bebebe" />
-
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cart_customization_list"
+            android:id="@+id/cart_additions_list"
             android:background="#ffffff" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -179,12 +179,12 @@
             android:padding="5dp"
             android:textColor="#110057"
             android:background="#bebebe" />
-
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cart_additions_list"
+            android:id="@+id/cart_customization_list"
             android:background="#ffffff" />
+
     </LinearLayout>
 
     <LinearLayout

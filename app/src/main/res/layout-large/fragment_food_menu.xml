@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:id="@+id/foodmealsfragmentcontener"
         android:layout_below="@+id/catslist"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="6dp"
         android:background="#cdcdcd">
 
     </FrameLayout>
