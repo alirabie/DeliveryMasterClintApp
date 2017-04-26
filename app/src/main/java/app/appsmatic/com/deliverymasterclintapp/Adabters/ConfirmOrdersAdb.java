@@ -89,8 +89,7 @@ public class ConfirmOrdersAdb extends RecyclerView.Adapter<ConfirmOrdersAdb.Vio>
         //Collect customizations
        if(meal2.getCustomization()!=null) {
            for (int i = 0; i < meal2.getCustomization().size(); i++) {
-               st.append(" # "+meal2.getCustomization().get(i).getCustomizationName() + "   "
-                            + meal2.getCustomization().get(i).getCustomizationCount() + "   "
+               st.append(" تخصيص  # "+meal2.getCustomization().get(i).getCustomizationName() + "   "
                             + meal2.getCustomization().get(i).getCustomizationPrice() + " "+context.getResources().getString(R.string.rs)+" "+"\n");
            }
 
@@ -99,7 +98,7 @@ public class ConfirmOrdersAdb extends RecyclerView.Adapter<ConfirmOrdersAdb.Vio>
         //collect additions
         if(!meal2.getMealAdditions().isEmpty()){
             for (int x=0;x<meal2.getMealAdditions().size();x++){
-                st.append(" # "+meal2.getMealAdditions().get(x).getAdditionName()+"  "
+                st.append(" إضافه : # "+meal2.getMealAdditions().get(x).getAdditionName()+"  "
                              +meal2.getMealAdditions().get(x).getAddCount()+"  "
                              +meal2.getMealAdditions().get(x).getAddprice()+" "+context.getResources().getString(R.string.rs)+" "+"\n");
 

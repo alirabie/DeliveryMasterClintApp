@@ -37,7 +37,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
 
     @Override
     public viewholder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new viewholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_cart_additions,parent,false));
+        return new viewholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_cart_castomization,parent,false));
     }
 
     @Override
@@ -45,12 +45,12 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
 
 
         holder.name.setText(customizations.get(position).getCustomizationName()+"");
-        holder.count.setText(customizations.get(position).getCustomizationCount()+"");
+//        holder.count.setText(customizations.get(position).getCustomizationCount()+"");
 
         //Calc Count price
         holder.price.setText(customizations.get(position).getCustomizationPrice()*customizations.get(position).getCustomizationCount()+"");
 
-
+/*
         holder.up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
             }
         });
 
-
+*/
 
         //Delete Addition button action
         holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -145,8 +145,8 @@ public class CartCustomizationsAdb extends RecyclerView.Adapter<CartCustomizatio
             name=(TextView)itemView.findViewById(R.id.cart_additions_add_tv_name);
             count=(TextView)itemView.findViewById(R.id.cart_additions_value_tv);
             price=(TextView)itemView.findViewById(R.id.cart_additions_add_tv_prive);
-            up=(ImageView)itemView.findViewById(R.id.cart_additions_add_up_btn);
-            down=(ImageView)itemView.findViewById(R.id.cart_additions_add_down_btn);
+         //     up=(ImageView)itemView.findViewById(R.id.cart_additions_add_up_btn);
+         //   down=(ImageView)itemView.findViewById(R.id.cart_additions_add_down_btn);
             delete=(ImageView)itemView.findViewById(R.id.cart_additions_delete_btn);
         }
     }

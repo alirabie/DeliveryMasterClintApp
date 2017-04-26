@@ -81,14 +81,13 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
                 counts.set(position, 0);
-                holder.count.setText("" + counts.get(position));
+               // holder.count.setText("" + counts.get(position));
                 selected.set(position, true);
                 if (counts.get(position) == 0) {
                     mealCustomizations.set(position, new MealCustomization());
-                    selected.set(position,false);
                 } else {
 
-                    //fill additions list with additions and counts
+                    //fill Customizations list with additions and counts
                     MealCustomization mealCustomization = new MealCustomization();
                     mealCustomization.setCustomizationName(customizationMs.get(position).getCname() + "");
                     mealCustomization.setCustomizationPrice(customizationMs.get(position).getCprice());
@@ -97,7 +96,32 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
                     mealCustomizations.set(position, mealCustomization);
 
                 }
-            }}
+            }else {
+
+                    counts.set(position, 1);
+                   // holder.count.setText("" + counts.get(position));
+                    selected.set(position, true);
+                    if (counts.get(position) == 0) {
+                        mealCustomizations.set(position, new MealCustomization());
+                    } else {
+
+                        //fill Customizations list with additions and counts
+                        MealCustomization mealCustomization = new MealCustomization();
+                        mealCustomization.setCustomizationName(customizationMs.get(position).getCname() + "");
+                        mealCustomization.setCustomizationPrice(customizationMs.get(position).getCprice());
+                        mealCustomization.setCustomizationCount(counts.get(position));
+                        mealCustomization.setiD(customizationMs.get(position).getCiD());
+                        mealCustomizations.set(position, mealCustomization);
+
+
+                    }
+                }
+
+
+
+
+
+            }
         });
 
 
@@ -116,6 +140,7 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
             selected.add(position,false);
         }
 
+        /*
         holder.up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +171,9 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
             }
         });
 
+*/
 
+        /*
         //Decrement Additions Count
         holder.down.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,7 +203,7 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
 
 
 
-
+*/
 
 
 
@@ -209,11 +236,11 @@ public class CustomizationsAdb extends RecyclerView.Adapter<CustomizationsAdb.VH
         public VH500(View itemView) {
             super(itemView);
 
-            up=(ImageView)itemView.findViewById(R.id.add_up_btn);
-            down=(ImageView)itemView.findViewById(R.id.add_down_btn);
+            //up=(ImageView)itemView.findViewById(R.id.add_up_btn);
+            //down=(ImageView)itemView.findViewById(R.id.add_down_btn);
             custName=(TextView)itemView.findViewById(R.id.add_tv_name);
             price=(TextView)itemView.findViewById(R.id.add_tv_prive);
-            count=(TextView)itemView.findViewById(R.id.value_tv);
+           // count=(TextView)itemView.findViewById(R.id.value_tv);
             selectbutton=(RadioButton)itemView.findViewById(R.id.cust_rdiobutton);
 
 

@@ -21,64 +21,64 @@
         android:textSize="20dp"
         android:layout_weight="1"
         android:textIsSelectable="false" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
+    <!--
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/add_down_btn"
-            android:src="@drawable/down" />
+            android:layout_weight="1"
+            android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="0"
-            android:id="@+id/value_tv"
-            android:gravity="center"
-            android:padding="5dp"
-            android:textSize="20dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/add_down_btn"
+                android:src="@drawable/down" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="0"
+                android:id="@+id/value_tv"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/add_up_btn"
+                android:src="@drawable/up" />
+
+        </LinearLayout>
+    -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/add_up_btn"
-            android:src="@drawable/up" />
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView4"
+                android:src="@drawable/moneyicon"
+                android:adjustViewBounds="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="50 SR"
+                android:id="@+id/add_tv_prive"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:padding="4dp" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="center">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView4"
-            android:src="@drawable/moneyicon"
-            android:adjustViewBounds="false" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="50 SR"
-            android:id="@+id/add_tv_prive"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:padding="4dp" />
-
-    </LinearLayout>
-
-
-
-</LinearLayout>
